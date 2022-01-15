@@ -12,6 +12,7 @@ group :jekyll_plugins do
   gem "jekyll-hostname"
   gem "jekyll-paginate-v2"
   gem "jekyll-loading-lazy"
+  gem "jekyll-redirect-from"
 end
 
 # Performance-booster for watching directories on Windows
