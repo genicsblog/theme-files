@@ -22,7 +22,9 @@ if total_files != 0:
         with open("_data/contributors.yml", "r") as contributors:
             author = yaml.safe_load(contributors)[post["author"]]["links"]["github"]
 
-        if author != sys.argv[1]:
+        author = author.lower()
+
+        if author != sys.argv[1].lower():
             raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({sys.argv[1]}) and github account of contributor({author}) have conflicts.")
 
         url = "https://raw.githubusercontent.com/genicsblog/genicsblog.github.io/main/_drafts/" + file.split('/')[1]
@@ -37,7 +39,7 @@ if total_files != 0:
                 tempMd = open("temp.md")
 
                 yml = frontmatter.load(tempMd)
-                existingDraftAuthor = yml["author"]
+                existingDraftAuthor = yml["author"].lower()
 
                 if author != existingDraftAuthor:
                     raise AssertionError(f"Committer tried to manipulate the author of {file}")
