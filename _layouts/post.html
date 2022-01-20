@@ -60,7 +60,7 @@ layout: default
       <div class="pt-4 space-y-4">
         <figcaption class="font-medium text-center">
           <div>
-            <a href="/contributor/{{ page.author }}" class="text-xl font-bold">
+            <a href="/contributor/{{ page.author | downcase }}" class="text-xl font-bold">
               {{ author.name }}
             </a>
           </div>
@@ -85,7 +85,7 @@ layout: default
           <div class="mt-4 text-base">
             {% for person in page.contributors %}
             {% assign contributor = site.data.contributors[person.name] %}
-            <a href="/contributor/{{ person.name }}">{{ contributor.name }}</a> ({{ person.role }})<br />
+            <a href="/contributor/{{ person.name | downcase }}">{{ contributor.name }}</a> ({{ person.role }})<br />
             {% endfor %}
           </div>
         </figcaption>
