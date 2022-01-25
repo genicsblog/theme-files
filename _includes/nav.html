@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="flex items-center h-16">
-                    <div class="hidden lg:block pr-4">
+                    <div class="hidden lg:block">
                         <a class="nav-item {% if page.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
                             href="/topics">Topics</a>
                         <a class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
@@ -38,17 +38,39 @@
                             href="/contact">Contact</a>
                         <a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
                             href="/advertise">Advertise</a>
-                        <a class="nav-item text-white" target="_blank"
-                            href="https://docs.genicsblog.com">Docs</a>
+                        <a class="nav-item text-white" target="_blank" href="https://docs.genicsblog.com">Docs</a>
                     </div>
 
                     <button onclick="showSearch()" aria-label="Search for posts">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white hover:stroke-slate-300"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-4 h-6 w-6 stroke-white hover:stroke-slate-300"
                             fill="none" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
+
+                    {% if jekyll.environment != 'production' %}
+                    <button type="button" class="ml-2" onclick="toggleTheme()">
+                        <svg viewBox="0 0 512 512" class="h-8 w-8 fill-white hover:fill-slate-300 ">
+                            <g>
+                                <path
+                                    d="M262.524,164.624c-49.466,0-89.592,40.119-89.592,89.596c0,49.487,40.126,89.606,89.592,89.606   c49.487,0,89.613-40.119,89.613-89.606C352.138,204.743,312.012,164.624,262.524,164.624z M262.524,320.136   c-36.39,0-65.902-29.513-65.902-65.916c0-36.396,29.513-65.903,65.902-65.903c36.41,0,65.924,29.506,65.924,65.903   C328.448,290.623,298.935,320.136,262.524,320.136z" />
+                                <path
+                                    d="M264.078,149.221c0,0-39.031-73.758,0-73.758C303.103,75.462,264.078,149.221,264.078,149.221z" />
+                                <path
+                                    d="M261.922,363.328c0,0,39.053,73.737,0,73.737C222.905,437.045,261.922,363.328,261.922,363.328z" />
+                                <path
+                                    d="M186.536,331.194c0,0-24.539,79.766-52.142,52.148C106.817,355.746,186.536,331.194,186.536,331.194z" />
+                                <path
+                                    d="M155.941,255.181c0,0-73.745,39.048-73.745,0C82.224,216.177,155.941,255.181,155.941,255.181z" />
+                                <path
+                                    d="M188.068,179.794c0,0-79.746-24.524-52.142-52.142C163.503,100.086,188.068,179.794,188.068,179.794z" />
+                                <path
+                                    d="M428.852,254.552c0,49.668-40.276,89.931-89.935,89.931c-49.657,0-89.928-40.263-89.928-89.931   c0-49.672,40.271-89.928,89.928-89.928C388.575,164.624,428.852,204.88,428.852,254.552z" />
+                            </g>
+                        </svg>
+                    </button>
+                    {% endif %}
 
                     <a class="ml-4 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
                         href="/contribute">Contribute</a>
