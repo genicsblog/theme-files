@@ -9,7 +9,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     body {
-        @apply bg-slate-50;
+        @apply bg-slate-50 dark:bg-black dark:text-white;
         font-family: "Sen", sands-serif;
     }
     h1, h2, h3, h4, h5, h6 {
@@ -43,10 +43,10 @@
         @apply overflow-auto;
     }
     table {
-        @apply mb-6 w-full rounded-xl bg-slate-200;
+        @apply mb-6 w-full rounded-xl bg-slate-200 dark:bg-slate-500 dark:text-white;
     }
     thead {
-        @apply bg-slate-400;
+        @apply bg-slate-400 dark:bg-slate-700;
     }
     tbody tr:nth-child(even) {
         @apply rounded-md;
@@ -92,16 +92,16 @@
         @apply mb-6;
     }
     article a, aside a, .notice a {
-        @apply text-primary;
+        @apply text-primary dark:text-blue-400;
     }
     article a:after, aside a:after, .notice a:after {
-        @apply bg-primary;
+        @apply bg-primary dark:bg-blue-400;
     }
     hr {
-        @apply w-11/12 mb-6 mx-auto rounded-lg border-t-4 border-gray-200 bg-slate-200;
+        @apply w-11/12 mb-6 mx-auto rounded-lg border-t-4 border-slate-200 dark:border-slate-500;
     }
     blockquote {
-        @apply bg-slate-200 rounded-xl border-l-4 border-slate-400 p-6;
+        @apply bg-slate-200 dark:bg-slate-800 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 p-6;
     }
     pre {
         @apply bg-slate-800 rounded-xl text-sm text-[#b5c4f2] p-4 overflow-x-scroll;
@@ -140,7 +140,7 @@
 }
 
 code.highlighter-rouge {
-    @apply bg-slate-200 py-0.5 px-1.5 rounded-md text-sm;
+    @apply bg-slate-200 dark:bg-slate-700 py-0.5 px-1.5 rounded-md text-sm;
     font-family: "Fira Code", sans-serif;
 }
 

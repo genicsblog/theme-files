@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl shadow-xl shadow-slate-200 p-8 mt-2 mb-12" id="form-parent">
+<div class="bg-white dark:bg-background rounded-2xl shadow-xl dark:shadow-none shadow-slate-200 p-8 mt-2 mb-12" id="form-parent">
     <h5 id="form-title">Add a comment</h5>
     <form class="form" method="POST" action="{{ site.staticman_url }}/v2/entry/{{ site.github_repo }}/main/comment">
         <input name="options[slug]" type="hidden" value="{{ page.slug }}">
@@ -7,23 +7,23 @@
         <div>
             <label for="commentbox-name">Name</label><br />
             <input name="fields[name]" type="text" id="commentbox-name" placeholder="John Doe" required
-                class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 focus:border-primary outline-none">
+                class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 dark:border-slate-700 focus:border-primary dark:focus:border-blue-400 outline-none dark:bg-background">
         </div>
 
         <div class="mt-4">
             <label for="commentbox-message">Message</label><br />
             <textarea type="text" name="fields[message]" id="commentbox-message" rows="5"
                 placeholder="Enter your message here. Markdown is supported!" required
-                class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 focus:border-primary outline-none form-control"></textarea>
+                class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 dark:border-slate-700 focus:border-primary dark:focus:border-blue-400 outline-none form-control  dark:bg-background"></textarea>
         </div>
 
         <div>
             <button
-                class="submit-form px-2.5 py-0.5 mt-4 rounded-md bg-black text-white hover:shadow-lg hover:scale-110 transition">
+                class="submit-form px-2.5 py-0.5 mt-4 rounded-md bg-black dark:bg-slate-100 text-white dark:text-black hover:shadow-lg hover:scale-110 transition">
                 Submit
             </button>
             <button
-                class="hidden ml-2 px-2.5 py-0.5 mt-4 rounded-md bg-black text-white hover:shadow-lg hover:scale-110 transition"
+                class="hidden ml-2 px-2.5 py-0.5 mt-4 rounded-md bg-black dark:bg-slate-100 text-white dark:text-black hover:shadow-lg hover:scale-110 transition"
                 id="cancel-reply-btn">
                 Cancel Reply
             </button>

@@ -105,9 +105,8 @@
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('color-theme', 'light');
             }
-
-            // if NOT set via local storage previously
         } else {
+            // if NOT set via local storage previously
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('color-theme', 'light');
