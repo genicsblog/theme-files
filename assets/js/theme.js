@@ -4,6 +4,14 @@ var navbar = document.getElementById("navbar");
 var banner = document.getElementById("banner");
 var sticky = navbar.offsetTop;
 
+var themeToggleIcon = document.getElementById("theme-toggle-icon");
+
+if(localStorage.getItem("rotated") === "true") {
+    themeToggleIcon.style.transform = "rotate(180deg)";
+} else {
+    themeToggleIcon.style.transform = "rotate(0deg)";
+}
+
 function setStickyness() {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("fixed");
@@ -49,6 +57,35 @@ function hideSearch() {
     document.getElementById("search-container").classList.add("hidden");
     document.getElementById("search-input").value = "";
     document.getElementById("results-container").innerHTML = "";
+}
+
+function toggleTheme() {
+    if (localStorage.getItem("color-theme")) {
+        if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+        }
+    } else {
+        // if NOT set via local storage previously
+        if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+        } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+        }
+    }
+
+    if (localStorage.getItem("rotated") === "true") {
+        themeToggleIcon.style.transform = "rotate(0deg)";
+        localStorage.setItem("rotated", "false");
+    } else {
+        themeToggleIcon.style.transform = "rotate(180deg)";
+        localStorage.setItem("rotated", "true");
+    }
 }
 
 document.getElementById("search-container")

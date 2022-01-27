@@ -116,7 +116,7 @@ layout: default
           Become an Author >
         </a>
       </div>
-      {% else if jekyll.environment == 'production' %}
+      {% elsif jekyll.environment != 'production' %}
       <p>This is an adslot that will be visible in production website.</p>
       {% else %}
       {% include display-ad.html %}
