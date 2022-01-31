@@ -11,7 +11,7 @@ RUN apt-get install -y nodejs
 RUN gem install jekyll bundler
 RUN npm install
 RUN bundle install
-RUN git clone https://github.com/genicsblog/genicsblog.github.io genicsblog
+RUN git clone https://github.com/genicsblog/genicsblog.com genicsblog
 RUN mv genicsblog/* .
 RUN rm -rf genicsblog
 COPY . .

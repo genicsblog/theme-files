@@ -14,7 +14,7 @@ if temp.readlines()[0].strip() == file:
     with open(file, "r") as contributorData:
         newData = yaml.safe_load(contributorData)
 
-    url = f"https://raw.githubusercontent.com/genicsblog/genicsblog.github.io/main/{file}"
+    url = f"https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/{file}"
 
     try:
         response = requests.get(url)

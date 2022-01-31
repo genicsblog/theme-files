@@ -27,7 +27,7 @@ if total_files != 0:
         if author != sys.argv[1].lower():
             raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({sys.argv[1]}) and github account of contributor({author}) have conflicts.")
 
-        url = "https://raw.githubusercontent.com/genicsblog/genicsblog.github.io/main/_drafts/" + file.split('/')[1]
+        url = "https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_drafts/" + file.split('/')[1]
 
         try:
             response = requests.get(url)
