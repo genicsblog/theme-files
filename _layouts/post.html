@@ -84,25 +84,6 @@ layout: default
         </p>
       </div>
     </figure>
-    {% if page.contributors %}
-    <figure class="bg-white dark:bg-background rounded-2xl p-4 shadow-xl shadow-slate-200 mt-8">
-      <div class="space-y-4">
-        <figcaption class="font-medium">
-          <div class="text-center">
-            <span class="text-xl font-bold">
-              Contributors
-            </span>
-          </div>
-          <div class="mt-4 text-base">
-            {% for person in page.contributors %}
-            {% assign contributor = site.data.contributors[person.name] %}
-            <a href="/contributor/{{ person.name | downcase }}">{{ contributor.name }}</a> ({{ person.role }})<br />
-            {% endfor %}
-          </div>
-        </figcaption>
-      </div>
-    </figure>
-    {% endif %}
     <figure
       class="bg-white dark:bg-background rounded-2xl p-6 md:p-8 shadow-xl shadow-slate-200 dark:shadow-none lg:sticky lg:top-24 mt-8">
       {% if page.sitemap == false %}
