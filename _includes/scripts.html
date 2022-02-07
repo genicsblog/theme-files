@@ -1,6 +1,5 @@
 <script src="/assets/js/theme.js"></script>
 <script src="/assets/js/search.js"></script>
-{% assign languageArrSize = page.languages | size %}
-{% if page.layout == 'post' and languageArrSize != 0 %}
+{% if page.hasCode == true %}
 <script src="/assets/js/prism.js"></script>
 {% endif %}
