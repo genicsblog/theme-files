@@ -31,7 +31,7 @@ layout: default
     {% endif %}
     <article class="p-6 md:p-8">
 
-      {% if post.audioId != blank %}
+      {% if page.audioId != blank %}
       <div class="mb-6">
         <iframe allowfullscreen="false" data-src="https://audio.beyondwords.io/m/{{ post.audioId }}" frameborder="0"
           id="speechkit-io-iframe" scrolling="no" class="rounded-xl" style="display: none"></iframe>
