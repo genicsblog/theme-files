@@ -8,7 +8,7 @@ layout: none
       "category" : "{{ post.category }}",
       "tags"     : "{{ post.tags | join: ', ' }}",
       "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "content"  : "{{ post.content | remove: "\" | replace: '"', '\"' | remove:"'" }}"
+      "content"  : "{{ post.excerpt  }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   ,
@@ -20,8 +20,7 @@ layout: none
      {% unless urlItems contains 'index.html' and urlItems contains 'page' %}
      {
         "title"    : "{{ page.title | escape }}",
-        "url"      : "{{ site.baseurl }}{{ page.url }}",
-        "content"  : ""
+        "url"      : "{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}"
       }{% unless forloop.last %},{% endunless %}
      {% endunless %}
      {% endunless %}
@@ -32,8 +31,7 @@ layout: none
   {% assign contributorData = site.data.contributors[contributor.name] %}
     {
       "title"    : "{{ contributorData.name }}'s profile",
-      "url"      : "/contributor/{{ contributor.name }}",
-      "content"  : ""
+      "url"      : "/contributor/{{ contributor.name }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   ,
@@ -41,7 +39,7 @@ layout: none
     {
       "title"    : "Posts in series {{ series.title | escape }}",
       "url"      : "/series/{{ series.slug }}",
-      "content"  : ""
+      "content"  : "{{ series.excerpt  }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
