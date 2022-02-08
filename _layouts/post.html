@@ -30,7 +30,18 @@ layout: default
     </div>
     {% endif %}
     <article class="p-6 md:p-8">
+
+      {% if post.audioId != blank %}
+      <div class="mb-6">
+        <iframe allowfullscreen="false" data-src="https://audio.beyondwords.io/m/{{ post.audioId }}" frameborder="0"
+          id="speechkit-io-iframe" scrolling="no" class="rounded-xl" style="display: none"></iframe>
+        <script src="https://proxy.beyondwords.io/npm/@beyondwords/audio-player@latest/dist/module/iframe-helper.js"
+          type="text/javascript"></script>
+      </div>
+      {% endif %}
+
       {{ content | extlinks }}
+
     </article>
     <hr />
     <div class="px-6 pb-6 md:px-8 md:pb-8 flex flex-col items-center rounded-bl-2xl rounded-br-2xl">
