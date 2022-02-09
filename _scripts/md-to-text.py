@@ -12,6 +12,7 @@ from markdown import markdown
 from bs4 import BeautifulSoup
 
 def remove_emojis(text):
+    text = text.replace(" :)", ".").replace(" :P", ".").replace(" :p", ".")
     return emoji.get_emoji_regexp().sub(r'', text)
 
 def sanitize_markdown(md):
