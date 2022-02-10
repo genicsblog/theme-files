@@ -17,8 +17,9 @@ layout: default
       {% endif %}
       {% if page.series %}
       <span class="text-base leading-8">
-        This post is a part of the series <a href="/series/{{ page.series }}" target="_blank">{{ page.series | split:"-"
-          | join:" " | capitalize_all }}</a>
+        This post is a part of the series <a href="/series/{{ page.series }}" target="_blank">
+          {{ page.series | split:"-" | join:" " | capitalize_all }}
+        </a>
       </span>
       {% endif %}
       {% if page.notice != blank %}
