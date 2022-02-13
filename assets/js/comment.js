@@ -22,16 +22,26 @@ var addComment = function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        submitButton.innerHTML = "Posting...";
-        submitButton.classList.add("disabled");
-        submitButton.disabled = true;
-
         var errorHandler = function (title, err) {
             console.log(err);
             var ecode = err.errorCode || "unknown";
-            showModal(title, "An error occured.<br>[" + ecode + "]");
-            form.doReset();
+            showModal(title, "An error occured.\n\n[" + ecode + "]", false);
         }
+
+        var captchaString = I("captcha-label").innerHTML.toString().replaceAll(" ", "").slice(0, 5);
+        var ans = eval(captchaString);
+        var userAns = I("commentbox-captcha").value;
+
+        if (ans != userAns) {
+            errorHandler("Wrong Captcha!", {errorCode: "CAPTCHA_INCORRECT"});
+            generateCaptcha();
+            I("commentbox-captcha").value = "";
+            return;
+        }
+
+        submitButton.innerHTML = "Posting...";
+        submitButton.classList.add("disabled");
+        submitButton.disabled = true;
 
         fetch(this.getAttribute("action"), {
             method: "POST",
@@ -42,11 +52,13 @@ var addComment = function () {
                 if (data.ok) {
                     showModal(
                         "Comment submitted!",
-                        "Thanks for your comment! It will be published after it's been approved by the Genics Blog team :)"
+                        "Thanks for your comment! It will be published after it's been approved by the Genics Blog team :)",
+                        true
                     );
                 } else {
                     data.json().then(function (err) {
                         errorHandler("Server Error", err);
+                        generateCaptcha();
                     });
                 }
             }
@@ -57,7 +69,7 @@ var addComment = function () {
 
     });
 
-    function showModal(title, message) {
+    function showModal(title, message, reset) {
         I("modal").classList.remove("hidden");
 
         document.getElementById("modal-title").textContent = title;
@@ -70,8 +82,10 @@ var addComment = function () {
             submitButton.classList.remove("disabled");
             submitButton.disabled = false;
 
-            form.reset();
-            form.doReset();
+            if (reset) {
+                form.reset();
+                form.doReset();
+            }
         });
     }
 
