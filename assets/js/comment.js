@@ -1,11 +1,11 @@
 // Static comments
 // modified version of: https://github.com/travisdowns/travisdowns.github.io/blob/master/assets/main.js
-const addComment = (() => {
+var addComment = (() => {
   const select = (s) => {
     return document.querySelector(s);
   };
 
-  const getElemById = (id) => {
+  const I = (id) => {
     return document.getElementById(id);
   };
 
@@ -18,7 +18,7 @@ const addComment = (() => {
     this.disabled = false;
   };
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const errorHandler = (title, err) => {
@@ -26,18 +26,17 @@ const addComment = (() => {
       showModal(title, "An error occured.\n\n[" + ecode + "]", false);
     };
 
-    const captchaString = getElemById("captcha-label")
+    const captchaString = I("captcha-label")
       .innerHTML.toString()
       .replaceAll(" ", "")
       .slice(0, 5);
-
     const ans = eval(captchaString);
-    const userAns = getElemById("commentbox-captcha").value;
+    const userAns = I("commentbox-captcha").value;
 
     if (ans != userAns) {
       errorHandler("Wrong Captcha!", { errorCode: "CAPTCHA_INCORRECT" });
       generateCaptcha();
-      getElemById("commentbox-captcha").value = "";
+      I("commentbox-captcha").value = "";
       return;
     }
 
@@ -52,7 +51,7 @@ const addComment = (() => {
         "content-type": "application/x-www-form-urlencoded",
       }),
     })
-      .then(function (data) {
+      .then((data) => {
         if (data.ok) {
           showModal(
             "Comment submitted!",
@@ -60,7 +59,7 @@ const addComment = (() => {
             true
           );
         } else {
-          data.json().then(function (err) {
+          data.json().then((err) => {
             errorHandler("Server Error", err);
             generateCaptcha();
           });
@@ -72,13 +71,13 @@ const addComment = (() => {
   });
 
   const showModal = (title, message, reset) => {
-    getElemById("modal").classList.remove("hidden");
+    I("modal").classList.remove("hidden");
 
     document.getElementById("modal-title").textContent = title;
     document.getElementById("modal-message").textContent = message;
 
     select("#close").addEventListener("click", () => {
-      getElemById("modal").classList.add("hidden");
+      I("modal").classList.add("hidden");
 
       submitButton.innerHTML = "Submit";
       submitButton.classList.remove("disabled");
@@ -102,10 +101,10 @@ const addComment = (() => {
     // parentId - the UID of the parent comment
     moveForm: (commId, respondId, parentId) => {
       const t = this;
-      const comm = getElemById(commId); // whole comment
-      const respond = getElemById(respondId); // whole new comment form
-      const cancel = getElemById("cancel-reply-btn"); // whole reply cancel link
-      const parentIdF = getElemById("replying-to-id"); // a hidden element in the comment
+      const comm = I(commId); // whole comment
+      const respond = I(respondId); // whole new comment form
+      const cancel = I("cancel-reply-btn"); // whole reply cancel link
+      const parentIdF = I("replying-to-id"); // a hidden element in the comment
 
       if (!comm || !respond || !cancel || !parentIdF) {
         return;
@@ -113,7 +112,7 @@ const addComment = (() => {
 
       t.respondId = respondId;
 
-      if (!getElemById("sm-temp-form-div")) {
+      if (!I("sm-temp-form-div")) {
         const div = document.createElement("div");
         div.id = "sm-temp-form-div";
         div.style.display = "none";
@@ -122,21 +121,21 @@ const addComment = (() => {
 
       comm.parentNode.insertBefore(respond, comm.nextSibling); // move the form from the bottom to above the next sibling
       parentIdF.value = parentId;
-      getElemById("form-parent").classList.add("ml-14");
-      getElemById("form-title").innerHTML = "Add a reply";
+      I("form-parent").classList.add("ml-14");
+      I("form-title").innerHTML = "Add a reply";
       cancel.classList.remove("hidden"); // make the cancel link visible
 
       cancel.onclick = () => {
-        const temp = getElemById("sm-temp-form-div"); // temp is the original bookmark
-        const respond = getElemById(t.respondId); // respond is the comment form
+        const temp = I("sm-temp-form-div"); // temp is the original bookmark
+        const respond = I(t.respondId); // respond is the comment form
 
         if (!temp || !respond) {
           return;
         }
 
-        getElemById("form-parent").classList.remove("ml-14");
-        getElemById("form-title").innerHTML = "Add a comment";
-        getElemById("replying-to-id").value = null;
+        I("form-parent").classList.remove("ml-14");
+        I("form-title").innerHTML = "Add a comment";
+        I("replying-to-id").value = null;
         temp.parentNode.insertBefore(respond, temp); // move the comment form to its original location
         temp.parentNode.removeChild(temp); // remove the bookmark div
         this.classList.add("hidden"); // make the cancel link invisible
@@ -144,7 +143,7 @@ const addComment = (() => {
         return false;
       };
 
-      getElemById("commentbox-name").focus();
+      I("commentbox-name").focus();
 
       return false;
     },
