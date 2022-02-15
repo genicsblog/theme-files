@@ -1,151 +1,152 @@
 // Static comments
 // modified version of: https://github.com/travisdowns/travisdowns.github.io/blob/master/assets/main.js
-var addComment = function () {
+var addComment = (() => {
+  const select = (s) => {
+    return document.querySelector(s);
+  };
 
-    var select = function (s) {
-        return document.querySelector(s);
+  // shortened version of document.getElementById
+  const I = (id) => {
+    return document.getElementById(id);
+  };
+
+  const submitButton = select(".submit-form");
+
+  const form = select(".form");
+  form.doReset = () => {
+    submitButton.innerHTML = "Submit";
+    this.classList.remove("disabled");
+    this.disabled = false;
+  };
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const errorHandler = (title, err) => {
+      const ecode = err.errorCode || "unknown";
+      showModal(title, "An error occured.\n\n[" + ecode + "]", false);
     };
 
-    var I = function (id) {
-        return document.getElementById(id);
-    };
+    const captchaString = I("captcha-label")
+      .innerHTML.toString()
+      .replaceAll(" ", "")
+      .slice(0, 5);
+    const ans = eval(captchaString);
+    const userAns = I("commentbox-captcha").value;
 
-    var submitButton = select(".submit-form");
+    if (ans != userAns) {
+      errorHandler("Wrong Captcha!", { errorCode: "CAPTCHA_INCORRECT" });
+      generateCaptcha();
+      I("commentbox-captcha").value = "";
+      return;
+    }
 
-    var form = select(".form");
-    form.doReset = function () {
-        submitButton.innerHTML = "Submit";
-        this.classList.remove("disabled");
-        this.disabled = false;
-    };
+    submitButton.innerHTML = "Posting...";
+    submitButton.classList.add("disabled");
+    submitButton.disabled = true;
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var errorHandler = function (title, err) {
-            console.log(err);
-            var ecode = err.errorCode || "unknown";
-            showModal(title, "An error occured.\n\n[" + ecode + "]", false);
-        }
-
-        var captchaString = I("captcha-label").innerHTML.toString().replaceAll(" ", "").slice(0, 5);
-        var ans = eval(captchaString);
-        var userAns = I("commentbox-captcha").value;
-
-        if (ans != userAns) {
-            errorHandler("Wrong Captcha!", {errorCode: "CAPTCHA_INCORRECT"});
+    fetch(this.getAttribute("action"), {
+      method: "POST",
+      body: new URLSearchParams(new FormData(this)),
+      headers: new Headers({
+        "content-type": "application/x-www-form-urlencoded",
+      }),
+    })
+      .then((data) => {
+        if (data.ok) {
+          showModal(
+            "Comment submitted!",
+            "Thanks for your comment! It will be published after it's been approved by the Genics Blog team :)",
+            true
+          );
+        } else {
+          data.json().then((err) => {
+            errorHandler("Server Error", err);
             generateCaptcha();
-            I("commentbox-captcha").value = "";
-            return;
+          });
         }
+      })
+      .catch((err) => {
+        errorHandler("Unexpected Error", err);
+      });
+  });
 
-        submitButton.innerHTML = "Posting...";
-        submitButton.classList.add("disabled");
-        submitButton.disabled = true;
+  const showModal = (title, message, reset) => {
+    I("modal").classList.remove("hidden");
 
-        fetch(this.getAttribute("action"), {
-            method: "POST",
-            body: new URLSearchParams(new FormData(this)),
-            headers: new Headers({ "content-type": "application/x-www-form-urlencoded" })
-        }).then(
-            function (data) {
-                if (data.ok) {
-                    showModal(
-                        "Comment submitted!",
-                        "Thanks for your comment! It will be published after it's been approved by the Genics Blog team :)",
-                        true
-                    );
-                } else {
-                    data.json().then(function (err) {
-                        errorHandler("Server Error", err);
-                        generateCaptcha();
-                    });
-                }
-            }
-        ).catch(function (err) {
-            console.error(err);
-            errorHandler("Unexpected Error", err);
-        });
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-message").textContent = message;
 
+    select("#close").addEventListener("click", () => {
+      I("modal").classList.add("hidden");
+
+      submitButton.innerHTML = "Submit";
+      submitButton.classList.remove("disabled");
+      submitButton.disabled = false;
+
+      if (reset) {
+        form.reset();
+        form.doReset();
+      }
     });
+  };
 
-    function showModal(title, message, reset) {
-        I("modal").classList.remove("hidden");
+  // Staticman comment replies, from https://github.com/mmistakes/made-mistakes-jekyll
+  // modified from Wordpress https://core.svn.wordpress.org/trunk/wp-includes/js/comment-reply.js
+  // Released under the GNU General Public License - https://wordpress.org/about/gpl/
+  // addComment.moveForm is called from comment.html when the reply link is clicked.
 
-        document.getElementById("modal-title").textContent = title;
-        document.getElementById("modal-message").textContent = message;
+  return {
+    // commId - the id attribute of the comment replied to (e.g., "comment-10")
+    // respondId - the string "respond", I guess
+    // parentId - the UID of the parent comment
+    moveForm: (commId, respondId, parentId) => {
+      const t = this;
+      const comm = I(commId); // whole comment
+      const respond = I(respondId); // whole new comment form
+      const cancel = I("cancel-reply-btn"); // whole reply cancel link
+      const parentIdF = I("replying-to-id"); // a hidden element in the comment
 
-        select("#close").addEventListener("click", function () {
-            I("modal").classList.add("hidden");
+      if (!comm || !respond || !cancel || !parentIdF) {
+        return;
+      }
 
-            submitButton.innerHTML = "Submit";
-            submitButton.classList.remove("disabled");
-            submitButton.disabled = false;
+      t.respondId = respondId;
 
-            if (reset) {
-                form.reset();
-                form.doReset();
-            }
-        });
-    }
+      if (!I("sm-temp-form-div")) {
+        const div = document.createElement("div");
+        div.id = "sm-temp-form-div";
+        div.style.display = "none";
+        respond.parentNode.insertBefore(div, respond); // create and insert a bookmark div right before comment form
+      }
 
-    // Staticman comment replies, from https://github.com/mmistakes/made-mistakes-jekyll
-    // modified from Wordpress https://core.svn.wordpress.org/trunk/wp-includes/js/comment-reply.js
-    // Released under the GNU General Public License - https://wordpress.org/about/gpl/
-    // addComment.moveForm is called from comment.html when the reply link is clicked.
+      comm.parentNode.insertBefore(respond, comm.nextSibling); // move the form from the bottom to above the next sibling
+      parentIdF.value = parentId;
+      I("form-parent").classList.add("ml-14");
+      I("form-title").innerHTML = "Add a reply";
+      cancel.classList.remove("hidden"); // make the cancel link visible
 
-    return {
+      cancel.onclick = () => {
+        const temp = I("sm-temp-form-div"); // temp is the original bookmark
+        const respond = I(t.respondId); // respond is the comment form
 
-        // commId - the id attribute of the comment replied to (e.g., "comment-10")
-        // respondId - the string "respond", I guess
-        // parentId - the UID of the parent comment
-        moveForm: function (commId, respondId, parentId) {
-            var t = this;
-            var comm = I(commId);                                // whole comment
-            var respond = I(respondId);                             // whole new comment form
-            var cancel = I("cancel-reply-btn");           // whole reply cancel link
-            var parentIdF = I("replying-to-id");             // a hidden element in the comment
-
-            if (!comm || !respond || !cancel || !parentIdF) {
-                return;
-            }
-
-            t.respondId = respondId;
-
-            if (!I("sm-temp-form-div")) {
-                var div = document.createElement("div");
-                div.id = "sm-temp-form-div";
-                div.style.display = "none";
-                respond.parentNode.insertBefore(div, respond); // create and insert a bookmark div right before comment form
-            }
-
-            comm.parentNode.insertBefore(respond, comm.nextSibling);  // move the form from the bottom to above the next sibling
-            parentIdF.value = parentId;
-            I("form-parent").classList.add("ml-14");
-            I("form-title").innerHTML = "Add a reply";
-            cancel.classList.remove("hidden");                     // make the cancel link visible
-
-            cancel.onclick = function () {
-                var temp = I("sm-temp-form-div");            // temp is the original bookmark
-                var respond = I(t.respondId);                   // respond is the comment form
-
-                if (!temp || !respond) {
-                    return;
-                }
-
-                I("form-parent").classList.remove("ml-14");
-                I("form-title").innerHTML = "Add a comment";
-                I("replying-to-id").value = null;
-                temp.parentNode.insertBefore(respond, temp);  // move the comment form to its original location
-                temp.parentNode.removeChild(temp);            // remove the bookmark div
-                this.classList.add("hidden");                 // make the cancel link invisible
-                this.onclick = null;                          // retire the onclick handler
-                return false;
-            };
-
-            I("commentbox-name").focus();
-
-            return false;
+        if (!temp || !respond) {
+          return;
         }
-    }
-}();
+
+        I("form-parent").classList.remove("ml-14");
+        I("form-title").innerHTML = "Add a comment";
+        I("replying-to-id").value = null;
+        temp.parentNode.insertBefore(respond, temp); // move the comment form to its original location
+        temp.parentNode.removeChild(temp); // remove the bookmark div
+        this.classList.add("hidden"); // make the cancel link invisible
+        this.onclick = null; // retire the onclick handler
+        return false;
+      };
+
+      I("commentbox-name").focus();
+
+      return false;
+    },
+  };
+})();

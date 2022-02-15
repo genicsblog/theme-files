@@ -3,7 +3,7 @@
 {% if page.hasCode == true %}
 <script src="/assets/js/prism.js"></script>
 {% endif %}
-{% if page.comments != false %}
+{% if page.comments != false and page.layout == "post" %}
 <script>
     function randomInt(max) {
         return Math.floor((Math.random() * max) + 1);
