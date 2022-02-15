@@ -5,6 +5,7 @@ var addComment = (() => {
     return document.querySelector(s);
   };
 
+  // shortened version of document.getElementById
   const I = (id) => {
     return document.getElementById(id);
   };
