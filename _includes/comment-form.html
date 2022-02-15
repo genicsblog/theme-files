@@ -7,6 +7,8 @@
         action="{{ site.staticman_url }}/v2/entry/{{ site.github_username }}/comments/main/comment">
         <input name="options[slug]" type="hidden" value="{{ page.slug }}">
         <input type="hidden" id="replying-to-id" name="fields[replying_to_id]" value="">
+        <input type="hidden" name="options[reCaptcha][siteKey]" value="{{ site.reCaptcha.siteKey }}">
+        <input type="hidden" name="options[reCaptcha][secret]" value="{{ site.reCaptcha.secret }}">
 
         <div>
             <label for="commentbox-name">Name</label><br />
@@ -22,9 +24,8 @@
         </div>
 
         <div class="my-2">
-            <label id="captcha-label" for="commentbox-captcha">Captcha loading...</label><br />
-            <input type="text" id="commentbox-captcha" required placeholder="Enter your answer here" autocomplete="off"
-                class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 dark:border-slate-700 focus:border-primary dark:focus:border-blue-400 outline-none dark:bg-background">
+            <label id="captcha-label" for="commentbox-captcha">Human verification</label><br />
+            <div class="g-recaptcha" data-sitekey="{{ site.reCaptcha.siteKey }}"></div>
         </div>
 
         <div>

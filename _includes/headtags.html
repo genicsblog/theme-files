@@ -95,3 +95,7 @@
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense-data-ad-client }}"
     crossorigin="anonymous"></script>
 {% endif %}
+
+{% if page.layout == "post" and page.comments != false %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endif %}

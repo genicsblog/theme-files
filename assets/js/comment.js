@@ -27,20 +27,6 @@ var addComment = (() => {
       showModal(title, "An error occured.\n\n[" + ecode + "]", false);
     };
 
-    const captchaString = I("captcha-label")
-      .innerHTML.toString()
-      .replaceAll(" ", "")
-      .slice(0, 5);
-    const ans = eval(captchaString);
-    const userAns = I("commentbox-captcha").value;
-
-    if (ans != userAns) {
-      errorHandler("Wrong Captcha!", { errorCode: "CAPTCHA_INCORRECT" });
-      generateCaptcha();
-      I("commentbox-captcha").value = "";
-      return;
-    }
-
     submitButton.innerHTML = "Posting...";
     submitButton.classList.add("disabled");
     submitButton.disabled = true;
@@ -62,7 +48,6 @@ var addComment = (() => {
         } else {
           data.json().then((err) => {
             errorHandler("Server Error", err);
-            generateCaptcha();
           });
         }
       })

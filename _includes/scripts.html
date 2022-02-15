@@ -3,25 +3,3 @@
 {% if page.hasCode == true %}
 <script src="/assets/js/prism.js"></script>
 {% endif %}
-{% if page.comments != false and page.layout == "post" %}
-<script>
-    function randomInt(max) {
-        return Math.floor((Math.random() * max) + 1);
-    }
-
-    function generateCaptcha() {
-        var num1 = randomInt(9);
-        var num2 = randomInt(9);
-        var num3 = randomInt(9);
-
-        var op1 = randomInt(2) == 1 ? '+' : '-';
-        var op2 = randomInt(2) == 1 ? '+' : '-';
-
-        var str = `${num1} ${op1} ${num2} ${op2} ${num3}`;
-
-        document.getElementById('captcha-label').innerHTML = `${str} = ?`;
-    }
-
-    generateCaptcha();
-</script>
-{% endif %}
