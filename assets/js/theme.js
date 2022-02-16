@@ -61,6 +61,20 @@ const hideSearch = () => {
   document.getElementById("results-container").innerHTML = "";
 };
 
+// Detect keypress
+// CMD + K -> Open search
+// CTRL + K -> Open search
+// ESC -> Hide search
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode === 75 && (e.ctrlKey || e.metaKey)) {
+    showSearch();
+  }
+
+  if (e.keyCode === 27) {
+    hideSearch();
+  }
+});
+
 const toggleTheme = () => {
   if (localStorage.getItem("color-theme")) {
     if (localStorage.getItem("color-theme") === "light") {
