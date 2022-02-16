@@ -3,17 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {% if page.excerpt != blank %}
-{% assign description = page.excerpt %}
+    {% assign description = page.excerpt %}
 {% elsif page.description != blank %}
-{% assign description = page.description %}
+    {% assign description = page.description %}
 {% else %}
-{% assign description = site.description %}
+    {% assign description = site.description %}
 {% endif %}
 
 {% if page.layout == "archive" %}
-{% if site.data.descriptions[page.autopages.display_name] != blank %}
-{% assign description = site.data.descriptions[page.autopages.display_name] %}
-{% endif %}
+    {% if site.data.descriptions[page.autopages.display_name] != blank %}
+        {% assign description = site.data.descriptions[page.autopages.display_name] %}
+    {% endif %}
 {% endif %}
 
 <meta name="description" content="{{ description }}">
@@ -102,9 +102,9 @@
 {% if page.layout == "post" and page.comments != false %}
 <script>
     var recaptchaOnload = _ => {
-        grecaptcha.render('captcha__comment__form', {
+        grecaptcha.render('captcha-holder', {
           'sitekey' : '{{ site.reCaptcha.siteKey }}',
-          'theme' : window.THEME ? Window.THEME : "light"
+          'theme' : window.THEME ? window.THEME : "light"
         });
     };
 </script>
