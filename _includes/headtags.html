@@ -101,12 +101,12 @@
 
 {% if page.layout == "post" and page.comments != false %}
 <script>
-    var recaptchOnload = _ => {
+    var recaptchaOnload = _ => {
         grecaptcha.render('captcha__comment__form', {
           'sitekey' : '{{ site.reCaptcha.siteKey }}',
           'theme' : window.THEME ? Window.THEME : "light"
         });
     };
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=recaptchOnload&render=explicit" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 {% endif %}
