@@ -3,17 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {% if page.excerpt != blank %}
-    {% assign description = page.excerpt %}
+{% assign description = page.excerpt %}
 {% elsif page.description != blank %}
-    {% assign description = page.description %}
+{% assign description = page.description %}
 {% else %}
-    {% assign description = site.description %}
+{% assign description = site.description %}
 {% endif %}
 
 {% if page.layout == "archive" %}
-    {% if site.data.descriptions[page.autopages.display_name] != blank %}
-        {% assign description = site.data.descriptions[page.autopages.display_name]  %}
-    {% endif %}
+{% if site.data.descriptions[page.autopages.display_name] != blank %}
+{% assign description = site.data.descriptions[page.autopages.display_name] %}
+{% endif %}
 {% endif %}
 
 <meta name="description" content="{{ description }}">
@@ -69,14 +69,17 @@
             document.documentElement.classList.remove("dark");
             localStorage.setItem("color-theme", "light");
             localStorage.setItem("rotated", "false");
+            window.THEME = "light";
         } else {
             document.documentElement.classList.add("dark");
             localStorage.setItem("color-theme", "dark");
             localStorage.setItem("rotated", "true");
+            window.THEME = "dark";
         }
     } else {
         localStorage.setItem("color-theme", "light");
         localStorage.setItem("rotated", "false");
+        window.THEME = "light";
     }
 </script>
 
@@ -97,5 +100,13 @@
 {% endif %}
 
 {% if page.layout == "post" and page.comments != false %}
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    var recaptchOnload = _ => {
+        grecaptcha.render('captcha__comment__form', {
+          'sitekey' : '{{ site.reCaptcha.siteKey }}',
+          'theme' : window.THEME ? Window.THEME : "light"
+        });
+    };
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=recaptchOnload&render=explicit" async defer></script>
 {% endif %}
