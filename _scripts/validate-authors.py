@@ -5,14 +5,14 @@ import requests
 import frontmatter
 from pathlib import Path
 
-file = "_data/contributors.yml"
+file = "_data/authors.yml"
 temp = open("temp.txt", "r")
 
 if temp.readlines()[0].strip() == file:
-    post = frontmatter.load("_data/contributors.yml")
+    post = frontmatter.load("_data/authors.yml")
 
-    with open(file, "r") as contributorData:
-        newData = yaml.safe_load(contributorData)
+    with open(file, "r") as authorData:
+        newData = yaml.safe_load(authorData)
 
     url = f"https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/{file}"
 
@@ -45,24 +45,18 @@ if temp.readlines()[0].strip() == file:
                             if existingData[key][subKey] != newData[key][subKey]:
                                 changed.add(str(key))
 
-            for contributor in changed:
-                if contributor in existingData:
-                    githubAccount = existingData[contributor]["links"]["github"]
+            for author in changed:
+                if author in existingData:
+                    githubAccount = existingData[author]["links"]["github"]
                 else:
-                    githubAccount = newData[contributor]["links"]["github"]
+                    githubAccount = newData[author]["links"]["github"]
 
                 if githubAccount != sys.argv[1]:
-                    raise Exception(f"Committer {sys.argv[1]} tried to change {contributor}!")
+                    raise Exception(f"Committer {sys.argv[1]} tried to change {author}!")
                 else:
-                    print(f"{sys.argv[1]} is allowed to change {contributor}.")
-                    
-                    contributorFile = open(f"_contributors/{contributor}.md", "w")
-                    contributorFile.write(f'''---
-layout: contributor
-name: {contributor}
----''')
+                    print(f"{sys.argv[1]} is allowed to change {author}.")
 
-            print("Contributors are valid!")
+            print("authors are valid!")
 
             os.remove("temp.yml")
         

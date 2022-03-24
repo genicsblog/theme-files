@@ -14,24 +14,23 @@ layout: none
   ,
   {% assign urlBlackList = "/index.html,/404" | split: ',' %}
   {% for page in site.pages %}
-     {% unless page.title == blank %}
-     {% unless urlBlackList contains page.url %}
-     {% assign urlItems = page.url | split: '/'%}
-     {% unless urlItems contains 'index.html' and urlItems contains 'page' %}
-     {
+    {% if page.layout == "author" or page.title == blank or urlBlackList contains page.url %}
+      {% continue %}
+    {% endif %}
+    {% assign urlItems = page.url | split: '/'%}
+    {% if urlItems contains 'index.html' and urlItems contains 'page' %}
+      {% continue %}
+    {% endif %}
+      {
         "title"    : "{{ page.title | escape }}",
         "url"      : "{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}"
       }{% unless forloop.last %},{% endunless %}
-     {% endunless %}
-     {% endunless %}
-     {% endunless %}
   {% endfor %}
   ,
-  {% for contributor in site.contributors %}
-  {% assign contributorData = site.data.contributors[contributor.name] %}
+  {% for author in site.data.contributors %}
     {
-      "title"    : "{{ contributorData.name }}'s profile",
-      "url"      : "/contributor/{{ contributor.name }}"
+      "title"    : "{{ author[1].name }}'s profile",
+      "url"      : "/author/{{ author[0] | downcase }}/"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   ,

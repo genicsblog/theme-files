@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-{% assign contributor = site.data.contributors[page.name] %}
+{% assign author = page.pagination.author_data %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% assign description = site.data.contributors[page.name].bio %}
-    {% assign avatar = site.data.contributors[page.name].avatar %}
+    {% assign description = author.bio %}
+    {% assign avatar = author.avatar %}
 
     <meta name="description" content="{{ description }}">
     <meta property="og:description" content="{{ description }}">
-    <meta property="og:title" content="{{ contributor.name }} | {{ contributor.role }}">
+    <meta property="og:title" content="{{ author.name }} | {{ author.role }}">
     <meta property="og:image" content="{{ avatar }}">
     <meta property="og:type" content="profile">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@genicsblog">
     <meta name="twitter:image" content="{{ avatar }}">
-    {% if site.data.contributors[page.name].links.twitter != blank %}
-    <meta name="twitter:creator" content="@{{ site.data.contributors[page.name].links.twitter }}">
+    {% if author.links.twitter != blank %}
+    <meta name="twitter:creator" content="@{{ author.links.twitter }}">
     {% endif %}
 
     <meta property="og:type" content="profile">
@@ -64,7 +64,7 @@
         }
     </script>
 
-    <title>{{ contributor.name }} | {{ contributor.role }}</title>
+    <title>{{ author.name }} | {{ author.role }}</title>
 </head>
 
 <body>
@@ -73,18 +73,18 @@
 
     <header class="bg-background text-white p-6 sm:p-10" id="banner">
         <div class="flex flex-col items-center">
-            <img src="{{ contributor.avatar }}" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full" />
+            <img src="{{ author.avatar }}" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full" />
             <span
                 class="mt-4 mb-1 font-black text-4xl sm:text-5xl tracking-tight text-white group-hover:text-slate-300">
-                {{ contributor.name }}
+                {{ author.name }}
             </span>
             <h4>
-                {{ contributor.role }}
+                {{ author.role }}
             </h4>
             <p class="mt-2">
-                {{ contributor.bio }}
+                {{ author.bio }}
             </p>
-            {% assign links = contributor.links %}
+            {% assign links = author.links %}
             <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
                 {% if links.stackoverflow != blank %}
                 <a class="underline-none hover:scale-125 transition" rel="nofollow noopener noreferrer"
@@ -141,8 +141,28 @@
                 No posts yet.
             </div>
             {% endif %}
-        </section>
 
+            {% if paginator.total_pages > 1 %}
+            <div class="flex justify-center items-center w-full">
+                {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path }}" class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
+                Previous
+                </a>
+                {% endif %}
+                <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+                {% if paginator.next_page %}
+                <a href="{{ paginator.next_page_path }}" class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
+                Next
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+    
+        <div class="mb-8">
+            {% include cta.html %}
+        </div>
+    
         {% include infeed-ad.html %}
 
     </main>

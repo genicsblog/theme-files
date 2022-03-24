@@ -30,9 +30,6 @@ collections:
   series:
     permalink: /series/:name
     output: true
-  contributors:
-    permalink: /contributor/:name
-    output: true
   drafts:
     permalink: /draft/:name
     output: true
@@ -52,6 +49,7 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-loading-lazy
   - jekyll-redirect-from
+  - jekyll-auto-authors
 
 pagination:
   enabled: true
@@ -86,6 +84,17 @@ autopages:
     slugify:
       mode: 'default'
       case: true
+
+  authors:
+    enabled: true
+    data: '_data/authors.yml'
+    layouts: 
+      - 'author.html'
+    title: 'Posts by :author'
+    permalink: '/author/:author/'
+    slugify:
+      mode: 'default'
+      cased: true
 
 postcss:
   cache: false

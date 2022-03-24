@@ -33,8 +33,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@genicsblog">
 <meta name="twitter:image" content="{{ page.image }}">
-{% if site.data.contributors[page.author].links.twitter != blank %}
-<meta name="twitter:creator" content="@{{ site.data.contributors[page.author].links.twitter }}" />
+{% if site.data.authors[page.author].links.twitter != blank %}
+<meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}" />
 {% endif %}
 
 {% if page.layout == "post" %}

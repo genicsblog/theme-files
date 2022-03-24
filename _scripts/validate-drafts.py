@@ -19,13 +19,13 @@ if total_files != 0:
 
         post = frontmatter.load(file)
 
-        with open("_data/contributors.yml", "r") as contributors:
-            author = yaml.safe_load(contributors)[post["author"]]["links"]["github"]
+        with open("_data/authors.yml", "r") as authors:
+            author = yaml.safe_load(authors)[post["author"]]["links"]["github"]
 
         author = author.lower()
 
         if author != sys.argv[1].lower():
-            raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({sys.argv[1]}) and github account of contributor({author}) have conflicts.")
+            raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({sys.argv[1]}) and github account of author({author}) have conflicts.")
 
         url = "https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_drafts/" + file.split('/')[1]
 

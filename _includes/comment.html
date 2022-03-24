@@ -1,4 +1,4 @@
-{% assign author = site.data.contributors[page.author] %}
+{% assign author = site.data.authors[page.author] %}
 {%- capture article_class %}comment bg-white rounded-2xl shadow-xl dark:shadow-none shadow-slate-200{% if include.is_reply %} ml-14{% else %} mb-2{% endif %}{% endcapture %}
 {% assign comment_id = include.id | prepend: 'comment-' %}
 <section id="{{ comment_id }}" class="{% if include.is_reply %}mb-2{% else %}mb-8{% endif %}">
@@ -6,14 +6,14 @@
     <div class="sm:flex sm:items-center">
       {% if include.name == author.name %}
       <img class="rounded-full w-14 h-14 border-4 border-primary"
-        src="{{ site.data.contributors[page.author].avatar }}" />
+        src="{{ site.data.authors[page.author].avatar }}" />
       {% else %}
       <img class="rounded-full w-14 h-14"
       src="https://joeschmoe.io/api/v1/{{ include.name }}" />
       {% endif %}
       <div class="sm:ml-4 leading-3">
         {% if include.name == author.name %}
-        <a class="font-extrabold text-xl" href="/contributor/{{ page.author }}">
+        <a class="font-extrabold text-xl" href="/author/{{ page.author }}/">
           {{ include.name | split:' ' | first }}
         </a>
         <span class="px-2 py-0.5 rounded-md bg-primary text-white text-xs">Author</span>
