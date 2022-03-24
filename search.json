@@ -11,7 +11,7 @@ layout: none
       "content"  : "{{ post.excerpt  }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
-  ,
+
   {% assign urlBlackList = "/index.html,/404" | split: ',' %}
   {% for page in site.pages %}
     {% if page.layout == "author" or page.title == blank or urlBlackList contains page.url %}
@@ -21,13 +21,16 @@ layout: none
     {% if urlItems contains 'index.html' and urlItems contains 'page' %}
       {% continue %}
     {% endif %}
-      {
+    {% if urlItems contains 'drafts' %}
+      {% continue %}
+    {% endif %}
+      ,{
         "title"    : "{{ page.title | escape }}",
         "url"      : "{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}"
-      }{% unless forloop.last %},{% endunless %}
+      }
   {% endfor %}
   ,
-  {% for author in site.data.contributors %}
+  {% for author in site.data.authors %}
     {
       "title"    : "{{ author[1].name }}'s profile",
       "url"      : "/author/{{ author[0] | downcase }}/"
