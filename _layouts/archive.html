@@ -54,7 +54,7 @@
           {% if paginator.previous_page %}
           <a
             href="{{ paginator.previous_page_path }}"
-            class="mr-2 px-4 ml-2 py-0.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
+            class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
           >
             Previous
           </a>
@@ -63,7 +63,7 @@
           {% if paginator.next_page %}
           <a
             href="{{ paginator.next_page_path }}"
-            class="ml-2 px-4 py-0.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
+            class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
           >
             Next
           </a>
