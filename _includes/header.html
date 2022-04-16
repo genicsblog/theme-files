@@ -112,7 +112,7 @@
 
       {% assign tagSize = page.tags | size %}
       {% if tagSize != 0 %}
-      <div class="mt-4 sm:mt-1">
+      <div class="mt-4 sm:mt-3">
         <span>Tags: </span>
         {% for tag in page.tags %}
         {% assign tagName = tag | slugify %}

@@ -77,7 +77,6 @@
     }
     a {
         @apply relative bg-gradient-to-r from-slate-300 to-slate-300;
-        background-image: linear-gradient(#cbd5e1, #cbd5e1);
         background-size: 0% 0.125rem;
         background-repeat: no-repeat;
         background-position: left bottom;
