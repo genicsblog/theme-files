@@ -103,7 +103,7 @@
         <span>Category: </span>
         {% for category in page.categories %}
         <a
-          class="text-sm ml-2 hover:scale-110 category-name !bg-{{ category }} underline-none"
+          class="text-sm ml-2 category-name !bg-{{ category }} underline-none"
           href="/category/{{ category }}"
           >#{{ category }}</a
         >
@@ -118,7 +118,7 @@
         {% for tag in page.tags %}
         {% assign tagName = tag | slugify %}
         <a
-          class="text-sm ml-2 my-0.5 hover:scale-110 tag-name !bg-{{ tagName }} underline-none"
+          class="text-sm ml-2 my-0.5 tag-name !bg-{{ tagName }} underline-none"
           href="/tag/{{ tagName }}"
           >#{{ tagName }}</a
         >
