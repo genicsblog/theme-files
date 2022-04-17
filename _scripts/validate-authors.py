@@ -52,7 +52,7 @@ if temp.readlines()[0].strip() == file:
                     githubAccount = newData[author]["links"]["github"]
 
                 if githubAccount != sys.argv[1]:
-                    raise Exception(f"Committer {sys.argv[1]} tried to change {author}!")
+                    raise Exception(f"Committer {sys.argv[1]} tried to change {author} who has GitHub username set to {githubAccount} in the YAML!")
                 else:
                     print(f"{sys.argv[1]} is allowed to change {author}.")
 
