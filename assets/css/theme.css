@@ -143,7 +143,7 @@ code.highlighter-rouge {
     @apply rounded-sm py-0.5 text-xs px-1 bg-slate-300 text-slate-800 absolute right-2 top-2;
 }
 
-.category-name, .tag-name {
+.archive-name {
     @apply rounded-md px-2 py-1 hover:underline hover:shadow-md hover:scale-110 transition bg-slate-200 text-black;
     font-family: "Fira Code", monospace;
 }
