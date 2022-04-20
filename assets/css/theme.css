@@ -86,10 +86,10 @@
     a:hover {
         background-size: 100% 0.125rem;
     }
-    article > p:not(:last-child), .comment p:not(:last-child), li, blockquote, pre.highlight {
+    article > p:not(:last-child), li, blockquote, pre.highlight {
         @apply mb-6;
     }
-    article a, aside a, .notice a {
+    article a, aside a, .notice a, .cta-link {
         @apply text-primary dark:text-blue-400 bg-gradient-to-r from-primary to-primary dark:from-blue-400 dark:to-blue-400;
     }
     hr {
