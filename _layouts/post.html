@@ -47,7 +47,7 @@ layout: default
       </article>
       <hr />
       <div class="px-6 pb-6 md:px-8 md:pb-8 flex flex-col items-center rounded-bl-2xl rounded-br-2xl">
-        <p class="text-center mb-4">Did you learn something new?<br />Comment it down and spread the word!</p>
+        <p class="text-center mb-4">Join discussions at <a href="https://discord.genicsblog.com" target="_blank" class="cta-link">our discord server ></a><br />Did you learn something new today? Spread the word!</p>
         <div class="grid grid-flow-col gap-6">
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://facebook.com/sharer.php?u=Check out this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ page.url }}"
@@ -154,28 +154,7 @@ layout: default
 
 {% include infeed-ad.html %}
 
-{% if page.comments != false and page.sitemap != false %}
-<h1 class="mx-8 mt-12 md:mx-10 lg:mx-14 -mb-4 lg:-mb-8">Comments</h1>
-
-<section class="block lg:flex">
-  <div class="md:text-lg m-6 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]">
-    {% include comments.html %}
-  </div>
-  <aside class="m-8 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]">
-    <div
-      class="p-6 md:p-8  space-y-4 lg:sticky lg:top-24 rounded-2xl bg-white dark:bg-background shadow-xl dark:shadow-none shadow-slate-200">
-      <p class="leading-5 font-medium text-justify">
-        Please adhere to our <a href="/code-of-conduct">Code of Conduct</a> while adding a comment. Respect other's
-        opinion.
-        <br /><br />
-        Comments are be moderated before being published.
-      </p>
-    </div>
-  </aside>
-</section>
-{% endif %}
-
-<div class="mx-8 mb-8 md:mx-10 md:mb-10 lg:mx-14 lg:mb-14">
+<div class="m-8 md:m-10 lg:m-14">
   {% include relatedposts.html %}
 </div>
 
