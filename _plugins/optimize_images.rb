@@ -6,12 +6,12 @@ require 'nokogiri'
 module Jekyll
   module OptimizeImages
 
-    def config
+    def prefix
       @context.registers[:site].config['img_src_prefix']
     end
 
     def optimize_images(content)
-      if ENV['JEKYLL_ENV'] != 'production' || config.nil?
+      if ENV['JEKYLL_ENV'] != 'production' || prefix.nil?
         return content
       end
 
@@ -21,7 +21,7 @@ module Jekyll
       return content unless doc
 
       doc.css('img').each do |a|
-          a.set_attribute('src', config + a.get_attribute('src'))
+          a.set_attribute('src', prefix + a.get_attribute('src'))
       end
 
       doc.to_s
