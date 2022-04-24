@@ -1,3 +1,7 @@
+{% if jekyll.environment == 'production' %}
+{% assign optimize = "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/" %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,7 @@
         <div class="flex flex-col lg:flex-row p-2">
             <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
                 {% if page.image %}
-                <img src="{{ page.image }}" class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8" />
+                <img src="{{ optimize }}{{ page.image }}" class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8" />
                 {% endif %}
             </div>
             <div class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12">

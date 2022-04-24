@@ -1,3 +1,6 @@
+{% if jekyll.environment == 'production' %}
+{% assign optimize = "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/" %}
+{% endif %}
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
 <a class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 hover:border-{{ category }} dark:hover:border-slate-200 dark:hover:!border-{{ category }} dark:border-slate-600 transition underline-none"
@@ -6,7 +9,7 @@
     <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
       {% if post.image %}
       <img
-        src="{{ post.image }}"
+        src="{{ optimize }}{{ post.image }}"
         class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
       />
       {% endif %}
