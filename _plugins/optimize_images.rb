@@ -7,7 +7,7 @@ module Jekyll
   module OptimizeImages
 
     def prefix
-      @context.registers[:site].config['img_src_prefix']
+      @context.registers[:site].config['img_src_prefix']['general']
     end
 
     def optimize_images(content)
