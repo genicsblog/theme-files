@@ -124,4 +124,5 @@ exclude:
   - package.json
   - package-lock.json
   - README.md
+  - LICENSE.md
   - Dockerfile
