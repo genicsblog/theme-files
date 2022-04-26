@@ -104,6 +104,12 @@ const toggleTheme = () => {
   }
 };
 
+document.addEventListener("keydown", function (e) {
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 76) {
+    toggleTheme();
+  }
+});
+
 document
   .getElementById("search-container")
   .addEventListener("click", (event) => {

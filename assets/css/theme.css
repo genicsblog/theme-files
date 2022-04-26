@@ -10,7 +10,7 @@
     }
     body {
         @apply bg-slate-50 dark:bg-black dark:text-white;
-        font-family: "Sen", sands-serif;
+        font-family: "Sen", sans-serif;
     }
     h1, h2, h3, h4, h5, h6 {
         @apply font-black tracking-tight mb-4;
@@ -76,26 +76,21 @@
         @apply font-bold hover:text-slate-300;
     }
     a {
-        @apply inline-block relative cursor-pointer;
+        @apply relative bg-gradient-to-r from-slate-300 to-slate-300;
+        background-size: 0% 0.125rem;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+        text-decoration: none;
     }
-    a:after {
-        @apply absolute bg-slate-300 w-full left-0 right-0 bottom-0 h-0.5 origin-bottom-right;
-        content: "";
-        transform: scaleX(0);
-        transition: transform 0.25s ease-out;
+    a:hover {
+        background-size: 100% 0.125rem;
     }
-    a:hover:after {
-        @apply origin-bottom-left;
-        transform: scaleX(1);
-    }
-    article > p:not(:last-child), .comment p:not(:last-child), li, blockquote, pre.highlight {
+    article > p:not(:last-child), li, blockquote, pre.highlight {
         @apply mb-6;
     }
-    article a, aside a, .notice a {
-        @apply text-primary dark:text-blue-400;
-    }
-    article a:after, aside a:after, .notice a:after {
-        @apply bg-primary dark:bg-blue-400;
+    article a, aside a, .notice a, .cta-link {
+        @apply text-primary dark:text-blue-400 bg-gradient-to-r from-primary to-primary dark:from-blue-400 dark:to-blue-400;
     }
     hr {
         @apply w-11/12 mb-6 mx-auto rounded-lg border-t-4 border-slate-200 dark:border-slate-500;
@@ -119,8 +114,8 @@
     @apply p-2 flex rounded-md hover:bg-gray-700;
 }
 
-.mobile-nav-item:after, .header-anchor:after, .logo-anchor:after, .underline-none:after {
-    @apply w-0;
+.mobile-nav-item:hover, .header-anchor:hover, .logo-anchor:hover, .underline-none:hover {
+    background-size: 0% 0rem;
 }
 
 .mobile-nav-item span {
@@ -148,7 +143,7 @@ code.highlighter-rouge {
     @apply rounded-sm py-0.5 text-xs px-1 bg-slate-300 text-slate-800 absolute right-2 top-2;
 }
 
-.category-name, .tag-name {
+.archive-name {
     @apply rounded-md px-2 py-1 hover:underline hover:shadow-md hover:scale-110 transition bg-slate-200 text-black;
     font-family: "Fira Code", monospace;
 }

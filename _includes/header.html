@@ -1,3 +1,7 @@
+{% if jekyll.environment == 'production' %}
+{% assign optimize = site.img_src_prefix.header %}
+{% endif %}
+
 <header class="bg-background text-white p-6 sm:p-10" id="banner">
   {% if page.layout != 'post' %}
   <div class="flex flex-col items-center">
@@ -18,12 +22,11 @@
     <p class="mt-2">
       An
       <a
-        class="font-black text-lg bg-gradient-to-r from-sky-300 to-blue-500 text-transparent bg-clip-text after:bg-blue-400"
+        class="font-black text-lg text-blue-400 bg-gradient-to-r from-blue-400 to-blue-400"
         href="https://github.com/{{ site.github_username }}"
         target="_blank"
         rel="nofollow noopener noreferrer"
-        >open-source
-      </a>
+        >open-source</a>
       developer publication.
     </p>
 
@@ -68,7 +71,7 @@
     <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
       {% if page.image %}
       <img
-        src="{{ page.image }}"
+        src="{{ optimize }}{{ page.image }}"
         class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
       />
       {% endif %}
@@ -103,7 +106,7 @@
         <span>Category: </span>
         {% for category in page.categories %}
         <a
-          class="text-sm ml-2 hover:scale-110 category-name !bg-{{ category }} underline-none"
+          class="text-sm ml-2 archive-name !bg-{{ category }} underline-none"
           href="/category/{{ category }}"
           >#{{ category }}</a
         >
@@ -113,12 +116,12 @@
 
       {% assign tagSize = page.tags | size %}
       {% if tagSize != 0 %}
-      <div class="mt-4 sm:mt-1">
+      <div class="mt-4 sm:mt-3">
         <span>Tags: </span>
         {% for tag in page.tags %}
         {% assign tagName = tag | slugify %}
         <a
-          class="text-sm ml-2 my-0.5 hover:scale-110 tag-name !bg-{{ tagName }} underline-none"
+          class="text-sm ml-2 my-0.5 archive-name !bg-{{ tagName }} underline-none"
           href="/tag/{{ tagName }}"
           >#{{ tagName }}</a
         >

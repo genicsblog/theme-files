@@ -4,6 +4,10 @@ Theme files for genicsblog.com
 
 **This is not a proper Jekyll theme**. This repo contains only the theme files that genicsblog.com's repo retrevies at GitHub action's runtime to build the site.
 
+## [License](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md)
+
+The project is licensed under the [MIT](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md) license terms and expects you to preserve the attribution to the developer and contributors in the website footer on each page.
+
 ## Local setup
 
 Install [docker](https://docs.docker.com/get-docker).

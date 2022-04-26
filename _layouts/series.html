@@ -1,3 +1,7 @@
+{% if jekyll.environment == 'production' %}
+{% assign optimize = site.img_src_prefix.header %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,7 @@
         <div class="flex flex-col lg:flex-row p-2">
             <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
                 {% if page.image %}
-                <img src="{{ page.image }}" class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8" />
+                <img src="{{ optimize }}{{ page.image }}" class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8" />
                 {% endif %}
             </div>
             <div class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12">
@@ -30,12 +34,12 @@
     {% assign series = page.path | split:"/" | last | split:"." | first %}
     <main>
         <section class="p-6 sm:p-10">
-            {% assign posts = site.posts | where_exp:"item", "item.series == series" %}
-            {% assign arrSize = posts | size%}
+            {% assign posts = site.posts | where_exp:"item", "item.series == series" | reverse %}
+            {% assign arrSize = posts | size %}
             {% if arrSize > 0 %}
-            <div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
+            <div class="flex flex-col">
                 {% for post in posts %}
-                {% include postbox.html %}
+                {% include postbox-horizontal.html %}
                 {% endfor %}
             </div>
             {% else %}
@@ -55,9 +59,6 @@
 
     {% include footer.html %}
     {% include search.html %}
-    {% if page.layout == "post" and page.comments != false %}
-    {% include modal.html %}
-    {% endif %}
     {% include scripts.html %}
 </body>
 
