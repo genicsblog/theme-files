@@ -155,3 +155,18 @@ code.highlighter-rouge {
 .disabled {
     @apply opacity-40 cursor-auto hover:!scale-100 hover:!shadow-none;
 }
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #16161f;
+    border-radius: 20px;
+    background-clip: border-box;
+}
+*::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #16161fbd;
+}
