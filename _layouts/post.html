@@ -33,7 +33,7 @@ layout: default
       {% endif %}
       <article class="p-6 md:p-8">
 
-        {% if page.audioId != blank %}
+        {% if page.audioId != blank and jekyll.environment == "production" %}
         <div class="mb-6">
           <iframe allowfullscreen="false" data-src="https://audio.beyondwords.io/m/{{ page.audioId }}" frameborder="0"
             id="speechkit-io-iframe" scrolling="no" class="rounded-xl" style="display: none"></iframe>
