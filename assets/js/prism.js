@@ -38,8 +38,10 @@ setTimeout(() => {
     const codeBlocks = document.querySelectorAll("pre");
 
     codeBlocks.forEach((block) => {
-        const langName = document.createElement("button");
+        var langNameHolder = document.createElement("div");
+        langNameHolder.style.position = "relative";
 
+        const langName = document.createElement("button");
         langName.classList.add("lang-name");
         langName.textContent = extractLanguage(block.className);
         langName.addEventListener("click", (e) => {
@@ -55,7 +57,8 @@ setTimeout(() => {
             }, 1500);
         });
 
-        block.prepend(langName);
+        langNameHolder.appendChild(langName);
+        block.parentElement.prepend(langNameHolder);
 
         block.addEventListener("mouseenter", () => {
             langName.textContent = "Copy";

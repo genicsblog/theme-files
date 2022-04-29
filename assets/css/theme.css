@@ -99,7 +99,7 @@
         @apply bg-slate-200 dark:bg-slate-800 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 p-6;
     }
     pre {
-        @apply relative bg-slate-800 rounded-xl text-sm text-[#b5c4f2] p-4 overflow-x-auto;
+        @apply bg-slate-800 rounded-xl text-sm text-[#b5c4f2] p-4 overflow-x-auto;
     }
     pre > code {
         @apply bg-slate-800;
