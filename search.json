@@ -32,7 +32,7 @@ layout: none
   ,
   {% for author in site.data.authors %}
     {
-      "title"    : "{{ author[1].name }}'s profile",
+      "title"    : "Articles by {{ author[1].name | escape }}",
       "url"      : "/author/{{ author[0] | downcase }}/"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
@@ -40,8 +40,16 @@ layout: none
   {% for series in site.series %}
     {
       "title"    : "Posts in series {{ series.title | escape }}",
-      "url"      : "/series/{{ series.slug }}",
+      "url"      : "{{ series.url }}",
       "content"  : "{{ series.excerpt  }}"
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ,
+  {% for tool in site.tools %}
+    {
+      "title"    : "Tool: {{ tool.title | escape }}",
+      "url"      : "{{ tool.url }}",
+      "content"  : "{{ tool.excerpt  }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
