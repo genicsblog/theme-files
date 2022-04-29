@@ -156,17 +156,18 @@ code.highlighter-rouge {
     @apply opacity-40 cursor-auto hover:!scale-100 hover:!shadow-none;
 }
 
-*::-webkit-scrollbar {
-    width: 10px;
-}
-*::-webkit-scrollbar-track {
+pre::-webkit-scrollbar {
+    width: 2mm;
+    height: 2mm;
     background: transparent;
 }
-*::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 20px;
-    background-clip: border-box;
+pre::-webkit-scrollbar-track {
+    background: transparent;
+    width: 3px;
 }
-*::-webkit-scrollbar-thumb:hover {
-    background-color: lightgrey;
+pre::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+    width: 3mm;
+    background-clip: content-box;
 }
