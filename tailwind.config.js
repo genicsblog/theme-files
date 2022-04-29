@@ -1,9 +1,7 @@
 module.exports = {
     darkMode: 'class',
     content: [
-        './_includes/**/*.html',
-        './_layouts/**/*.html',
-        './*.html',
+        './**/*.html',
     ],
     safelist: [
         '!bg-android',
