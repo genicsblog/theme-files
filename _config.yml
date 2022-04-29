@@ -33,6 +33,9 @@ collections:
   drafts:
     permalink: /draft/:name
     output: true
+  tools:
+    permalink: /tool/:name
+    output: true
 
 extlinks:
   attributes: { rel: nofollow noopener noreferrer, target: _blank }

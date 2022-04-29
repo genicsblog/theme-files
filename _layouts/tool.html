@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<section class="m-8 md:m-10 lg:m-14 p-6 md:p-8">
+  {{ content | extlinks | optimize_images }}
+</section>
+
+<div class="m-8 md:m-10 lg:m-14">
+  {% include latestposts.html %}
+</div>
