@@ -17,6 +17,7 @@ jobs:
       with:
         repository: genicsblog/genicsblog.com
         path: content
+        fetch-depth: 1
 
     - name: Setup articles and necessary files
       run: |
@@ -38,6 +39,13 @@ jobs:
 
     - name: Build production jekyll site
       run: JEKYLL_ENV=dev NODE_ENV=dev bundle exec jekyll build
+
+    - name: Update robots.txt
+      run: |
+        cd _site
+        rm robots.txt
+        echo "User-agent: *" >> robots.txt
+        echo "Disallow: /" >> robots.txt
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
