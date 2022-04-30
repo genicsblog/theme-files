@@ -23,7 +23,6 @@ jobs:
         mv content/* .
         rm -rf content
         touch .nojekyll
-        echo "User-agent: *\nDisallow: /" >> robots.txt
 
     - uses: ruby/setup-ruby@v1
       with:
