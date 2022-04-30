@@ -18,7 +18,7 @@ jobs:
         repository: genicsblog/genicsblog.com
         path: content
 
-    - name: Setup theme and necessary files
+    - name: Setup articles and necessary files
       run: |
         mv content/* .
         rm -rf content
@@ -37,7 +37,7 @@ jobs:
       run: npm install
 
     - name: Build production jekyll site
-      run: bundle exec jekyll build
+      run: JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll build
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
