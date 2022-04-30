@@ -43,7 +43,8 @@ jobs:
     - name: Update robots.txt
       run: |
         cd _site
-        rm robots.txt
+        rm robots.txt CNAME
+        echo "staging.genicsblog.com" >> CNAME
         echo "User-agent: *" >> robots.txt
         echo "Disallow: /" >> robots.txt
 
