@@ -1,4 +1,4 @@
-name: Publish site
+name: Publish to staging
 
 on:
   push:
