@@ -1,4 +1,4 @@
-name: Publish site
+name: Publish to staging
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
         mv content/* .
         rm -rf content
         touch .nojekyll
+        echo "User-agent: *\nDisallow: /" >> robots.txt
 
     - uses: ruby/setup-ruby@v1
       with:
@@ -37,7 +38,7 @@ jobs:
       run: npm install
 
     - name: Build production jekyll site
-      run: JEKYLL_ENV=development NODE_ENV=development bundle exec jekyll build
+      run: JEKYLL_ENV=dev NODE_ENV=dev bundle exec jekyll build
 
     - name: Deploy to gh-pages
       uses: s0/git-publish-subdir-action@develop
