@@ -1,19 +1,24 @@
 name: Publish to staging
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  - push
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - if: github.event_name != 'pull_request'
+      uses: actions/checkout@v3
+
+    - if: github.event_name == 'pull_request'
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Checkout main repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: genicsblog/genicsblog.com
         path: content
@@ -55,3 +60,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: _site
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SQUASH_HISTORY: true
