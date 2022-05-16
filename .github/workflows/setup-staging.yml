@@ -1,10 +1,9 @@
 name: Publish to staging
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  - push
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   publish:
