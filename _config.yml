@@ -129,3 +129,4 @@ exclude:
   - README.md
   - LICENSE.md
   - Dockerfile
+  - vercel.json
