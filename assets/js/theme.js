@@ -66,12 +66,12 @@ const hideSearch = () => {
 // CTRL + K -> Open search
 // ESC -> Hide search
 document.addEventListener("keydown", function (e) {
-  if (e.key === 75 && (e.ctrlKey || e.metaKey)) {
+  if (e.key === 'K'.toLowerCase() && (e.ctrlKey || e.metaKey)) {
     e.preventDefault();
     showSearch();
   }
 
-  if (e.key === 27) {
+  if (e.key === 'K'.toLowerCase()) {
     hideSearch();
   }
 });
