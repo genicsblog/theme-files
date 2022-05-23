@@ -135,8 +135,12 @@
 }
 
 code.highlighter-rouge {
-    @apply bg-slate-300 dark:bg-slate-700 py-0.5 px-1.5 rounded-md;
+    @apply bg-slate-200 dark:bg-slate-700 py-0.5 px-1.5 rounded-md;
     font-family: "Fira Code", sans-serif;
+}
+
+blockquote code.highlighter-rouge {
+    @apply bg-slate-300;
 }
 
 code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code) {
