@@ -12,40 +12,49 @@ setTimeout(() => {
   const codeBlocks = document.querySelectorAll("pre");
 
   codeBlocks.forEach((block) => {
-      var langNameHolder = document.createElement("div");
-      langNameHolder.style.position = "relative";
+    var langNameHolder = document.createElement("div");
+    langNameHolder.style.position = "relative";
 
-      const langName = document.createElement("button");
-      langName.classList.add("lang-name");
-      langName.textContent = extractLanguage(block.className);
-      langName.addEventListener("click", (e) => {
-          e.preventDefault();
-          shouldToggleName = false;
+    const langName = document.createElement("button");
+    langName.classList.add("lang-name");
+    langName.textContent = extractLanguage(block.className);
+    langName.addEventListener("click", (e) => {
+      e.preventDefault();
+      if(!shouldToggleName) return;
+      shouldToggleName = false;
 
-          const code = block.querySelector("code").innerText;
-          navigator.clipboard.writeText(code);
+      const code = block.querySelector("code").innerText;
+      navigator.clipboard.writeText(code);
 
-          langName.textContent = "Copied!";
+      langName.textContent = "Copied!";
 
-          setTimeout(() => {
-              langName.textContent = "Copy";
-              shouldToggleName = true;
-          }, 1500);
-      });
+      setTimeout(() => {
+          shouldToggleName = true;
+          let text = "";
+          document.querySelectorAll(':hover').forEach(el => {
+              if(el.classList.contains("highlight")) {
+                  text = "Copy";
+              } else {
+                  if(text === "") text = extractLanguage(block.className);
+              }
+          });
+          langName.textContent = text;
+      }, 1500);
+    });
 
-      langNameHolder.appendChild(langName);
-      block.parentElement.prepend(langNameHolder);
+    langNameHolder.appendChild(langName);
+    block.parentElement.prepend(langNameHolder);
 
-      block.addEventListener("mouseenter", (e) => {
-          if(shouldToggleName) langName.textContent = "Copy";
-      });
+    block.addEventListener("mouseenter", (e) => {
+      if(shouldToggleName) langName.textContent = "Copy";
+    });
 
-      langNameHolder.addEventListener("mouseenter", (e) => {
-        if(shouldToggleName) langName.textContent = "Copy";
-      });
+    langNameHolder.addEventListener("mouseenter", (e) => {
+      if(shouldToggleName) langName.textContent = "Copy";
+    });
 
-      block.addEventListener("mouseleave", () => {
-          if(shouldToggleName) langName.textContent = extractLanguage(block.className);
-      });
+    block.addEventListener("mouseleave", () => {
+      if(shouldToggleName) langName.textContent = extractLanguage(block.className);
+    });
   })
 }, 500);
