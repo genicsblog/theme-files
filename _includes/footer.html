@@ -17,4 +17,12 @@
         href="/privacy-policy">Privacy Policy</a>
     <a class="nav-item {% if page.url contains '/licensing' %}text-slate-400{% else %}text-white{% endif %}"
     href="/licensing">Licensing</a>
+    {% if jekyll.environment != 'production' %}
+    <br /><br />
+    <div class="flex justify-center">
+        <a href="https://vercel.com?utm_source=genicsblog&utm_campaign=oss" target="_blank" class="underline-none">
+            <img src="/assets/images/sponsors/vercel.svg"/>
+        </a>
+    </div>
+    {% endif %}
 </footer>
