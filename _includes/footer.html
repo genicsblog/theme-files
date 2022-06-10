@@ -1,5 +1,5 @@
 <footer class="px-12 py-8 text-center">
-    © 2021 <a href="/">{{ site.title }}</a>
+    © 2021 <a href="{{ site.baseurl }}/">{{ site.title }}</a>
     <br />
     Built with <a href="https://jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.
     Hosted on <a href="https://github.com" target="_blank" rel="nofollow noopener noreferrer">GitHub</a>.
@@ -12,16 +12,16 @@
     contributors</a>!
     <br /><br />
     <a class="nav-item {% if page.url contains '/terms' %}text-slate-400{% else %}text-white{% endif %}"
-        href="/terms">T&C</a>
+        href="{{ site.baseurl }}/terms">T&C</a>
     <a class="nav-item {% if page.url contains '/privacy-policy' %}text-slate-400{% else %}text-white{% endif %}"
-        href="/privacy-policy">Privacy Policy</a>
+        href="{{ site.baseurl }}/privacy-policy">Privacy Policy</a>
     <a class="nav-item {% if page.url contains '/licensing' %}text-slate-400{% else %}text-white{% endif %}"
-    href="/licensing">Licensing</a>
+    href="{{ site.baseurl }}/licensing">Licensing</a>
     {% if jekyll.environment != 'production' %}
     <br /><br />
     <div class="flex justify-center">
         <a href="https://vercel.com?utm_source=genicsblog&utm_campaign=oss" target="_blank" class="underline-none">
-            <img src="/assets/images/sponsors/vercel.svg"/>
+            <img src="{{ site.baseurl }}/assets/images/sponsors/vercel.svg"/>
         </a>
     </div>
     {% endif %}

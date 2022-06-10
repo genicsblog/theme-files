@@ -18,7 +18,7 @@ layout: default
         {% endif %}
         {% if page.series %}
         <span class="text-base leading-8">
-          This post is a part of the series <a href="/series/{{ page.series }}" target="_blank">
+          This post is a part of the series <a href="{{ site.baseurl }}/series/{{ page.series }}" target="_blank">
             {{ page.series | split:"-" | join:" " | capitalize_all }}
           </a>
         </span>
@@ -50,19 +50,19 @@ layout: default
         <p class="text-center mb-4">Join discussions at <a href="https://discord.genicsblog.com" target="_blank" class="cta-link">our discord server ></a><br />Did you learn something new today? Spread the word!</p>
         <div class="grid grid-flow-col gap-6">
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
-            href="https://facebook.com/sharer.php?u=Check out this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ page.url }}"
+            href="https://facebook.com/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="/assets/images/social/facebook.svg" class="social-image w-8 h-8" />
+            <img src="{{ site.baseurl }}/assets/images/social/facebook.svg" class="social-image w-8 h-8" />
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
-            href="https://api.whatsapp.com/send?text=Checkout this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ page.url }}"
+            href="https://api.whatsapp.com/send?text=Checkout this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'whatsapp-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="/assets/images/social/whatsapp.svg" class="social-image w-10 h-10" />
+            <img src="{{ site.baseurl }}/assets/images/social/whatsapp.svg" class="social-image w-10 h-10" />
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
-            href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}"
+            href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'linkedin-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="/assets/images/social/linkedin.svg" class="social-image w-7 h-7" />
+            <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-7 h-7" />
           </a>
           {% assign mention = site.data.authors[page.author].links.twitter %}
           {% if mention != blank %}
@@ -71,14 +71,14 @@ layout: default
           {% assign text = "" %}
           {% endif %}
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
-            href="https://twitter.com/intent/tweet?text=Check out this amazing article {{ text }}at @genicsblog: {{ page.title }}&url={{ site.url }}{{ page.url }}"
+            href="https://twitter.com/intent/tweet?text=Check out this amazing article {{ text }}at @genicsblog: {{ page.title }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
-            <img src="/assets/images/social/twitter.svg" class="social-image w-8 h-8" />
+            <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-8 h-8" />
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
-            href="https://www.snapchat.com/scan?attachmentUrl={{ site.url }}{{ page.url }}"
+            href="https://www.snapchat.com/scan?attachmentUrl={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'snapchat-share', 'width=550,height=435');return false;">
-            <img src="/assets/images/social/snapchat.svg" class="social-image w-14 h-14 -m-2" />
+            <img src="{{ site.baseurl }}/assets/images/social/snapchat.svg" class="social-image w-14 h-14 -m-2" />
           </a>
         </div>
       </div>
@@ -91,7 +91,7 @@ layout: default
       <div class="pt-4 space-y-4">
         <figcaption class="font-medium text-center">
           <div>
-            <a href="/author/{{ page.author | downcase }}/" class="text-xl font-bold">
+            <a href="{{ site.baseurl }}/author/{{ page.author | downcase }}/" class="text-xl font-bold">
               {{ author.name }}
             </a>
           </div>

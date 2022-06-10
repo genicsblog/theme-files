@@ -49,18 +49,18 @@
 {% if page.original != blank %}
 <link rel="canonical" href="{{ page.original }}">
 {% else %}
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
 {% endif %}
 
-<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
     href="https://fonts.googleapis.com/css2?{% if page.layout == 'post' %}family=Fira+Code&{%endif%}family=Sen&display=swap"
     rel="stylesheet">
 {% if page.hasCode == true %}
-<link rel="stylesheet" href="/assets/css/prism.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/prism.css">
 {% endif %}
 
 <script>

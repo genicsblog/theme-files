@@ -26,8 +26,8 @@
     <meta property="og:type" content="profile">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -89,37 +89,37 @@
                 {% if links.stackoverflow != blank %}
                 <a class="underline-none hover:scale-125 transition" rel="nofollow noopener noreferrer"
                     href="https://stackoverflow.com/users/{{ links.stackoverflow }}" target="_blank">
-                    <img src="/assets/images/social/stackoverflow.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/stackoverflow.svg" class="social-image w-10 h-10" />
                 </a>
                 {% endif %}
                 {% if links.github != blank %}
                 <a class="underline-none hover:scale-110 transition" href="https://github.com/{{ links.github }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="/assets/images/social/github.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/github.svg" class="social-image w-10 h-10" />
                 </a>
                 {% endif %}
                 {% if links.linkedin != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://linkedin.com/{{ links.linkedin }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="/assets/images/social/linkedin.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-10 h-10" />
                 </a>
                 {% endif %}
                 {% if links.twitter != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://twitter.com/{{ links.twitter }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="/assets/images/social/twitter.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-10 h-10" />
                 </a>
                 {% endif %}
                 {% if links.instagram != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://instagram.com/{{ links.instagram }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="/assets/images/social/instagram.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/instagram.svg" class="social-image w-10 h-10" />
                 </a>
                 {% endif %}
                 {% if links.youtube != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://youtube.com/{{ links.youtube }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="/assets/images/social/youtube.svg" class="social-image w-14 h-14" />
+                    <img src="{{ site.baseurl }}/assets/images/social/youtube.svg" class="social-image w-14 h-14" />
                 </a>
                 {% endif %}
             </div>
@@ -144,13 +144,13 @@
             {% if paginator.total_pages > 1 %}
             <div class="flex justify-center items-center w-full">
                 {% if paginator.previous_page %}
-                <a href="{{ paginator.previous_page_path }}" class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
+                <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
                 Previous
                 </a>
                 {% endif %}
                 <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
                 {% if paginator.next_page %}
-                <a href="{{ paginator.next_page_path }}" class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
+                <a href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
                 Next
                 </a>
                 {% endif %}

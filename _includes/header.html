@@ -90,7 +90,7 @@
         <img class="rounded-full w-14 h-14" src="{{ author.avatar }}" />
         <div class="ml-4 leading-3">
           <a class="font-extrabold text-xl"
-            href="/author/{{ page.author | downcase }}/">
+            href="{{ site.baseurl }}/author/{{ page.author | downcase }}/">
             {{ author.name }}
           </a>
           <br />
@@ -107,7 +107,7 @@
         {% for category in page.categories %}
         <a
           class="text-sm ml-2 archive-name !bg-{{ category }} underline-none"
-          href="/category/{{ category }}"
+          href="{{ site.baseurl }}/category/{{ category }}"
           >#{{ category }}</a
         >
         {% endfor %}
@@ -122,7 +122,7 @@
         {% assign tagName = tag | slugify %}
         <a
           class="text-sm ml-2 my-0.5 archive-name !bg-{{ tagName }} underline-none"
-          href="/tag/{{ tagName }}"
+          href="{{ site.baseurl }}/tag/{{ tagName }}"
           >#{{ tagName }}</a
         >
         {% endfor %}

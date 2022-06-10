@@ -1,3 +1,6 @@
+---
+---
+
 window.onscroll = () => {
   setStickyness();
 };
@@ -51,7 +54,7 @@ const showSearch = () => {
     json: "/search.json",
     debounceTime: 500,
     noResultsText: "<span class='mt-2 flex'>No results found</span>",
-    searchResultTemplate: `<a class="search-item underline-none hover:border-{category}" href="{url}"><span>{title}</span></a>`,
+    searchResultTemplate: `<a class="search-item underline-none hover:border-{category}" href="{{ site.baseurl }}{url}"><span>{title}</span></a>`,
   });
 };
 

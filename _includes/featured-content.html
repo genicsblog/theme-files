@@ -20,7 +20,7 @@
     <h1>Featured</h1>
 </div>
 {% for category in featuredCategories %}
-<a class="mt-2 text-xl archive-name !bg-{{ category }} underline-none" href="/category/{{ category }}">
+<a class="mt-2 text-xl archive-name !bg-{{ category }} underline-none" href="{{ site.baseurl }}/category/{{ category }}">
     #{{ category }}
 </a>
 <div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
@@ -31,7 +31,7 @@
 </div>
 <div class="my-6 flex justify-center">
     <a class="px-4 py-2 font-bold hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-black dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
-        href="/category/{{ category }}">
+        href="{{ site.baseurl }}/category/{{ category }}">
         Read more on #{{ category }}
     </a>
 </div>

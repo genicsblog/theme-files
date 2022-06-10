@@ -17,7 +17,7 @@
         <div class="bg-background max-h-20 py-1 px-2 sm:px-8 lg:px-8 mx-auto">
             <div class="flex justify-between h-16">
                 <div class="flex px-2 lg:px-0">
-                    <a class="group flex-shrink-0 flex items-center logo-anchor" href="/" aria-label="Home Page Link">
+                    <a class="group flex-shrink-0 flex items-center logo-anchor" href="{{ site.baseurl }}/" aria-label="Home Page Link">
                         <div class="flex items-center space-x-2 whitespace-nowrap flex-nowrap">
                             <div class="h-8 w-8 mx-2">
                                 {% include logo.html %}
@@ -31,13 +31,13 @@
                 <div class="flex items-center h-16">
                     <div class="hidden lg:block">
                         <a class="nav-item {% if page.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="/topics">Topics</a>
+                            href="{{ site.baseurl }}/topics">Topics</a>
                         <a class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="/about">About Us</a>
+                            href="{{ site.baseurl }}/about">About Us</a>
                         <a class="nav-item {% if page.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="/contact">Contact</a>
+                            href="{{ site.baseurl }}/contact">Contact</a>
                         <!--<a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="/advertise">Advertise</a>-->
+                            href="{{ site.baseurl }}/advertise">Advertise</a>-->
                         <a class="nav-item text-white" target="_blank" href="https://docs.genicsblog.com">Docs</a>
                     </div>
 
@@ -71,7 +71,7 @@
                     </button>
 
                     <a class="ml-4 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
-                        href="/contribute">Contribute</a>
+                        href="{{ site.baseurl }}/contribute">Contribute</a>
 
                     <div class="ml-4 lg:hidden cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 stroke-white hover:stroke-slate-300"
@@ -92,19 +92,19 @@
         <div class="top-0 bg-background hidden p-6 lg:hidden" id="mobile-nav">
             <div class="grid grid-cols-2 gap-y-2 gap-x-4">
                 <a class="group mobile-nav-item {% if page.url contains '/categories' %}bg-gray-700{% endif %}"
-                    href="/topics">
+                    href="{{ site.baseurl }}/topics">
                     <span class="group-hover:text-white">Topics</span>
                 </a>
                 <!--<a class="group mobile-nav-item {% if page.url contains '/advertise' %}bg-gray-700{% endif %}"
-                    href="/advertise">
+                    href="{{ site.baseurl }}/advertise">
                     <span class="group-hover:text-white">Advertise</span>
                 </a>-->
                 <a class="group mobile-nav-item {% if page.url contains '/about' %}bg-gray-700{% endif %}"
-                    href="/about">
+                    href="{{ site.baseurl }}/about">
                     <span class="group-hover:text-white">About Us</span>
                 </a>
                 <a class="group mobile-nav-item {% if page.url contains '/contact' %}bg-gray-700{% endif %}"
-                    href="/contact">
+                    href="{{ site.baseurl }}/contact">
                     <span class="group-hover:text-white">Contact</span>
                 </a>
                 <a class="group mobile-nav-item" href="https://docs.genicsblog.com" target="_blank">
