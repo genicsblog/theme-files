@@ -9,22 +9,34 @@
 
     {% assign description = author.bio %}
     {% assign avatar = author.avatar %}
+    {% assign links = author.links %}
 
     <meta name="description" content="{{ description }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:title" content="{{ author.name }} | {{ author.role }}">
     <meta property="og:image" content="{{ avatar }}">
-    <meta property="og:type" content="profile">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@genicsblog">
     <meta name="twitter:image" content="{{ avatar }}">
-    {% if author.links.twitter != blank %}
-    <meta name="twitter:creator" content="@{{ author.links.twitter }}">
+    {% if links.twitter != blank %}
+    <meta name="twitter:creator" content="@{{ links.twitter }}">
     {% endif %}
 
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="profile:username" content="{{ page.pagination.author }}">
+    {% assign nameArr = author.name | split: ' ' %}
+    {% assign nameArrSize = nameArr | size %}
+    {% if nameArrSize == 1 %}
+    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    {% else %}
+    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    {% assign lastname = nameArr | join: ' ' %}
+    <meta property="profile:last_name" content="{{ lastname | remove: nameArr[0] | lstrip }}">
+    {% endif %}
+
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}">
 
     <link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
@@ -84,7 +96,6 @@
             <p class="mt-2">
                 {{ author.bio }}
             </p>
-            {% assign links = author.links %}
             <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
                 {% if links.stackoverflow != blank %}
                 <a class="underline-none hover:scale-125 transition" rel="nofollow noopener noreferrer"
