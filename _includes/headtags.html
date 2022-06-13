@@ -37,22 +37,24 @@
     <meta property="og:image:alt" content="{{ page.title }}">
 {% endif %}
 
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@genicsblog">
 {% if page.image %}
     <meta name="twitter:image" content="{{ page.image }}">
+{% else %}
+    <meta property="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/social/cover.jpg">
 {% endif %}
 
 {% if site.data.authors[page.author].links.twitter != blank %}
-<meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}" />
+<meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}">
 {% endif %}
 
 {% if page.layout == "post" %}
 <meta property="og:type" content="article">
-<meta property="article:section" content="{{ page.category }}" />
-<meta property="article:tag" content="{{ page.tags | join: ', ' }}" />
-<meta property="article:author" content="{{ site.url }}{{ site.baseurl }}/author/{{ page.author | downcase }}/" />
-<meta property="article:published_time" content="{{ page.date | date:'%Y-%m-%dT%H:%M:%S%z' }}" />
+<meta property="article:section" content="{{ page.category }}">
+<meta property="article:tag" content="{{ page.tags | join: ', ' }}">
+<meta property="article:author" content="{{ site.url }}{{ site.baseurl }}/author/{{ page.author | downcase }}/">
+<meta property="article:published_time" content="{{ page.date | date:'%Y-%m-%dT%H:%M:%S%z' }}">
 {% else %}
 <meta property="og:type" content="website">
 {% endif %}
