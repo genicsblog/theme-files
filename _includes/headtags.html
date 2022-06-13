@@ -46,7 +46,9 @@
 {% endif %}
 
 {% if site.data.authors[page.author].links.twitter != blank %}
-<meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}">
+    <meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}">
+{% else %}
+    <meta name="twitter:creator" content="@gourav_khunger">
 {% endif %}
 
 {% if page.layout == "post" %}
