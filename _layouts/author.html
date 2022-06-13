@@ -9,22 +9,35 @@
 
     {% assign description = author.bio %}
     {% assign avatar = author.avatar %}
+    {% assign links = author.links %}
 
     <meta name="description" content="{{ description }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:title" content="{{ author.name }} | {{ author.role }}">
     <meta property="og:image" content="{{ avatar }}">
-    <meta property="og:type" content="profile">
+    <meta property="og:image:alt" content="{{ author.name }}">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@genicsblog">
     <meta name="twitter:image" content="{{ avatar }}">
-    {% if author.links.twitter != blank %}
-    <meta name="twitter:creator" content="@{{ author.links.twitter }}">
+    {% if links.twitter != blank %}
+    <meta name="twitter:creator" content="@{{ links.twitter }}">
     {% endif %}
 
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="profile:username" content="{{ page.pagination.author }}">
+    {% assign nameArr = author.name | split: ' ' %}
+    {% assign nameArrSize = nameArr | size %}
+    {% if nameArrSize == 1 %}
+    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    {% else %}
+    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    {% assign lastname = nameArr | join: ' ' %}
+    <meta property="profile:last_name" content="{{ lastname | remove: nameArr[0] | lstrip }}">
+    {% endif %}
+
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}">
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}">
 
     <link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
@@ -73,7 +86,7 @@
 
     <header class="bg-background text-white p-6 sm:p-10" id="banner">
         <div class="flex flex-col items-center">
-            <img src="{{ author.avatar }}" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full" />
+            <img src="{{ avatar }}" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full">
             <span
                 class="mt-4 mb-1 font-black text-4xl sm:text-5xl tracking-tight text-white group-hover:text-slate-300">
                 {{ author.name }}
@@ -84,42 +97,41 @@
             <p class="mt-2">
                 {{ author.bio }}
             </p>
-            {% assign links = author.links %}
             <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
                 {% if links.stackoverflow != blank %}
                 <a class="underline-none hover:scale-125 transition" rel="nofollow noopener noreferrer"
                     href="https://stackoverflow.com/users/{{ links.stackoverflow }}" target="_blank">
-                    <img src="{{ site.baseurl }}/assets/images/social/stackoverflow.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/stackoverflow.svg" class="social-image w-10 h-10">
                 </a>
                 {% endif %}
                 {% if links.github != blank %}
                 <a class="underline-none hover:scale-110 transition" href="https://github.com/{{ links.github }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/github.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/github.svg" class="social-image w-10 h-10">
                 </a>
                 {% endif %}
                 {% if links.linkedin != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://linkedin.com/{{ links.linkedin }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-10 h-10">
                 </a>
                 {% endif %}
                 {% if links.twitter != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://twitter.com/{{ links.twitter }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-10 h-10">
                 </a>
                 {% endif %}
                 {% if links.instagram != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://instagram.com/{{ links.instagram }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/instagram.svg" class="social-image w-10 h-10" />
+                    <img src="{{ site.baseurl }}/assets/images/social/instagram.svg" class="social-image w-10 h-10">
                 </a>
                 {% endif %}
                 {% if links.youtube != blank %}
                 <a class="underline-none hover:scale-125 transition" href="https://youtube.com/{{ links.youtube }}"
                     target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/youtube.svg" class="social-image w-14 h-14" />
+                    <img src="{{ site.baseurl }}/assets/images/social/youtube.svg" class="social-image w-14 h-14">
                 </a>
                 {% endif %}
             </div>
