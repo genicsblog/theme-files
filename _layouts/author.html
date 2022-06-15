@@ -17,6 +17,10 @@
     <meta property="og:image" content="{{ avatar }}">
     <meta property="og:image:alt" content="{{ author.name }}">
 
+    {% if page.url contains "/page/" %}
+    <meta name="robots" content="noindex">
+    {% endif %}
+
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@genicsblog">
     <meta name="twitter:image" content="{{ avatar }}">

@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="{{ description }}">
 <meta property="og:description" content="{{ description }}">
 
-{% if page.sitemap == false or page.url == "/404" %}
+{% if page.sitemap == false or page.url contains "/page/" %}
 <meta name="robots" content="noindex">
 {% endif %}
 
