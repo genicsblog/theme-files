@@ -44,7 +44,6 @@ extlinks:
 # Build settings
 plugins:
   - jekyll-feed
-  - jekyll-sitemap
   - jekyll-postcss
   - jekyll-minifier
   - jekyll-archives
