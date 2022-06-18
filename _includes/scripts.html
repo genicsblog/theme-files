@@ -1,5 +1,12 @@
 <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
 <script src="{{ site.baseurl }}/assets/js/search.js"></script>
-{% if page.hasCode == true %}
 <script src="{{ site.baseurl }}/assets/js/prism.js"></script>
-{% endif %}
+<script src="{{ site.baseurl }}/assets/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>
+  InstantClick.on('change', () => {
+    Prism.highlightAll();
+    initCodeBlocks();
+  });
+
+  InstantClick.init();
+</script>
