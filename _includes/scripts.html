@@ -1,5 +1,38 @@
-<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
-<script src="{{ site.baseurl }}/assets/js/search.js"></script>
-{% if page.hasCode == true %}
-<script src="{{ site.baseurl }}/assets/js/prism.js"></script>
-{% endif %}
+<script src="{{ site.baseurl }}/assets/js/theme.js" data-no-instant></script>
+<script src="{{ site.baseurl }}/assets/js/search.js" data-no-instant></script>
+<script src="{{ site.baseurl }}/assets/js/prism.js" data-no-instant></script>
+<script src="{{ site.baseurl }}/assets/js/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>
+  InstantClick.on("change", () => {
+    const themeToggleIcon = document.getElementById("theme-toggle-icon");
+
+    if (localStorage.getItem("rotated") === "true") {
+      themeToggleIcon.style.transform = "rotate(180deg)";
+    } else {
+      themeToggleIcon.style.transform = "rotate(0deg)";
+    }
+
+    Prism.highlightAll();
+    initCodeBlocks();
+
+    window.onscroll = () => {
+      setStickyness();
+    };
+
+    document
+    .getElementById("search-container")
+    .addEventListener("click", (event) => {
+      if (event.target.id === "search-container") {
+        hideSearch();
+      }
+    });
+
+    {% if jekyll.environment == "production" %}
+    const path = window.location.pathname + window.location.search + window.location.hash;
+    gtag("set", "page_path", path);
+    gtag("event", "page_view");
+    {% endif %}
+  });
+
+  InstantClick.init("mousedown");
+</script>
