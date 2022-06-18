@@ -1,23 +1,12 @@
 ---
 ---
 
-window.onscroll = () => {
-  setStickyness();
-};
-
-const navbar = document.getElementById("navbar");
-const banner = document.getElementById("banner");
 const sticky = navbar.offsetTop;
 
-const themeToggleIcon = document.getElementById("theme-toggle-icon");
-
-if (localStorage.getItem("rotated") === "true") {
-  themeToggleIcon.style.transform = "rotate(180deg)";
-} else {
-  themeToggleIcon.style.transform = "rotate(0deg)";
-}
-
 const setStickyness = () => {
+  const navbar = document.getElementById("navbar");
+  const banner = document.getElementById("banner");
+
   if (window.pageYOffset >= sticky) {
     navbar.classList.add("fixed");
     banner.classList.add("mt-16");
@@ -69,13 +58,13 @@ const hideSearch = () => {
 // CTRL + K -> Open search
 // ESC -> Hide search
 document.addEventListener("keydown", function (e) {
-  if ((e.key.toLowerCase() === 'K'.toLowerCase()) && (e.ctrlKey || e.metaKey)) {
+  if ((e.key.toLowerCase() === "K".toLowerCase()) && (e.ctrlKey || e.metaKey)) {
     e.preventDefault();
     showSearch();
   }
 
   // escape key
-  if ((e.key.toLowerCase() === 'Escape'.toLowerCase())) {
+  if ((e.key.toLowerCase() === "Escape".toLowerCase())) {
     hideSearch();
   }
 });
@@ -100,6 +89,7 @@ const toggleTheme = () => {
     }
   }
 
+  const themeToggleIcon = document.getElementById("theme-toggle-icon");
   if (localStorage.getItem("rotated") === "true") {
     themeToggleIcon.style.transform = "rotate(0deg)";
     localStorage.setItem("rotated", "false");
@@ -114,11 +104,3 @@ document.addEventListener("keydown", function (e) {
     toggleTheme();
   }
 });
-
-document
-  .getElementById("search-container")
-  .addEventListener("click", (event) => {
-    if (event.target.id === "search-container") {
-      hideSearch();
-    }
-  });
