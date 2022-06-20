@@ -4,13 +4,8 @@
 <script src="{{ site.baseurl }}/assets/js/instantclick.min.js" data-no-instant></script>
 <script data-no-instant>
   InstantClick.on("change", () => {
-    const themeToggleIcon = document.getElementById("theme-toggle-icon");
-
-    if (localStorage.getItem("rotated") === "true") {
-      themeToggleIcon.style.transform = "rotate(180deg)";
-    } else {
-      themeToggleIcon.style.transform = "rotate(0deg)";
-    }
+    // apply color scheme
+    setTheme();
 
     Prism.highlightAll();
     initCodeBlocks();

@@ -1,6 +1,47 @@
 ---
 ---
 
+const THEME = "theme";
+const DARK = "dark";
+const LIGHT = "light";
+
+// dark mode functions
+const isSomeThemeSaved = () => {
+  return localStorage.getItem(THEME) !== null && localStorage.getItem(THEME) !== undefined;
+}
+
+const isDark = () => {
+  return localStorage.getItem(THEME) === DARK ||
+          (
+            !isSomeThemeSaved() &&
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          );
+};
+
+const saveTheme = (theme) => {
+  localStorage.setItem(THEME, theme);
+  setTheme();
+};
+
+const setTheme = () => {
+  const themeToggleIcon = document.getElementById("theme-toggle-icon");
+
+  if (isDark()) {
+    document.documentElement.classList.add(DARK);
+    themeToggleIcon.style.transform = "rotate(180deg)";
+  } else {
+    document.documentElement.classList.remove(DARK);
+    themeToggleIcon.style.transform = "rotate(0deg)";
+  }
+};
+
+document.addEventListener("keydown", function (e) {
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 76) {
+    saveTheme(isDark() ? LIGHT : DARK);
+  }
+});
+
 const sticky = navbar.offsetTop;
 
 const setStickyness = () => {
@@ -42,7 +83,7 @@ const showSearch = () => {
     resultsContainer: document.getElementById("results-container"),
     json: "/search.json",
     debounceTime: 500,
-    noResultsText: "<span class='mt-2 flex'>No results found</span>",
+    noResultsText: `<span class="mt-4 flex">No results found</span>`,
     searchResultTemplate: `<a class="search-item underline-none hover:border-{category}" href="{{ site.baseurl }}{url}"><span>{title}</span></a>`,
   });
 };
@@ -66,41 +107,5 @@ document.addEventListener("keydown", function (e) {
   // escape key
   if ((e.key.toLowerCase() === "Escape".toLowerCase())) {
     hideSearch();
-  }
-});
-
-const toggleTheme = () => {
-  if (localStorage.getItem("color-theme")) {
-    if (localStorage.getItem("color-theme") === "light") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("color-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("color-theme", "light");
-    }
-  } else {
-    // if NOT set via local storage previously
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("color-theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("color-theme", "dark");
-    }
-  }
-
-  const themeToggleIcon = document.getElementById("theme-toggle-icon");
-  if (localStorage.getItem("rotated") === "true") {
-    themeToggleIcon.style.transform = "rotate(0deg)";
-    localStorage.setItem("rotated", "false");
-  } else {
-    themeToggleIcon.style.transform = "rotate(180deg)";
-    localStorage.setItem("rotated", "true");
-  }
-};
-
-document.addEventListener("keydown", function (e) {
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 76) {
-    toggleTheme();
   }
 });
