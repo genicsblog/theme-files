@@ -78,23 +78,6 @@
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/prism.css">
 
-<script>
-    if (localStorage.getItem("color-theme")) {
-        if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-            localStorage.setItem("rotated", "false");
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-            localStorage.setItem("rotated", "true");
-        }
-    } else {
-        localStorage.setItem("color-theme", "light");
-        localStorage.setItem("rotated", "false");
-    }
-</script>
-
 {% if jekyll.environment == "production" %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>

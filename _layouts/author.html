@@ -63,20 +63,6 @@
         crossorigin="anonymous"></script>
     {% endif %}
 
-    <script>
-        if (localStorage.getItem('color-theme')) {
-            if (localStorage.getItem('color-theme') === 'light') {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        } else {
-            localStorage.setItem('color-theme', 'light');
-        }
-    </script>
-
     <title>{{ author.name }} | {{ author.role }}</title>
 </head>
 
