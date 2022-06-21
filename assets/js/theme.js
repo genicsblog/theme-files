@@ -7,7 +7,8 @@ const LIGHT = "light";
 
 // dark mode functions
 const isSomeThemeSaved = () => {
-  return localStorage.getItem(THEME) !== null && localStorage.getItem(THEME) !== undefined;
+  const theme = localStorage.getItem(THEME)
+  return theme !== null && theme !== undefined;
 }
 
 const isDark = () => {
