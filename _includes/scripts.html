@@ -26,6 +26,36 @@
     const path = window.location.pathname + window.location.search + window.location.hash;
     gtag("set", "page_path", path);
     {% endif %}
+
+    // pause already playing Audios
+    if(window.BwPlayer) {
+      BwPlayer.pause();
+    }
+    
+    const audioPlayer = document.getElementById("audio-player");
+    if(audioPlayer) {
+      // hack to support SPAs with BeyondWords
+      // re-write already inserted player controls + scripts
+      audioPlayer.replaceChildren();
+
+      const prevScript = document.getElementById("bw-script");
+      if(prevScript) prevScript.remove();
+
+      const audioScript = document.createElement("script");
+      audioScript.type = "module";
+      audioScript.id = "bw-script";
+      audioScript.text = `import Beyondwords from 'https://proxy.beyondwords.io/npm/@beyondwords/audio-player@0.0.6-rc9/dist/module/sdk.js'
+
+      Beyondwords.player({
+        renderNode: 'audio-player',
+        projectId: 11987,
+        podcastId: ${audioPlayer.dataset.audioId},
+      }).then(appInst => {
+        window.BwPlayer = appInst;
+      });`;
+
+      document.body.appendChild(audioScript);
+    }
   });
 
   InstantClick.init("mousedown");
