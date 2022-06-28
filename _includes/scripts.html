@@ -28,30 +28,27 @@
     {% endif %}
 
     // pause already playing Audios
-    if(window.BwPlayer) {
-      BwPlayer.pause();
+    if(window.BwPlayer && typeof window.BwPlayer.pause === 'function') {
+      window.BwPlayer.pause();
     }
     
     const audioPlayer = document.getElementById("audio-player");
     if(audioPlayer) {
       // hack to support SPAs with BeyondWords
-      // re-write already inserted player controls + scripts
-      audioPlayer.replaceChildren();
-
-      const prevScript = document.getElementById("bw-script");
-      if(prevScript) prevScript.remove();
-
       const audioScript = document.createElement("script");
       audioScript.type = "module";
-      audioScript.id = "bw-script";
-      audioScript.text = `import Beyondwords from 'https://proxy.beyondwords.io/npm/@beyondwords/audio-player@0.0.6-rc9/dist/module/sdk.js'
+      audioScript.text = `import BeyondWords from 'https://proxy.beyondwords.io/npm/@beyondwords/audio-player@latest/dist/module/index.js'
 
-      Beyondwords.player({
+      BeyondWords.sdk.player({
         renderNode: 'audio-player',
         projectId: 11987,
         podcastId: ${audioPlayer.dataset.audioId},
       }).then(appInst => {
         window.BwPlayer = appInst;
+        const player = document.getElementsByClassName("sk-app-container")[0];
+        player.classList.add("rounded-xl");
+        const attribution = document.getElementsByClassName("sk-app-link")[0];
+        attribution.classList.add("underline-none");
       });`;
 
       document.body.appendChild(audioScript);
