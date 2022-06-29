@@ -149,6 +149,23 @@ layout: default
 
 {% include infeed-ad.html %}
 
+{% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}
+<h1 class="mx-8 mt-12 md:mx-10 lg:mx-14 -mb-4 lg:-mb-8">Comments</h1>
+
+<section class="flex flex-col-reverse lg:flex-row">
+  <div id="comments" class="md:text-lg m-8 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]">
+  </div>
+  <aside class="m-8 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]">
+    <div
+      class="p-6 md:p-8  space-y-4 lg:sticky lg:top-24 rounded-2xl bg-white dark:bg-background shadow-xl dark:shadow-none shadow-slate-200">
+      <p class="leading-5 font-medium text-justify">
+        Please adhere to our <a href="/code-of-conduct">Code of Conduct</a> while adding a comment. Respect other's opinion.
+      </p>
+    </div>
+  </aside>
+</section>
+{% endif %}
+
 <div class="m-8 md:m-10 lg:m-14">
   {% include relatedposts.html %}
 </div>
