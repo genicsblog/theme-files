@@ -25,6 +25,17 @@ const saveTheme = (theme) => {
   setTheme();
 };
 
+const setGiscusTheme = () => {
+  const iframe = document.getElementsByClassName("giscus-frame")[0];
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  if (isDark()) {
+    iframeDoc.documentElement.classList.add(DARK);
+  } else {
+    iframeDoc.documentElement.classList.remove(DARK);
+  }
+};
+
 const setTheme = () => {
   const themeToggleIcon = document.getElementById("theme-toggle-icon");
 
