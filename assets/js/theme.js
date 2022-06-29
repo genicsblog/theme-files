@@ -4,6 +4,8 @@
 const THEME = "theme";
 const DARK = "dark";
 const LIGHT = "light";
+const GISCUS_LIGHT = "https://giscus.app/themes/light.css";
+const GISCUS_DARK = "https://giscus.app/themes/dark.css";
 
 // dark mode functions
 const isSomeThemeSaved = () => {
@@ -27,13 +29,14 @@ const saveTheme = (theme) => {
 
 const setGiscusTheme = () => {
   const iframe = document.getElementsByClassName("giscus-frame")[0];
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-  if (isDark()) {
-    iframeDoc.documentElement.classList.add(DARK);
-  } else {
-    iframeDoc.documentElement.classList.remove(DARK);
-  }
+  if (iframe) iframe.contentWindow.postMessage({ 
+    giscus: {
+      setConfig: {
+        theme: `${isDark() ? GISCUS_DARK : GISCUS_LIGHT}`
+      }
+    } 
+  }, 'https://giscus.app');
 };
 
 const setTheme = () => {
@@ -46,6 +49,8 @@ const setTheme = () => {
     document.documentElement.classList.remove(DARK);
     themeToggleIcon.style.transform = "rotate(0deg)";
   }
+
+  setGiscusTheme();
 };
 
 document.addEventListener("keydown", function (e) {
