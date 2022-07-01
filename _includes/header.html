@@ -73,7 +73,7 @@
       <img
         src="{{ optimize }}{{ page.image }}"
         class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
-      />
+      >
       {% endif %}
     </div>
     <div class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12">
@@ -87,13 +87,13 @@
 
       {% if page.author %}
       <div class="flex items-center mt-8">
-        <img class="rounded-full w-14 h-14" src="{{ author.avatar }}" />
+        <img class="rounded-full w-14 h-14" src="{{ author.avatar }}">
         <div class="ml-4 leading-3">
           <a class="font-extrabold text-xl"
             href="{{ site.baseurl }}/author/{{ page.author | downcase }}/">
             {{ author.name }}
           </a>
-          <br />
+          <br>
           <span class="text-sm">
             Posted on {{ page.date | date:"%B %e, %Y" }}
           </span>

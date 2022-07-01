@@ -2,8 +2,9 @@
 layout: default
 ---
 
-<section class="lg:flex">
+{% assign author = site.data.authors[page.author] %}
 
+<section class="lg:flex">
   <div
     class="md:text-lg m-6 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]">
     <div class="bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none">
@@ -24,7 +25,7 @@ layout: default
         </span>
         {% endif %}
         {% if page.notice != blank %}
-        {% if page.series != blank %}<br />{% endif %}
+        {% if page.series != blank %}<br>{% endif %}
         <span class="text-base leading-8">
           {{ page.notice | markdownify }}
         </span>
@@ -40,26 +41,26 @@ layout: default
         {{ content | extlinks | optimize_images }}
 
       </article>
-      <hr />
+      <hr>
       <div class="px-6 pb-6 md:px-8 md:pb-8 flex flex-col items-center rounded-bl-2xl rounded-br-2xl">
-        <p class="text-center mb-4">Join discussions at <a href="https://discord.genicsblog.com" target="_blank" class="cta-link">our discord server ></a><br />Did you learn something new today? Spread the word!</p>
+        <p class="text-center mb-4">Join discussions at <a href="https://discord.genicsblog.com" target="_blank" class="cta-link">our discord server ></a><br>Did you learn something new today? Spread the word!</p>
         <div class="grid grid-flow-col gap-6">
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://facebook.com/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="{{ site.baseurl }}/assets/images/social/facebook.svg" class="social-image w-8 h-8" />
+            <img src="{{ site.baseurl }}/assets/images/social/facebook.svg" class="social-image w-8 h-8">
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://api.whatsapp.com/send?text=Checkout this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'whatsapp-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="{{ site.baseurl }}/assets/images/social/whatsapp.svg" class="social-image w-10 h-10" />
+            <img src="{{ site.baseurl }}/assets/images/social/whatsapp.svg" class="social-image w-10 h-10">
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'linkedin-share', 'width=550,height=435');return false;" target="_blank">
-            <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-7 h-7" />
+            <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-7 h-7">
           </a>
-          {% assign mention = site.data.authors[page.author].links.twitter %}
+          {% assign mention = author.links.twitter %}
           {% if mention != blank %}
           {% assign text = "by @" | append: mention | append: " " %}
           {% else %}
@@ -68,21 +69,20 @@ layout: default
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://twitter.com/intent/tweet?text=Check out this amazing article {{ text }}at @genicsblog: {{ page.title }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
-            <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-8 h-8" />
+            <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-8 h-8">
           </a>
           <a class="underline-none hover:scale-125 transition flex items-center" rel="nofollow noopener noreferrer"
             href="https://www.snapchat.com/scan?attachmentUrl={{ site.url }}{{ site.baseurl }}{{ page.url }}"
             onclick="window.open(this.href, 'snapchat-share', 'width=550,height=435');return false;">
-            <img src="{{ site.baseurl }}/assets/images/social/snapchat.svg" class="social-image w-14 h-14 -m-2" />
+            <img src="{{ site.baseurl }}/assets/images/social/snapchat.svg" class="social-image w-14 h-14 -m-2">
           </a>
         </div>
       </div>
     </div>
   </div>
-  {% assign author = site.data.authors[page.author] %}
   <aside class="m-6 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]">
     <figure class="bg-white dark:bg-background rounded-2xl p-6 md:p-8 shadow-xl dark:shadow-none shadow-slate-200">
-      <img class="w-24 h-24 rounded-full mx-auto" src="{{ site.data.authors[page.author].avatar }}" alt="">
+      <img class="w-24 h-24 rounded-full mx-auto" src="{{ author.avatar }}" alt="{{ author.name }}">
       <div class="pt-4 space-y-4">
         <figcaption class="font-medium text-center">
           <div>
@@ -104,7 +104,7 @@ layout: default
       class="bg-white dark:bg-background rounded-2xl p-6 md:p-8 shadow-xl shadow-slate-200 dark:shadow-none lg:sticky lg:top-24 mt-8">
       <h4>This is a draft preview!</h4>
       Anyone with the link can read this draft, but not search engines :)
-      <br /><br />
+      <br><br>
       Wanna publish content at Genics Blog?
       <div class="flex justify-center">
         <a class="px-3 py-1 mt-4 rounded-md bg-black dark:bg-white text-white dark:text-black hover:shadow-lg hover:scale-110 transition underline-none text-center"
@@ -125,8 +125,8 @@ layout: default
     {% for element in site.data.sponsors %}
     <figure
       class="bg-white dark:bg-background rounded-2xl px-6 pb-6 md:px-8 shadow-xl shadow-slate-200 dark:shadow-none{% if forloop.last == true %} lg:sticky lg:top-24{% endif %} mt-8">
-      <img src="{{ element.logo.dark }}" class="w-full aspect-video hidden dark:block" />
-      <img src="{{ element.logo.light }}" class="w-full aspect-video dark:hidden" />
+      <img src="{{ element.logo.dark }}" class="w-full aspect-video hidden dark:block">
+      <img src="{{ element.logo.light }}" class="w-full aspect-video dark:hidden">
       <h4>
         {{ element.name }}
         {% if element.sponsored %}<span
