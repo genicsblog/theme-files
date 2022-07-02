@@ -1,6 +1,3 @@
----
----
-
 const THEME = "theme";
 const DARK = "dark";
 const LIGHT = "light";
@@ -9,17 +6,17 @@ const GISCUS_DARK = "https://giscus.app/themes/dark.css";
 
 // dark mode functions
 const isSomeThemeSaved = () => {
-  const theme = localStorage.getItem(THEME)
+  const theme = localStorage.getItem(THEME);
   return theme !== null && theme !== undefined;
-}
+};
 
 const isDark = () => {
-  return localStorage.getItem(THEME) === DARK ||
-          (
-            !isSomeThemeSaved() &&
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-          );
+  return (
+    localStorage.getItem(THEME) === DARK ||
+    (!isSomeThemeSaved() &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
 };
 
 const saveTheme = (theme) => {
@@ -30,13 +27,18 @@ const saveTheme = (theme) => {
 const setGiscusTheme = () => {
   const iframe = document.getElementsByClassName("giscus-frame")[0];
 
-  if (iframe) iframe.contentWindow.postMessage({ 
-    giscus: {
-      setConfig: {
-        theme: `${isDark() ? GISCUS_DARK : GISCUS_LIGHT}`
-      }
-    } 
-  }, 'https://giscus.app');
+  if (iframe) {
+    iframe.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: `${isDark() ? GISCUS_DARK : GISCUS_LIGHT}`,
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  }
 };
 
 const setTheme = () => {
@@ -101,7 +103,7 @@ const showSearch = () => {
     json: "/search.json",
     debounceTime: 500,
     noResultsText: `<span class="mt-4 flex">No results found</span>`,
-    searchResultTemplate: `<a class="search-item underline-none hover:border-{category}" href="{{ site.baseurl }}{url}"><span>{title}</span></a>`,
+    searchResultTemplate: `<a class="search-item underline-none hover:border-{category}" href="{url}"><span>{title}</span></a>`,
   });
 };
 
@@ -116,13 +118,13 @@ const hideSearch = () => {
 // CTRL + K -> Open search
 // ESC -> Hide search
 document.addEventListener("keydown", function (e) {
-  if ((e.key.toLowerCase() === "K".toLowerCase()) && (e.ctrlKey || e.metaKey)) {
+  if (e.key.toLowerCase() === "K".toLowerCase() && (e.ctrlKey || e.metaKey)) {
     e.preventDefault();
     showSearch();
   }
 
   // escape key
-  if ((e.key.toLowerCase() === "Escape".toLowerCase())) {
+  if (e.key.toLowerCase() === "Escape".toLowerCase()) {
     hideSearch();
   }
 });

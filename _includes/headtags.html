@@ -1,7 +1,8 @@
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- prettier-ignore -->
 {% if page.excerpt != blank %}
     {% assign description = page.excerpt %}
 {% elsif page.description != blank %}
@@ -16,80 +17,118 @@
     {% endif %}
 {% endif %}
 
-<meta name="description" content="{{ description }}">
-<meta name="twitter:description" content="{{ description }}">
-<meta property="og:description" content="{{ description }}">
+<meta name="description" content="{{ description }}" />
+<meta name="twitter:description" content="{{ description }}" />
+<meta property="og:description" content="{{ description }}" />
 
 {% if page.sitemap == false %}
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex" />
 {% endif %}
 
 <!-- Open grah tags -->
-<meta property="og:title" content="{{ page.title }}">
+<meta property="og:title" content="{{ page.title }}" />
+
 {% if page.image %}
-    <meta property="og:image" content="{{ page.image }}">
+<meta property="og:image" content="{{ page.image }}" />
 {% else %}
-    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/social/cover.jpg">
+<meta
+  property="og:image"
+  content="{{ site.url }}{{ site.baseurl }}/assets/images/social/cover.jpg"
+/>
 {% endif %}
+
+<!-- prettier-ignore -->
 {% if page.image_alt != blank %}
-    <meta property="og:image:alt" content="{{ page.image_alt }}">
+<meta property="og:image:alt" content="{{ page.image_alt }}" />
 {% else %}
-    <meta property="og:image:alt" content="{{ page.title }}">
+<meta property="og:image:alt" content="{{ page.title }}" />
 {% endif %}
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@genicsblog">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@genicsblog" />
 {% if page.image %}
-    <meta name="twitter:image" content="{{ page.image }}">
+<meta name="twitter:image" content="{{ page.image }}" />
 {% else %}
-    <meta property="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/social/cover.jpg">
+<meta
+  property="twitter:image"
+  content="{{ site.url }}{{ site.baseurl }}/assets/images/social/cover.jpg"
+/>
 {% endif %}
 
+<!-- prettier-ignore -->
 {% if site.data.authors[page.author].links.twitter != blank %}
-    <meta name="twitter:creator" content="@{{ site.data.authors[page.author].links.twitter }}">
+<meta
+  name="twitter:creator"
+  content="@{{ site.data.authors[page.author].links.twitter }}"
+/>
 {% else %}
-    <meta name="twitter:creator" content="@gourav_khunger">
+<meta name="twitter:creator" content="@gourav_khunger" />
 {% endif %}
 
+<!-- prettier-ignore -->
 {% if page.layout == "post" %}
-<meta property="og:type" content="article">
-<meta property="article:section" content="{{ page.category }}">
-<meta property="article:tag" content="{{ page.tags | join: ', ' }}">
-<meta property="article:author" content="{{ site.url }}{{ site.baseurl }}/author/{{ page.author | downcase }}/">
-<meta property="article:published_time" content="{{ page.date | date:'%Y-%m-%dT%H:%M:%S%z' }}">
+<meta property="og:type" content="article" />
+<meta property="article:section" content="{{ page.category }}" />
+<meta property="article:tag" content="{{ page.tags | join: ', ' }}" />
+<meta
+  property="article:author"
+  content="{{ site.url }}{{ site.baseurl }}/author/{{ page.author | downcase }}/"
+/>
+<meta
+  property="article:published_time"
+  content="{{ page.date | date:'%Y-%m-%dT%H:%M:%S%z' }}"
+/>
 {% else %}
-<meta property="og:type" content="website">
+<meta property="og:type" content="website" />
 {% endif %}
-<meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}">
+<meta
+  property="og:url"
+  content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}"
+/>
 
 {% if page.original != blank %}
-<link rel="canonical" href="{{ page.original }}">
+<link rel="canonical" href="{{ page.original }}" />
 {% else %}
-<link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}">
+<link
+  rel="canonical"
+  href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}"
+/>
 {% endif %}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Sen&display=swap"
-    rel="stylesheet">
+  href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Sen&display=swap"
+  rel="stylesheet"
+/>
 
-<link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/prism.css">
+<link
+  rel="icon"
+  href="{{ site.baseurl }}/assets/images/favicon.ico"
+  type="image/x-icon"
+/>
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css" />
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/prism.css" />
 
 {% if jekyll.environment == "production" %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"
+></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-    gtag("config", "{{ site.google_analytics }}");
+  gtag("config", "{{ site.google_analytics }}");
 </script>
 
-<script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense-data-ad-client }}"
-    crossorigin="anonymous"></script>
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense-data-ad-client }}"
+  crossorigin="anonymous"
+></script>
 {% endif %}

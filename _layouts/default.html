@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     {% include headtags.html %}
     <title>{{ page.title }}</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
+    <!-- prettier-ignore -->
     {% include nav.html %}
-
     {% include header.html %}
 
-    <main>
-        {{ content | extlinks }}
-    </main>
+    <main>{{ content | extlinks }}</main>
 
+    <!-- prettier-ignore -->
     {% include footer.html %}
     {% include search.html %}
     {% include scripts.html %}
-</body>
-
+  </body>
 </html>

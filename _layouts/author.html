@@ -1,172 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-{% assign author = page.pagination.author_data %}
+  {% assign author = page.pagination.author_data %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- prettier-ignore -->
     {% assign description = author.bio %}
     {% assign avatar = author.avatar %}
     {% assign links = author.links %}
 
-    <meta name="description" content="{{ description }}">
-    <meta property="og:description" content="{{ description }}">
-    <meta property="og:title" content="{{ author.name }} | {{ author.role }}">
-    <meta property="og:image" content="{{ avatar }}">
-    <meta property="og:image:alt" content="{{ author.name }}">
+    <meta name="description" content="{{ description }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:title" content="{{ author.name }} | {{ author.role }}" />
+    <meta property="og:image" content="{{ avatar }}" />
+    <meta property="og:image:alt" content="{{ author.name }}" />
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@genicsblog">
-    <meta name="twitter:image" content="{{ avatar }}">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@genicsblog" />
+    <meta name="twitter:image" content="{{ avatar }}" />
     {% if links.twitter != blank %}
-    <meta name="twitter:creator" content="@{{ links.twitter }}">
+    <meta name="twitter:creator" content="@{{ links.twitter }}" />
     {% endif %}
 
-    <meta property="og:type" content="profile">
-    <meta property="profile:username" content="{{ page.pagination.author }}">
+    <meta property="og:type" content="profile" />
+    <meta property="profile:username" content="{{ page.pagination.author }}" />
+
+    <!-- prettier-ignore -->
     {% assign nameArr = author.name | split: ' ' %}
     {% assign nameArrSize = nameArr | size %}
     {% if nameArrSize == 1 %}
-    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    <meta property="profile:first_name" content="{{ nameArr[0] }}" />
     {% else %}
-    <meta property="profile:first_name" content="{{ nameArr[0] }}">
+    <meta property="profile:first_name" content="{{ nameArr[0] }}" />
     {% assign lastname = nameArr | join: ' ' %}
-    <meta property="profile:last_name" content="{{ lastname | remove: nameArr[0] | lstrip }}">
+    <meta
+      property="profile:last_name"
+      content="{{ lastname | remove: nameArr[0] | lstrip }}"
+    />
     {% endif %}
 
-    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}">
-    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}">
+    <meta
+      property="og:url"
+      content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}"
+    />
 
-    <link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Sen&display=swap"
-        rel="stylesheet">
+      rel="canonical"
+      href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: 'index.html', '' }}"
+    />
+    <link
+      rel="icon"
+      href="{{ site.baseurl }}/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Sen&display=swap"
+      rel="stylesheet"
+    />
 
     {% if jekyll.environment == 'production' %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', '{{ site.google_analytics }}');
+      gtag("config", "{{ site.google_analytics }}");
     </script>
 
-    <script async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense-data-ad-client }}"
-        crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense-data-ad-client }}"
+      crossorigin="anonymous"
+    ></script>
     {% endif %}
 
     <title>{{ author.name }} | {{ author.role }}</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     {% include nav.html %}
 
     <header class="bg-background text-white p-6 sm:p-10" id="banner">
-        <div class="flex flex-col items-center">
-            <img src="{{ avatar }}" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full">
-            <span
-                class="mt-4 mb-1 font-black text-4xl sm:text-5xl tracking-tight text-white group-hover:text-slate-300">
-                {{ author.name }}
-            </span>
-            <h4>
-                {{ author.role }}
-            </h4>
-            <p class="mt-2">
-                {{ author.bio }}
-            </p>
-            <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
-                {% if links.stackoverflow != blank %}
-                <a class="underline-none hover:scale-125 transition" rel="nofollow noopener noreferrer"
-                    href="https://stackoverflow.com/users/{{ links.stackoverflow }}" target="_blank">
-                    <img src="{{ site.baseurl }}/assets/images/social/stackoverflow.svg" class="social-image w-10 h-10">
-                </a>
-                {% endif %}
-                {% if links.github != blank %}
-                <a class="underline-none hover:scale-110 transition" href="https://github.com/{{ links.github }}"
-                    target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/github.svg" class="social-image w-10 h-10">
-                </a>
-                {% endif %}
-                {% if links.linkedin != blank %}
-                <a class="underline-none hover:scale-125 transition" href="https://linkedin.com/{{ links.linkedin }}"
-                    target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/linkedin.svg" class="social-image w-10 h-10">
-                </a>
-                {% endif %}
-                {% if links.twitter != blank %}
-                <a class="underline-none hover:scale-125 transition" href="https://twitter.com/{{ links.twitter }}"
-                    target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/twitter.svg" class="social-image w-10 h-10">
-                </a>
-                {% endif %}
-                {% if links.instagram != blank %}
-                <a class="underline-none hover:scale-125 transition" href="https://instagram.com/{{ links.instagram }}"
-                    target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/instagram.svg" class="social-image w-10 h-10">
-                </a>
-                {% endif %}
-                {% if links.youtube != blank %}
-                <a class="underline-none hover:scale-125 transition" href="https://youtube.com/{{ links.youtube }}"
-                    target="_blank" rel="nofollow noopener noreferrer">
-                    <img src="{{ site.baseurl }}/assets/images/social/youtube.svg" class="social-image w-14 h-14">
-                </a>
-                {% endif %}
-            </div>
+      <div class="flex flex-col items-center">
+        <img
+          src="{{ avatar }}"
+          class="w-28 h-28 sm:w-36 sm:h-36 rounded-full"
+        />
+        <span
+          class="mt-4 mb-1 font-black text-4xl sm:text-5xl tracking-tight text-white group-hover:text-slate-300"
+        >
+          {{ author.name }}
+        </span>
+        <h4>{{ author.role }}</h4>
+        <p class="mt-2">{{ author.bio }}</p>
+        <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
+          {% if links.stackoverflow != blank %}
+          <a
+            class="underline-none hover:scale-125 transition"
+            rel="nofollow noopener noreferrer"
+            href="https://stackoverflow.com/users/{{ links.stackoverflow }}"
+            target="_blank"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/stackoverflow.svg"
+              class="social-image w-10 h-10"
+            />
+          </a>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if links.github != blank %}
+          <a
+            class="underline-none hover:scale-110 transition"
+            href="https://github.com/{{ links.github }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/github.svg"
+              class="social-image w-10 h-10"
+            />
+          </a>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if links.linkedin != blank %}
+          <a
+            class="underline-none hover:scale-125 transition"
+            href="https://linkedin.com/{{ links.linkedin }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/linkedin.svg"
+              class="social-image w-10 h-10"
+            />
+          </a>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if links.twitter != blank %}
+          <a
+            class="underline-none hover:scale-125 transition"
+            href="https://twitter.com/{{ links.twitter }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/twitter.svg"
+              class="social-image w-10 h-10"
+            />
+          </a>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if links.instagram != blank %}
+          <a
+            class="underline-none hover:scale-125 transition"
+            href="https://instagram.com/{{ links.instagram }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/instagram.svg"
+              class="social-image w-10 h-10"
+            />
+          </a>
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if links.youtube != blank %}
+          <a
+            class="underline-none hover:scale-125 transition"
+            href="https://youtube.com/{{ links.youtube }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <img
+              src="{{ site.baseurl }}/assets/images/social/youtube.svg"
+              class="social-image w-14 h-14"
+            />
+          </a>
+          {% endif %}
         </div>
+      </div>
     </header>
 
     <main>
-        <section class="p-6 sm:p-10">
-            {% assign arrSize = paginator.posts | size %}
-            {% if arrSize > 0 %}
-            <div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
-                {% for post in paginator.posts %}
-                {% include postbox.html %}
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="text-center text-xl">
-                No posts yet.
-            </div>
-            {% endif %}
-
-            {% if paginator.total_pages > 1 %}
-            <div class="flex justify-center items-center w-full">
-                {% if paginator.previous_page %}
-                <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
-                Previous
-                </a>
-                {% endif %}
-                <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-                {% if paginator.next_page %}
-                <a href="{{ site.baseurl }}{{ paginator.next_page_path }}" class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none">
-                Next
-                </a>
-                {% endif %}
-            </div>
-            {% endif %}
-        </section>
-    
-        <div class="mb-8">
-            {% include cta.html %}
+      <section class="p-6 sm:p-10">
+        <!-- prettier-ignore -->
+        {% assign arrSize = paginator.posts | size %}
+        {% if arrSize > 0 %}
+        <div
+          class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
+        >
+          <!-- prettier-ignore -->
+          {% for post in paginator.posts %}
+            {% include postbox.html %}
+          {% endfor %}
         </div>
-    
-        {% include infeed-ad.html %}
+        {% else %}
+        <div class="text-center text-xl">No posts yet.</div>
+        {% endif %}
 
+        <!-- prettier-ignore -->
+        {% if paginator.total_pages > 1 %}
+        <div class="flex justify-center items-center w-full">
+          {% if paginator.previous_page %}
+          <a
+            href="{{ site.baseurl }}{{ paginator.previous_page_path }}"
+            class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+          >
+            Previous
+          </a>
+          {% endif %}
+          <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+          {% if paginator.next_page %}
+          <a
+            href="{{ site.baseurl }}{{ paginator.next_page_path }}"
+            class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+          >
+            Next
+          </a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </section>
+
+      <div class="mb-8">{% include cta.html %}</div>
+
+      {% include infeed-ad.html %}
     </main>
 
+    <!-- prettier-ignore -->
     {% include footer.html %}
     {% include search.html %}
     {% include scripts.html %}
-</body>
-
+  </body>
 </html>

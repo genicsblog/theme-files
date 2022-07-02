@@ -1,5 +1,8 @@
-<a class="px-3 py-1 font-bold hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white text-lg hover:scale-110 transition underline-none"
-    href="{{ include.href }}" target="{% if include.target %}{{ include.target }}{% else %}_blank{% endif %}"
-    rel="{% if include.rel %}{{ include.rel }}{% else %}nofollow noreferrer noopener{% endif %}">
-    {{ include.text }}
+<a
+  class="px-3 py-1 font-bold hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+  href="{{ include.href }}"
+  target="{% if include.target %}{{ include.target }}{% else %}_blank{% endif %}"
+  rel="{% if include.rel %}{{ include.rel }}{% else %}nofollow noreferrer noopener{% endif %}"
+>
+  {{ include.text }}
 </a>

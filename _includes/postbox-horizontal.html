@@ -1,39 +1,48 @@
+<!-- prettier-ignore -->
 {% if jekyll.environment == 'production' %}
 {% assign optimize = site.img_src_prefix.header %}
 {% endif %}
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
-<a class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 hover:border-{{ category }} dark:hover:border-slate-200 dark:hover:!border-{{ category }} dark:border-slate-600 transition underline-none"
-    href="{{ site.baseurl }}{{ post.url }}">
+<a
+  class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 hover:border-{{ category }} dark:hover:border-slate-200 dark:hover:!border-{{ category }} dark:border-slate-600 transition underline-none"
+  href="{{ site.baseurl }}{{ post.url }}"
+>
   <div class="flex flex-col lg:flex-row p-2">
     <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
       {% if post.image %}
       <img
         src="{{ optimize }}{{ post.image }}"
         class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
-      >
+      />
       {% endif %}
     </div>
-    <div class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12">
-      {% if post.title %} 
-      <h1 class="text-4xl font-black tracking-tight">{{ post.title | truncate: 50 }}</h1>
+    <div
+      class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12"
+    >
+      {% if post.title %}
+      <h1 class="text-4xl font-black tracking-tight">
+        {{ post.title | truncate: 50 }}
+      </h1>
       {% endif %}
-      
+
+      <!-- prettier-ignore -->
       {% if post.excerpt %}
       <span class="mt-0.5 text-justify">{{ post.excerpt }}</span>
       {% endif %}
 
       <div class="flex justify-between mt-8 w-full">
         <div class="flex items-center">
-          <img class="rounded-full w-10 h-10" width="40px" height="40px" src="{{ author.avatar }}">
-          <span class="ml-4">
-            {{ author.name | split: " " | first }}
-          </span>
+          <img
+            class="rounded-full w-10 h-10"
+            width="40px"
+            height="40px"
+            src="{{ author.avatar }}"
+          />
+          <span class="ml-4">{{ author.name | split: " " | first }}</span>
         </div>
         <div class="flex items-center leading-3">
-          <span>
-            {{ post.date | date:"%b %e, %Y" }}
-          </span>
+          <span>{{ post.date | date:"%b %e, %Y" }}</span>
         </div>
       </div>
     </div>

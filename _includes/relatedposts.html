@@ -1,15 +1,17 @@
 <div class="flex justify-center">
-    <h1>Related content</h1>
+  <h1>Related content</h1>
 </div>
 
+<!-- prettier-ignore -->
 {% assign maxRelated = 3 %}
 {% assign minCommonTags = 1 %}
 {% assign maxRelatedCounter = 0 %}
 
-<div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
-  
-    {% for post in site.posts %}
-
+<div
+  class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
+>  
+  <!-- prettier-ignore -->
+  {% for post in site.posts %}
     {% assign sameTagCount = 0 %}
     {% assign commonTags = '' %}
 
@@ -17,16 +19,20 @@
       {% if post.url != page.url %}
         {% if page.tags contains tag %}
           {% assign sameTagCount = sameTagCount | plus: 1 %}
-          {% capture tagmarkup %} <span class="label label-default">{{ tag }}</span> {% endcapture %}
+          {% capture tagmarkup %}
+            <span class="label label-default">{{ tag }}</span>
+          <!-- prettier-ignore -->
+          {% endcapture %}
           {% assign commonTags = commonTags | append: tagmarkup %}
         {% endif %}
       {% endif %}
     {% endfor %}
 
+    <!-- prettier-ignore -->
     {% if sameTagCount >= minCommonTags %}
-
       {% include postbox.html %}
 
+      <!-- prettier-ignore -->
       {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
       {% if maxRelatedCounter >= maxRelated %}
         {% break %}

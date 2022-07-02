@@ -1,116 +1,203 @@
 <nav>
-    {% assign announcement = site.data.announcement %}
-    {% if announcement.visible and page.url != announcement.link.url %}
-    <p class="bg-primary p-3 text-center text-white font-medium flex flex-col sm:block">
-        <span class="md:hidden px-1">{{ announcement.small }}</span>
-        <span class="hidden md:inline px-1">{{ announcement.large }}</span>
-        {% if announcement.link.visible %}
-        <a href="{{ site.data.announcement.link.url }}" target="{{ site.data.announcement.link.target }}"
-            class="font-bold underline header-anchor hover:text-slate-300" {% if announcement.link.rel
-            %}rel="{{ announcement.link.rel }}" {% endif %}>
-            {{ announcement.link.text }}
-        </a>
-        {% endif %}
-    </p>
+  <!-- prettier-ignore -->
+  {% assign announcement = site.data.announcement %}
+  {% if announcement.visible and page.url != announcement.link.url %}
+  <p
+    class="bg-primary p-3 text-center text-white font-medium flex flex-col sm:block"
+  >
+    <span class="md:hidden px-1">{{ announcement.small }}</span>
+    <span class="hidden md:inline px-1">{{ announcement.large }}</span>
+    {% if announcement.link.visible %}
+    <a
+      href="{{ site.data.announcement.link.url }}"
+      target="{{ site.data.announcement.link.target }}"
+      class="font-bold underline header-anchor hover:text-slate-300"
+      {%
+      if
+      announcement.link.rel
+      %}rel="{{ announcement.link.rel }}"
+      {%
+      endif
+      %}
+    >
+      {{ announcement.link.text }}
+    </a>
     {% endif %}
-    <header class="w-full top-0 z-10" id="navbar">
-        <div class="bg-background max-h-20 py-1 px-2 sm:px-8 lg:px-8 mx-auto">
-            <div class="flex justify-between h-16">
-                <div class="flex px-2 lg:px-0">
-                    <a class="group flex-shrink-0 flex items-center logo-anchor" href="{{ site.baseurl }}/" aria-label="Home Page Link">
-                        <div class="flex items-center space-x-2 whitespace-nowrap flex-nowrap">
-                            <div class="h-8 w-8 mx-2">
-                                {% include logo.html %}
-                            </div>
-                            <span
-                                class="font-bold hidden sm:block text-xl tracking-tight text-white group-hover:text-slate-300">
-                                {{ site.title }}</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex items-center h-16">
-                    <div class="hidden lg:block">
-                        <a class="nav-item {% if page.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="{{ site.baseurl }}/topics">Topics</a>
-                        <a class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="{{ site.baseurl }}/about">About Us</a>
-                        <a class="nav-item {% if page.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="{{ site.baseurl }}/contact">Contact</a>
-                        <!--<a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
-                            href="{{ site.baseurl }}/advertise">Advertise</a>-->
-                        <a class="nav-item text-white" target="_blank" href="https://docs.genicsblog.com">Docs</a>
-                    </div>
-
-                    <button onclick="showSearch()" aria-label="Search across the site...">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-4 h-6 w-6 stroke-white hover:stroke-slate-300"
-                            fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-
-                    <button type="button" class="ml-2" onclick="saveTheme(isDark() ? LIGHT : DARK)" title="Ctrl + Shift + L">
-                        <svg viewBox="0 0 512 512" class="h-8 w-8 fill-white hover:fill-slate-300 transition-all" id="theme-toggle-icon">
-                            <g>
-                                <path
-                                    d="M262.524,164.624c-49.466,0-89.592,40.119-89.592,89.596c0,49.487,40.126,89.606,89.592,89.606   c49.487,0,89.613-40.119,89.613-89.606C352.138,204.743,312.012,164.624,262.524,164.624z M262.524,320.136   c-36.39,0-65.902-29.513-65.902-65.916c0-36.396,29.513-65.903,65.902-65.903c36.41,0,65.924,29.506,65.924,65.903   C328.448,290.623,298.935,320.136,262.524,320.136z" />
-                                <path
-                                    d="M264.078,149.221c0,0-39.031-73.758,0-73.758C303.103,75.462,264.078,149.221,264.078,149.221z" />
-                                <path
-                                    d="M261.922,363.328c0,0,39.053,73.737,0,73.737C222.905,437.045,261.922,363.328,261.922,363.328z" />
-                                <path
-                                    d="M186.536,331.194c0,0-24.539,79.766-52.142,52.148C106.817,355.746,186.536,331.194,186.536,331.194z" />
-                                <path
-                                    d="M155.941,255.181c0,0-73.745,39.048-73.745,0C82.224,216.177,155.941,255.181,155.941,255.181z" />
-                                <path
-                                    d="M188.068,179.794c0,0-79.746-24.524-52.142-52.142C163.503,100.086,188.068,179.794,188.068,179.794z" />
-                                <path
-                                    d="M428.852,254.552c0,49.668-40.276,89.931-89.935,89.931c-49.657,0-89.928-40.263-89.928-89.931   c0-49.672,40.271-89.928,89.928-89.928C388.575,164.624,428.852,204.88,428.852,254.552z" />
-                            </g>
-                        </svg>
-                    </button>
-
-                    <a class="ml-4 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
-                        href="{{ site.baseurl }}/contribute">Contribute</a>
-
-                    <div class="ml-4 lg:hidden cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 stroke-white hover:stroke-slate-300"
-                            id="menu-open" viewBox="0 0 24 24" onclick="toggleNav()">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-                        </svg>
-
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="menu-close h-8 w-8 hidden stroke-white hover:stroke-slate-300" id="menu-close"
-                            viewBox="0 0 24 24" onclick="toggleNav()">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                </div>
+  </p>
+  {% endif %}
+  <header class="w-full top-0 z-10" id="navbar">
+    <div class="bg-background max-h-20 py-1 px-2 sm:px-8 lg:px-8 mx-auto">
+      <div class="flex justify-between h-16">
+        <div class="flex px-2 lg:px-0">
+          <a
+            class="group flex-shrink-0 flex items-center logo-anchor"
+            href="{{ site.baseurl }}/"
+            aria-label="Home Page Link"
+          >
+            <div
+              class="flex items-center space-x-2 whitespace-nowrap flex-nowrap"
+            >
+              <div class="h-8 w-8 mx-2">{% include logo.html %}</div>
+              <span
+                class="font-bold hidden sm:block text-xl tracking-tight text-white group-hover:text-slate-300"
+              >
+                {{ site.title }}</span
+              >
             </div>
+          </a>
         </div>
-        <div class="top-0 bg-background hidden p-6 lg:hidden" id="mobile-nav">
-            <div class="grid grid-cols-2 gap-y-2 gap-x-4">
-                <a class="group mobile-nav-item {% if page.url contains '/categories' %}bg-gray-700{% endif %}"
-                    href="{{ site.baseurl }}/topics">
-                    <span class="group-hover:text-white">Topics</span>
-                </a>
-                <!--<a class="group mobile-nav-item {% if page.url contains '/advertise' %}bg-gray-700{% endif %}"
+        <div class="flex items-center h-16">
+          <div class="hidden lg:block">
+            <a
+              class="nav-item {% if page.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
+              href="{{ site.baseurl }}/topics"
+              >Topics</a
+            >
+            <a
+              class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
+              href="{{ site.baseurl }}/about"
+              >About Us</a
+            >
+            <a
+              class="nav-item {% if page.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
+              href="{{ site.baseurl }}/contact"
+              >Contact</a
+            >
+            <!--<a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
+                            href="{{ site.baseurl }}/advertise">Advertise</a>-->
+            <a
+              class="nav-item text-white"
+              target="_blank"
+              href="https://docs.genicsblog.com"
+              >Docs</a
+            >
+          </div>
+
+          <button onclick="showSearch()" aria-label="Search across the site...">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ml-4 h-6 w-6 stroke-white hover:stroke-slate-300"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="ml-2"
+            onclick="saveTheme(isDark() ? LIGHT : DARK)"
+            title="Ctrl + Shift + L"
+          >
+            <svg
+              viewBox="0 0 512 512"
+              class="h-8 w-8 fill-white hover:fill-slate-300 transition-all"
+              id="theme-toggle-icon"
+            >
+              <g>
+                <path
+                  d="M262.524,164.624c-49.466,0-89.592,40.119-89.592,89.596c0,49.487,40.126,89.606,89.592,89.606   c49.487,0,89.613-40.119,89.613-89.606C352.138,204.743,312.012,164.624,262.524,164.624z M262.524,320.136   c-36.39,0-65.902-29.513-65.902-65.916c0-36.396,29.513-65.903,65.902-65.903c36.41,0,65.924,29.506,65.924,65.903   C328.448,290.623,298.935,320.136,262.524,320.136z"
+                />
+                <path
+                  d="M264.078,149.221c0,0-39.031-73.758,0-73.758C303.103,75.462,264.078,149.221,264.078,149.221z"
+                />
+                <path
+                  d="M261.922,363.328c0,0,39.053,73.737,0,73.737C222.905,437.045,261.922,363.328,261.922,363.328z"
+                />
+                <path
+                  d="M186.536,331.194c0,0-24.539,79.766-52.142,52.148C106.817,355.746,186.536,331.194,186.536,331.194z"
+                />
+                <path
+                  d="M155.941,255.181c0,0-73.745,39.048-73.745,0C82.224,216.177,155.941,255.181,155.941,255.181z"
+                />
+                <path
+                  d="M188.068,179.794c0,0-79.746-24.524-52.142-52.142C163.503,100.086,188.068,179.794,188.068,179.794z"
+                />
+                <path
+                  d="M428.852,254.552c0,49.668-40.276,89.931-89.935,89.931c-49.657,0-89.928-40.263-89.928-89.931   c0-49.672,40.271-89.928,89.928-89.928C388.575,164.624,428.852,204.88,428.852,254.552z"
+                />
+              </g>
+            </svg>
+          </button>
+
+          <a
+            class="ml-4 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
+            href="{{ site.baseurl }}/contribute"
+            >Contribute</a
+          >
+
+          <div class="ml-4 lg:hidden cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 stroke-white hover:stroke-slate-300"
+              id="menu-open"
+              viewBox="0 0 24 24"
+              onclick="toggleNav()"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 8h16M4 16h16"
+              />
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="menu-close h-8 w-8 hidden stroke-white hover:stroke-slate-300"
+              id="menu-close"
+              viewBox="0 0 24 24"
+              onclick="toggleNav()"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="top-0 bg-background hidden p-6 lg:hidden" id="mobile-nav">
+      <div class="grid grid-cols-2 gap-y-2 gap-x-4">
+        <a
+          class="group mobile-nav-item {% if page.url contains '/categories' %}bg-gray-700{% endif %}"
+          href="{{ site.baseurl }}/topics"
+        >
+          <span class="group-hover:text-white">Topics</span>
+        </a>
+        <!--<a class="group mobile-nav-item {% if page.url contains '/advertise' %}bg-gray-700{% endif %}"
                     href="{{ site.baseurl }}/advertise">
                     <span class="group-hover:text-white">Advertise</span>
                 </a>-->
-                <a class="group mobile-nav-item {% if page.url contains '/about' %}bg-gray-700{% endif %}"
-                    href="{{ site.baseurl }}/about">
-                    <span class="group-hover:text-white">About Us</span>
-                </a>
-                <a class="group mobile-nav-item {% if page.url contains '/contact' %}bg-gray-700{% endif %}"
-                    href="{{ site.baseurl }}/contact">
-                    <span class="group-hover:text-white">Contact</span>
-                </a>
-                <a class="group mobile-nav-item" href="https://docs.genicsblog.com" target="_blank">
-                    <span class="group-hover:text-white">Documentation</span>
-                </a>
-            </div>
-        </div>
-    </header>
+        <a
+          class="group mobile-nav-item {% if page.url contains '/about' %}bg-gray-700{% endif %}"
+          href="{{ site.baseurl }}/about"
+        >
+          <span class="group-hover:text-white">About Us</span>
+        </a>
+        <a
+          class="group mobile-nav-item {% if page.url contains '/contact' %}bg-gray-700{% endif %}"
+          href="{{ site.baseurl }}/contact"
+        >
+          <span class="group-hover:text-white">Contact</span>
+        </a>
+        <a
+          class="group mobile-nav-item"
+          href="https://docs.genicsblog.com"
+          target="_blank"
+        >
+          <span class="group-hover:text-white">Documentation</span>
+        </a>
+      </div>
+    </div>
+  </header>
 </nav>
