@@ -13,7 +13,7 @@ google_analytics: "G-KQJM9Z9N1Z"
 adsense-data-ad-client: "ca-pub-8114751086331659"
 adsense-data-display-ad-slot: "8698895132"
 adsense-data-infeed-ad-slot: "3535897708"
-img_src_prefix: 
+img_src_prefix:
   general: "https://ik.imagekit.io/genicsblog/tr:f-webp/"
   header: "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/"
 

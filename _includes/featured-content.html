@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 {% assign featuredCategories = site.data.featured.categories %}
 {% assign featuredPosts = site.data.featured.posts %}
 {% assign featuredPostsSize = featuredPosts | size %}
@@ -5,38 +6,60 @@
 {% if page.url == '/index.html' %}
 {% if featuredPostsSize != 0 %}
 <div class="flex justify-center">
-    <h1>Popular this month</h1>
+  <h1>Popular this month</h1>
 </div>
-<div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
-    {% for featuredPost in featuredPosts %}
-    {% assign post = site.posts | where_exp:"post", "post.url == featuredPost" | first %}
-    {% include postbox.html %}
-    {% endfor %}
+
+<div
+  class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
+>
+  <!-- prettier-ignore -->
+  {% for featuredPost in featuredPosts %}
+  {% assign post = site.posts | where_exp:"post", "post.url == featuredPost" | first %}
+  {% include postbox.html %}
+  {% endfor %}
 </div>
+
 <hr />
 {% endif %}
+
+<!-- prettier-ignore -->
 {% if featuredCategoriesSize != 0 %}
 <div class="flex justify-center">
-    <h1>Featured</h1>
+  <h1>Featured</h1>
 </div>
+
 {% for category in featuredCategories %}
-<a class="mt-2 text-xl archive-name !bg-{{ category }} underline-none" href="{{ site.baseurl }}/category/{{ category }}">
-    #{{ category }}
+<a
+  class="mt-2 text-xl archive-name !bg-{{ category }} underline-none"
+  href="{{ site.baseurl }}/category/{{ category }}"
+>
+  #{{ category }}
 </a>
-<div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center">
-    {% assign posts = site.posts | where: "category", category %}
-    {% for post in posts | limit: 3 %}
-    {% include postbox.html %}
-    {% endfor %}
+
+<div
+  class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
+>
+  <!-- prettier-ignore -->
+  {% assign posts = site.posts | where: "category", category %}
+  {% for post in posts | limit: 3 %}
+  {% include postbox.html %}
+  {% endfor %}
 </div>
+
 <div class="my-6 flex justify-center">
-    <a class="px-4 py-2 font-bold hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-black dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
-        href="{{ site.baseurl }}/category/{{ category }}">
-        Read more on #{{ category }}
-    </a>
+  <a
+    class="px-4 py-2 font-bold hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-black dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+    href="{{ site.baseurl }}/category/{{ category }}"
+  >
+    Read more on #{{ category }}
+  </a>
 </div>
 {% endfor %}
+
 <hr />
+
 <h1>All Posts</h1>
 {% endif %}
+
+<!-- prettier-ignore -->
 {% endif %}

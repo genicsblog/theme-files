@@ -1,7 +1,10 @@
 <script src="{{ site.baseurl }}/assets/js/theme.js" data-no-instant></script>
 <script src="{{ site.baseurl }}/assets/js/search.js" data-no-instant></script>
 <script src="{{ site.baseurl }}/assets/js/prism.js" data-no-instant></script>
-<script src="{{ site.baseurl }}/assets/js/instantclick.min.js" data-no-instant></script>
+<script
+  src="{{ site.baseurl }}/assets/js/instantclick.min.js"
+  data-no-instant
+></script>
 <script data-no-instant>
   InstantClick.on("change", () => {
     // apply color scheme
@@ -31,7 +34,7 @@
     if(window.BwPlayer && typeof window.BwPlayer.pause === 'function') {
       window.BwPlayer.pause();
     }
-    
+
     const audioPlayer = document.getElementById("audio-player");
     if(audioPlayer) {
       // hack to support SPAs with BeyondWords

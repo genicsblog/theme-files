@@ -21,7 +21,7 @@ function initCodeBlocks() {
       langName.textContent = extractLanguage(block.className);
       langName.addEventListener("click", (e) => {
         e.preventDefault();
-        if(!shouldToggleName) return;
+        if (!shouldToggleName) return;
         shouldToggleName = false;
 
         const code = block.querySelector("code").innerText;
@@ -30,16 +30,16 @@ function initCodeBlocks() {
         langName.textContent = "Copied!";
 
         setTimeout(() => {
-            shouldToggleName = true;
-            let text = "";
-            document.querySelectorAll(':hover').forEach(el => {
-                if(el.classList.contains("highlight")) {
-                    text = "Copy";
-                } else {
-                    if(text === "") text = extractLanguage(block.className);
-                }
-            });
-            langName.textContent = text;
+          shouldToggleName = true;
+          let text = "";
+          document.querySelectorAll(":hover").forEach((el) => {
+            if (el.classList.contains("highlight")) {
+              text = "Copy";
+            } else {
+              if (text === "") text = extractLanguage(block.className);
+            }
+          });
+          langName.textContent = text;
         }, 1500);
       });
 
@@ -47,16 +47,17 @@ function initCodeBlocks() {
       block.parentElement.prepend(langNameHolder);
 
       block.addEventListener("mouseenter", (e) => {
-        if(shouldToggleName) langName.textContent = "Copy";
+        if (shouldToggleName) langName.textContent = "Copy";
       });
 
       langNameHolder.addEventListener("mouseenter", (e) => {
-        if(shouldToggleName) langName.textContent = "Copy";
+        if (shouldToggleName) langName.textContent = "Copy";
       });
 
       block.addEventListener("mouseleave", () => {
-        if(shouldToggleName) langName.textContent = extractLanguage(block.className);
+        if (shouldToggleName)
+          langName.textContent = extractLanguage(block.className);
       });
-    })
+    });
   }, 500);
 }
