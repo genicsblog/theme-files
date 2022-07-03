@@ -148,6 +148,11 @@
   pre > code {
     @apply bg-slate-800;
   }
+
+  blockquote pre,
+  blockquote code {
+    @apply dark:bg-slate-900;
+  }
 }
 
 #instantclick-bar {
