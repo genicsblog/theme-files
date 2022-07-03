@@ -2,7 +2,11 @@
 layout: default
 ---
 
+<!-- prettier-ignore -->
 {% assign author = site.data.authors[page.author] %}
+{% if jekyll.environment == 'production' %}
+  {% assign optimizeAvatar = site.img_src_prefix.avatar %}
+{% endif %}
 
 <section class="lg:flex">
   <div
@@ -166,7 +170,7 @@ layout: default
     >
       <img
         class="w-24 h-24 rounded-full mx-auto"
-        src="{{ author.avatar }}"
+        src="{{ optimizeAvatar }}{{ author.avatar }}"
         alt="{{ author.name }}"
       />
 

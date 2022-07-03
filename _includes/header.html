@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 {% if jekyll.environment == 'production' %}
 {% assign optimize = site.img_src_prefix.header %}
+{% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
 
 <header class="bg-background text-white p-6 sm:p-10" id="banner">
@@ -101,7 +102,7 @@
       <!-- prettier-ignore -->
       {% if page.author %}
       <div class="flex items-center mt-8">
-        <img class="rounded-full w-14 h-14" src="{{ author.avatar }}" />
+        <img class="rounded-full w-14 h-14" src="{{ optimizeAvatar }}{{ author.avatar }}" />
 
         <div class="ml-4 leading-3">
           <a

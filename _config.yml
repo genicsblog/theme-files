@@ -16,6 +16,7 @@ adsense-data-infeed-ad-slot: "3535897708"
 img_src_prefix:
   general: "https://ik.imagekit.io/genicsblog/tr:f-webp/"
   header: "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/"
+  avatar: "https://ik.imagekit.io/genicsblog/tr:w-128,h-128,f-webp/"
 
 feed:
   path: /rss.xml

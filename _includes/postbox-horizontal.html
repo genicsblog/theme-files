@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 {% if jekyll.environment == 'production' %}
 {% assign optimize = site.img_src_prefix.header %}
+{% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
@@ -38,7 +39,7 @@
             class="rounded-full w-10 h-10"
             width="40px"
             height="40px"
-            src="{{ author.avatar }}"
+            src="{{ optimizeAvatar }}{{ author.avatar }}"
           />
 
           <span class="ml-4">{{ author.name | split: " " | first }}</span>

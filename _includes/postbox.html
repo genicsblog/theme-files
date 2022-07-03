@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 {% if jekyll.environment == 'production' %}
 {% assign optimize = site.img_src_prefix.header %}
+{% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
@@ -24,7 +25,7 @@
     <div class="flex items-center justify-between mt-6">
       <div class="flex items-center">
         <img
-          src="{{ author.avatar }}"
+          src="{{ optimizeAvatar }}{{ author.avatar }}"
           alt="{{ author.name }}'s Profile Picture"
           title="{{ author.name }}'s Profile Picture"
           class="rounded-full w-10 h-10"
