@@ -209,7 +209,7 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 }
 
 .archive-name {
-  @apply rounded-md px-2 py-1 hover:underline hover:shadow-md hover:scale-110 transition bg-slate-200 text-black;
+  @apply inline-block rounded-md px-2 py-1 hover:underline hover:shadow-md hover:scale-110 transition bg-slate-200 text-black;
   font-family: "Fira Code", monospace;
 }
 
