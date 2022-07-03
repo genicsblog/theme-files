@@ -14,10 +14,12 @@
     title="{{ post.title }}"
     class="aspect-video w-full mt-4"
   />
+
   <div class="mt-6 mb-16">
     <h2>{{ post.title | truncate: 40}}</h2>
     <p>{{ post.excerpt | truncate: 90 }}</p>
   </div>
+
   <div class="absolute mt-20 right-6 bottom-6 left-6">
     <div class="flex items-center justify-between mt-6">
       <div class="flex items-center">
@@ -29,8 +31,10 @@
           width="40px"
           height="40px"
         />
+
         <span class="ml-2">{{ author.name | split:' ' | first}}</span>
       </div>
+
       <span>{{ post.date | date:"%b %e, %Y" }}</span>
     </div>
   </div>

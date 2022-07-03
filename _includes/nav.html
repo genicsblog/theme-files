@@ -6,7 +6,9 @@
     class="bg-primary p-3 text-center text-white font-medium flex flex-col sm:block"
   >
     <span class="md:hidden px-1">{{ announcement.small }}</span>
+
     <span class="hidden md:inline px-1">{{ announcement.large }}</span>
+
     {% if announcement.link.visible %}
     <a
       href="{{ site.data.announcement.link.url }}"
@@ -38,6 +40,7 @@
               class="flex items-center space-x-2 whitespace-nowrap flex-nowrap"
             >
               <div class="h-8 w-8 mx-2">{% include logo.html %}</div>
+
               <span
                 class="font-bold hidden sm:block text-xl tracking-tight text-white group-hover:text-slate-300"
               >
@@ -46,6 +49,7 @@
             </div>
           </a>
         </div>
+
         <div class="flex items-center h-16">
           <div class="hidden lg:block">
             <a
@@ -53,18 +57,22 @@
               href="{{ site.baseurl }}/topics"
               >Topics</a
             >
+
             <a
               class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
               href="{{ site.baseurl }}/about"
               >About Us</a
             >
+
             <a
               class="nav-item {% if page.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
               href="{{ site.baseurl }}/contact"
               >Contact</a
             >
+
             <!--<a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
                             href="{{ site.baseurl }}/advertise">Advertise</a>-->
+
             <a
               class="nav-item text-white"
               target="_blank"
@@ -166,6 +174,7 @@
         </div>
       </div>
     </div>
+
     <div class="top-0 bg-background hidden p-6 lg:hidden" id="mobile-nav">
       <div class="grid grid-cols-2 gap-y-2 gap-x-4">
         <a
@@ -174,22 +183,26 @@
         >
           <span class="group-hover:text-white">Topics</span>
         </a>
+
         <!--<a class="group mobile-nav-item {% if page.url contains '/advertise' %}bg-gray-700{% endif %}"
                     href="{{ site.baseurl }}/advertise">
                     <span class="group-hover:text-white">Advertise</span>
                 </a>-->
+
         <a
           class="group mobile-nav-item {% if page.url contains '/about' %}bg-gray-700{% endif %}"
           href="{{ site.baseurl }}/about"
         >
           <span class="group-hover:text-white">About Us</span>
         </a>
+
         <a
           class="group mobile-nav-item {% if page.url contains '/contact' %}bg-gray-700{% endif %}"
           href="{{ site.baseurl }}/contact"
         >
           <span class="group-hover:text-white">Contact</span>
         </a>
+
         <a
           class="group mobile-nav-item"
           href="https://docs.genicsblog.com"

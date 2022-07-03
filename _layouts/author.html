@@ -99,13 +99,17 @@
           src="{{ avatar }}"
           class="w-28 h-28 sm:w-36 sm:h-36 rounded-full"
         />
+
         <span
           class="mt-4 mb-1 font-black text-4xl sm:text-5xl tracking-tight text-white group-hover:text-slate-300"
         >
           {{ author.name }}
         </span>
+
         <h4>{{ author.role }}</h4>
+
         <p class="mt-2">{{ author.bio }}</p>
+
         <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
           {% if links.stackoverflow != blank %}
           <a
@@ -227,7 +231,9 @@
             Previous
           </a>
           {% endif %}
+
           <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
           {% if paginator.next_page %}
           <a
             href="{{ site.baseurl }}{{ paginator.next_page_path }}"

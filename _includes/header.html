@@ -85,6 +85,7 @@
       />
       {% endif %}
     </div>
+
     <div
       class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12"
     >
@@ -101,6 +102,7 @@
       {% if page.author %}
       <div class="flex items-center mt-8">
         <img class="rounded-full w-14 h-14" src="{{ author.avatar }}" />
+
         <div class="ml-4 leading-3">
           <a
             class="font-extrabold text-xl"
@@ -108,7 +110,9 @@
           >
             {{ author.name }}
           </a>
+
           <br />
+
           <span class="text-sm">
             Posted on {{ page.date | date:"%B %e, %Y" }}
           </span>
@@ -120,6 +124,7 @@
       {% if page.category %}
       <div class="mt-8">
         <span>Category: </span>
+
         {% for category in page.categories %}
         <a
           class="text-sm ml-2 archive-name !bg-{{ category }} underline-none"
@@ -135,6 +140,7 @@
       {% if tagSize != 0 %}
       <div class="mt-4 sm:mt-3">
         <span>Tags: </span>
+
         <!-- prettier-ignore -->
         {% for tag in page.tags %}
         {% assign tagName = tag | slugify %}

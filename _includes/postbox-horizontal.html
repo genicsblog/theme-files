@@ -17,6 +17,7 @@
       />
       {% endif %}
     </div>
+
     <div
       class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12"
     >
@@ -39,8 +40,10 @@
             height="40px"
             src="{{ author.avatar }}"
           />
+
           <span class="ml-4">{{ author.name | split: " " | first }}</span>
         </div>
+
         <div class="flex items-center leading-3">
           <span>{{ post.date | date:"%b %e, %Y" }}</span>
         </div>
