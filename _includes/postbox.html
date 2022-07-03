@@ -17,8 +17,8 @@
   />
 
   <div class="mt-6 mb-16">
-    <h2>{{ post.title | truncate: 40}}</h2>
-    <p>{{ post.excerpt | truncate: 90 }}</p>
+    <h2 class="line-clamp-2">{{ post.title }}</h2>
+    <p class="line-clamp-3">{{ post.excerpt }}</p>
   </div>
 
   <div class="absolute mt-20 right-6 bottom-6 left-6">

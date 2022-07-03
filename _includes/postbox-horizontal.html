@@ -23,8 +23,8 @@
       class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12"
     >
       {% if post.title %}
-      <h1 class="text-4xl font-black tracking-tight">
-        {{ post.title | truncate: 50 }}
+      <h1 class="text-4xl font-black tracking-tight line-clamp-2">
+        {{ post.title }}
       </h1>
       {% endif %}
 
