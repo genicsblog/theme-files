@@ -119,7 +119,7 @@
     background-size: 100% 0.125rem;
   }
 
-  article > p:not(:last-child),
+  article p:not(:last-child),
   li,
   blockquote,
   pre.highlight {
