@@ -29,7 +29,10 @@
         >
           {% if page.title %}
           <h1 class="text-4xl font-black tracking-tight">{{ page.title }}</h1>
-          {% endif %} {% if page.excerpt %}
+          {% endif %}
+
+          <!-- prettier-ignore -->
+          {% if page.excerpt %}
           <span class="mt-0.5 text-justify">{{ page.excerpt }}</span>
           {% endif %}
         </div>

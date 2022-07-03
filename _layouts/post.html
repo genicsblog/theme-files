@@ -57,7 +57,10 @@ layout: default
           id="audio-player"
           data-audio-id="{{ page.audioId }}"
         ></div>
-        {% endif %} {{ content | extlinks | optimize_images }}
+        {% endif %}
+
+        <!-- prettier-ignore -->
+        {{ content | extlinks | optimize_images }}
       </article>
 
       <hr />
@@ -202,7 +205,7 @@ layout: default
           class="px-3 py-1 mt-4 rounded-md bg-black dark:bg-white text-white dark:text-black hover:shadow-lg hover:scale-110 transition underline-none text-center"
           href="https://docs.genicsblog.com/author"
         >
-          Become an Author >
+          Become an Author &gt;
         </a>
       </div>
     </figure>
@@ -248,7 +251,7 @@ layout: default
           rel="nofollow"
           target="_blank"
         >
-          Check it out >
+          Check it out &gt;
         </a>
       </div>
     </figure>
