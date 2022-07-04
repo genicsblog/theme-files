@@ -1,35 +1,41 @@
 <footer class="px-12 py-8 text-center">
   <div class="flex justify-center">
     <a
+      aria-label="Genics Blog's Discord server"
       class="mr-2 underline-none hover:scale-125 transition"
       href="https://discord.genicsblog.com"
       target="_blank"
     >
       <img
+        alt="Discord's logo"
         src="{{ site.baseurl }}/assets/images/social/discord.svg"
         class="social-image w-8 h-8"
       />
     </a>
 
     <a
+      aria-label="Genics Blog's GitHub organization"
       class="mx-4 underline-none hover:scale-125 transition"
       href="https://github.com/{{ site.github_username }}"
       target="_blank"
       rel="nofollow noopener noreferrer"
     >
       <img
+        alt="GitHub's logo"
         src="{{ site.baseurl }}/assets/images/social/github.svg"
         class="social-image w-8 h-8"
       />
     </a>
 
     <a
+      aria-label="Genics Blog's Twitter page"
       class="ml-2 underline-none hover:scale-125 transition"
       href="https://twitter.com/{{ site.twitter_username }}"
       target="_blank"
       rel="nofollow noopener noreferrer"
     >
       <img
+        alt="Twitter's logo"
         src="{{ site.baseurl }}/assets/images/social/twitter.svg"
         class="social-image w-8 h-8"
       />
@@ -99,11 +105,15 @@
 
   <div class="flex justify-center">
     <a
+      aria-label="Go to Vercel"
       href="https://vercel.com?utm_source=genicsblog&utm_campaign=oss"
       target="_blank"
       class="underline-none"
     >
-      <img src="{{ site.baseurl }}/assets/images/sponsors/vercel.svg" />
+      <img
+        alt="Powered by Vercel"
+        src="{{ site.baseurl }}/assets/images/sponsors/vercel.svg"
+      />
     </a>
   </div>
   {% endif %}
