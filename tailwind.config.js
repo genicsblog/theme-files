@@ -20,6 +20,8 @@ Object.keys(extendedColors).filter(
   safelist.push(`dark:hover:!border-${item}`);
 });
 
+safelist.push("mt-16");
+
 module.exports = {
   darkMode: 'class',
   content: [
