@@ -1,6 +1,7 @@
 *.gem
 _site
 .bundle
+.content
 .DS_Store
 .sass-cache
 node_modules

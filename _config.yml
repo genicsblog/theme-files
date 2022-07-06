@@ -128,5 +128,5 @@ exclude:
   - package-lock.json
   - README.md
   - LICENSE.md
-  - Dockerfile
+  - dev.sh
   - vercel.json
