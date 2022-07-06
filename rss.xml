@@ -10,7 +10,7 @@
         <link>{{ site.url }}</link>
 
         <image>
-            <url>{{ site.url }}/assets/images/favicon.ico</url>
+            <url>{{ site.url }}/assets/images/favicon.png</url>
             <title>{{ site.title }}</title>
             <link>{{ site.url }}</link>
         </image>
@@ -32,8 +32,10 @@
         <item>
             <title><![CDATA[ {{ post.title }} ]]></title>
             <description><![CDATA[ {{ description }} ]]></description>
-            <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
             <category><![CDATA[ {{ post.category | default: post.tags[0] }} ]]></category>
+
+            <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
+            <guid>{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
 
             <dc:creator>
                 <![CDATA[ {{ site.data.authors[post.author].name }} ]]>
@@ -47,6 +49,6 @@
             </content:encoded>
         </item>
         {% endfor %}
-        
+
     </channel>
 </rss>
