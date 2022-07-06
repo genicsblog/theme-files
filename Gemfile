@@ -4,7 +4,6 @@ gem "jekyll"
 
 group :jekyll_plugins do
   gem "jemoji"
-  gem "jekyll-feed"
   gem "jekyll-postcss"
   gem "jekyll-minifier"
   gem "jekyll-archives"

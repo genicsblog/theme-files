@@ -1,0 +1,54 @@
+---
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <title><![CDATA[ {{ site.title }} ]]></title>
+        <description><![CDATA[ {{ site.description }} ]]></description>
+        <link>{{ site.url }}</link>
+
+        <image>
+            <url>{{ site.url }}/assets/images/favicon.png</url>
+            <title>{{ site.title }}</title>
+            <link>{{ site.url }}</link>
+        </image>
+
+        <ttl>60</ttl>
+        <lastBuildDate>{{ "now" | date_to_rfc822 }}</lastBuildDate>
+        <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml" />
+
+        {% for post in site.posts limit: 10 %}
+
+        {% if post.excerpt != blank %}
+            {% assign description = post.excerpt %}
+        {% elsif post.description != blank %}
+            {% assign description = post.description %}
+        {% else %}
+            {% assign description = site.description %}
+        {% endif %}
+
+        <item>
+            <title><![CDATA[ {{ post.title }} ]]></title>
+            <description><![CDATA[ {{ description }} ]]></description>
+            <category><![CDATA[ {{ post.category | default: post.tags[0] }} ]]></category>
+
+            <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
+            <guid>{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
+
+            <dc:creator>
+                <![CDATA[ {{ site.data.authors[post.author].name }} ]]>
+            </dc:creator>
+
+            <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+            <media:content url="{{ post.image }}" medium="image" />
+
+            <content:encoded>
+                <![CDATA[ {{ post.content | strip_html | truncate: 300 }} ]]>
+            </content:encoded>
+        </item>
+        {% endfor %}
+
+    </channel>
+</rss>

@@ -18,9 +18,6 @@ img_src_prefix:
   header: "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/"
   avatar: "https://ik.imagekit.io/genicsblog/tr:w-128,h-128,f-webp/"
 
-feed:
-  path: /rss.xml
-
 defaults:
   - scope:
       path: "_drafts/*.md"
@@ -44,7 +41,6 @@ extlinks:
 
 # Build settings
 plugins:
-  - jekyll-feed
   - jekyll-postcss
   - jekyll-minifier
   - jekyll-archives
