@@ -128,3 +128,7 @@ document.addEventListener("keydown", function (e) {
     hideSearch();
   }
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
