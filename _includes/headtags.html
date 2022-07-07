@@ -86,6 +86,11 @@
   content="{{ site.url }}{{ site.baseurl }}{{ page.url | replace: '/index.html', '' }}"
 />
 
+<meta name="theme-color" content="#16161f" />
+<meta name="msapplication-TileColor" content="#16161f" />
+<meta name="msapplication-navbutton-color" content="#16161f" />
+<meta name="apple-mobile-web-app-status-bar-style" content="#16161f" />
+
 {% if page.original != blank %}
 <link rel="canonical" href="{{ page.original }}" />
 {% else %}
@@ -107,9 +112,18 @@
   href="{{ site.baseurl }}/assets/images/favicon.ico"
   type="image/x-icon"
 />
+<link
+  rel="apple-touch-icon"
+  href="{{ site.baseurl }}/assets/images/apple-touch-icon.png"
+/>
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/theme.css" />
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/prism.css" />
 
+{% if page.url == '/index.html' %}
+<link rel="manifest" href="/manifest.json" />
+{% endif %}
+
+<!-- prettier-ignore -->
 {% if jekyll.environment == "production" %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script
