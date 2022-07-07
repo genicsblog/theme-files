@@ -4,7 +4,13 @@
   "start_url": "/?utm_source=pwa",
   "icons": [
     {
-      "src": "/assets/images/genicsblog.png",
+      "src": "/assets/images/pwa/genicsblog-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/images/pwa/genicsblog-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
