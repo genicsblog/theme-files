@@ -5,8 +5,12 @@ import requests
 import frontmatter
 from pathlib import Path
 
+committer = sys.argv[1]
+
 file = "_data/authors.yml"
 temp = open("temp.txt", "r")
+
+bypass_accounts = ["florianwalther-private"]
 
 if temp.readlines()[0].strip() == file:
     post = frontmatter.load("_data/authors.yml")
@@ -51,10 +55,10 @@ if temp.readlines()[0].strip() == file:
                 else:
                     githubAccount = newData[author]["links"]["github"]
 
-                if githubAccount != sys.argv[1]:
-                    raise Exception(f"Committer {sys.argv[1]} tried to change {author} who has GitHub username set to {githubAccount} in the YAML!")
+                if committer not in bypass_accounts and githubAccount != committer:
+                    raise Exception(f"Committer {committer} tried to change {author} who has GitHub username set to {githubAccount} in the YAML!")
                 else:
-                    print(f"{sys.argv[1]} is allowed to change {author}.")
+                    print(f"{committer} is allowed to change {author}.")
 
             print("authors are valid!")
 

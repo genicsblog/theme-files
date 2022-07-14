@@ -5,10 +5,14 @@ import requests
 import frontmatter
 from pathlib import Path
 
+committer = sys.argv[1]
+
 temp = open("temp.txt", "r")
 files = temp.readlines()[0].split(" ")
 
 total_files = len(files)
+
+bypass_accounts = ["florianwalther-private"]
 
 if total_files != 0:
     for file in files:
@@ -24,8 +28,8 @@ if total_files != 0:
 
         author = author.lower()
 
-        if author != sys.argv[1].lower():
-            raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({sys.argv[1]}) and github account of author({author}) have conflicts.")
+        if committer.lower() not in bypass_accounts and author != committer.lower():
+            raise AssertionError(f"Errors in {file}: File author ({post['author']}), committer ({committer}) and github account of author({author}) have conflicts.")
 
         url = "https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_drafts/" + file.split('/')[1]
 
