@@ -32,7 +32,7 @@
     class="underline-none linkpreview"
     href="{{ include.url }}"
     rel="{% if include.rel != blank %}{{ include.rel }}{% else %}nofollow noopener noreferrer{% endif %}"
-    target="_blank"
+    target="{% if include.target != blank %}{{ include.target }}{% else %}_blank{% endif %}"
   >
     <div
       class="p-4 lg:p-6{% if image != blank %} flex flex-col md:flex-row{%endif%}"
