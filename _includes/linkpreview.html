@@ -1,0 +1,68 @@
+<!-- prettier-ignore -->
+{% assign meta = include.url | metadata %}
+
+{% if meta['og:image'] != blank %}
+  {% assign img_first_char = meta['og:image'] | slice: 0 %}
+
+  {% if img_first_char == '/' %}
+    {% assign image = meta['og:image'] | prepend: include.url %}
+  {% else %}
+    {% assign image = meta['og:image'] %}
+  {% endif %}
+{% elsif meta['twitter:image'] != blank %}
+  {% assign img_first_char = meta['twitter:image'] | slice: 0 %}
+
+  {% if img_first_char == '/' %}
+    {% assign image = meta['twitter:image'] | prepend: include.url %}
+  {% else %}
+    {% assign image = meta['twitter:image'] %}
+  {% endif %}
+{% endif %}
+
+{% if meta['description'] != blank %}
+  {% assign description = meta['description'] %}
+{% elsif meta['og:description'] != blank %}
+  {% assign description = meta['og:description'] %}
+{% endif %}
+
+<div
+  class="mb-6 rounded-2xl border-2 lg:border-4 hover:border-slate-600 dark:hover:border-slate-200 dark:border-slate-600"
+>
+  <a
+    class="underline-none linkpreview"
+    href="{{ include.url }}"
+    target="_blank"
+  >
+    <div
+      class="p-4 lg:p-6{% if image != blank %} flex flex-col md:flex-row{%endif%}"
+    >
+      {% if image != blank %}
+      <img
+        src="{{ image }}"
+        class="w-full md:max-w-[40%] rounded-xl aspect-video lg:m-4"
+      />
+      {% endif %}
+
+      <div
+        class="mt-4 flex flex-col justify-center w-full{% if image != blank %} md:w-1/2 md:ml-4 md:mt-0{% endif %}"
+      >
+        <h3 class="tracking-tight line-clamp-2 lg:text-4xl">
+          <!-- prettier-ignore -->
+          {% if include.title != blank %}
+            {{ include.title }}
+          {% else %}
+            {{ meta['title'] }}
+          {% endif %}
+        </h3>
+
+        {% if description != blank %}
+        <p class="text-sm lg:text-base line-clamp-4">{{ description }}</p>
+        {% endif %}
+
+        <span class="text-gray-500 dark:text-gray-400 text-sm">
+          {{ include.url | hostname }} &gt;
+        </span>
+      </div>
+    </div>
+  </a>
+</div>

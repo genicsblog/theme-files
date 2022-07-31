@@ -126,7 +126,7 @@
     @apply mb-6;
   }
 
-  article a,
+  article a:not(.linkpreview),
   aside a,
   .notice a,
   .cta-link {
