@@ -49,6 +49,7 @@ plugins:
   - jekyll-loading-lazy
   - jekyll-redirect-from
   - jekyll-auto-authors
+  - jekyll-url-metadata
 
 pagination:
   enabled: true
