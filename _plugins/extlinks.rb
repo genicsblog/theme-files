@@ -1,4 +1,4 @@
-# Jekyll ExtLinks Plugin
+# Modified from Jekyll ExtLinks Plugin
 # Adds custom attributes to external links (rel="nofollow", target="_blank", etc.)
 #
 # Configuration example in _config.yml (notice the indentation matters):
@@ -16,17 +16,18 @@
 #
 # Using in layouts: {{ content | extlinks }}
 #
-# Developed by Dmitry Ogarkov - http://ogarkov.com/jekyll/plugins/extlinks/
+# Originally developed by Dmitry Ogarkov - http://ogarkov.com/jekyll/plugins/extlinks/
+# Adapted as per needs of genicsblog.com by Gourav Khunger: http://github.com/gouravkhunger
 # Based on http://dev.mensfeld.pl/2014/12/rackrails-middleware-that-will-ensure-relnofollow-for-all-your-links/
 
-require 'jekyll'
-require 'nokogiri'
+require "jekyll"
+require "nokogiri"
 
 module Jekyll
   module ExtLinks
     # Access plugin config in _config.yml
     def config
-      @context.registers[:site].config['extlinks']
+      @context.registers[:site].config["extlinks"]
     end
 
     # Checks if str contains any fragment of the fragments array
@@ -52,16 +53,28 @@ module Jekyll
       # Stop if we could't parse with HTML
       return content unless doc
 
-      doc.css('a').each do |a|
-        # If this is a local link don't change it
-        next unless a.get_attribute('href') =~ /\Ahttp/i
+      doc.css("a").each do |a|
+        # If this is a local link don"t change it
+        next unless a.get_attribute("href") =~ /\Ahttp/i
+
+        # replace genicsblog.com domain links with staging.genicsblog.com under non-prod environments
+        if (a.get_attribute("href").include? "//genicsblog.com") && (ENV["JEKYLL_ENV"] != "production")
+          prev_url = a.get_attribute("href").sub! "genicsblog.com", "staging.genicsblog.com"
+          a.set_attribute("href", prev_url)
+        end
+
+        # skip links that have "linkpreview" class
+        if !a.get_attribute("class").nil?
+          classes = a.get_attribute("class").split(" ")
+          next if classes.include?("linkpreview") || classes.include?("linkbtn")
+        end
 
         attributes.each do |attr, value|
-          if attr.downcase == 'rel'
-            # If there's a rel already don't change it
-            next unless !a.get_attribute('rel') || a.get_attribute('rel').empty?
-            # Skip whitelisted hosts for the 'rel' attribute
-            next if rel_exclude && contains_any(a.get_attribute('href'), rel_exclude)
+          if attr.downcase == "rel"
+            # If there"s a rel already don"t change it
+            next unless !a.get_attribute("rel") || a.get_attribute("rel").empty?
+            # Skip whitelisted hosts for the "rel" attribute
+            next if rel_exclude && contains_any(a.get_attribute("href"), rel_exclude)
           end
           a.set_attribute(attr, value)
         end
