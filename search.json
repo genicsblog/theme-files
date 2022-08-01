@@ -33,7 +33,7 @@ layout: none
   {% for author in site.data.authors %}
     {
       "title"    : "Articles by {{ author[1].name | escape }}",
-      "url"      : "/author/{{ author[0] | downcase }}/"
+      "url"      : "/author/{{ author[0] | downcase | slugify }}/"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   ,

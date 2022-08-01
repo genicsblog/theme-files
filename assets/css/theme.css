@@ -230,5 +230,5 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 }
 
 .linkbtn {
-  @apply inline-block hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white hover:scale-110 transition;
+  @apply inline-block text-center hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white hover:scale-110 transition;
 }
