@@ -6,7 +6,7 @@
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
 <a
-  class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 hover:border-{{ category }} dark:hover:border-slate-200 dark:hover:!border-{{ category }} dark:border-slate-600 transition underline-none"
+  class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 hover:border-{{ category }} dark:hover:!border-{{ category }} underline-none"
   href="{{ site.baseurl }}{{ post.url }}"
 >
   <div class="flex flex-col lg:flex-row p-2">

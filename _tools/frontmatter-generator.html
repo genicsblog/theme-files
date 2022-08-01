@@ -4,9 +4,7 @@ title: "Frontmatter Generator"
 excerpt: "A tool to quickly generate yaml frontmatter for posts to be published at Genics Blog."
 ---
 
-<article
-  class="bg-white dark:bg-background rounded-2xl md:text-lg m-8 md:m-10 lg:m-14 p-6 md:p-8 shadow-xl dark:shadow-none shadow-slate-200"
->
+<article class="article">
   <form id="form">
     <div>
       <label for="post-author">Author username</label><br />
@@ -64,7 +62,7 @@ excerpt: "A tool to quickly generate yaml frontmatter for posts to be published 
         type="text"
         id="post-tags"
         required
-        placeholder="Entry space separated post tags. Maximum 3."
+        placeholder="Enter comma separated post tags. Maximum 3."
         class="mt-1 w-full rounded-lg px-2 py-1.5 border-2 dark:border-slate-700 focus:border-primary dark:focus:border-blue-400 outline-none dark:bg-background"
       />
     </div>
@@ -115,7 +113,7 @@ excerpt: "A tool to quickly generate yaml frontmatter for posts to be published 
 
     <div class="mt-4 flex justify-center">
       <button
-        class="submit-form px-2.5 py-0.5 mt-4 rounded-md bg-black dark:bg-slate-100 text-white dark:text-black hover:shadow-lg hover:scale-110 transition"
+        class="submit-form px-3 py-0.5 mt-4 linkbtn"
       >
         Generate >
       </button>
@@ -148,7 +146,8 @@ excerpt: "A tool to quickly generate yaml frontmatter for posts to be published 
     const tags = document
       .getElementById("post-tags")
       .value.trim()
-      .split(" ")
+      .split(",")
+      .map((tag) => tag.trim())
       .filter((tag) => tag != "");
 
     const excerpt = document.getElementById("post-excerpt").value.trim();

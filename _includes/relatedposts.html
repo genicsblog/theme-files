@@ -20,7 +20,7 @@
         {% if page.tags contains tag %}
           {% assign sameTagCount = sameTagCount | plus: 1 %}
           {% capture tagmarkup %}
-            <span class="label label-default">{{ tag }}</span>
+            <span>{{ tag }}</span>
           <!-- prettier-ignore -->
           {% endcapture %}
           {% assign commonTags = commonTags | append: tagmarkup %}

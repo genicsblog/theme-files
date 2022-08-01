@@ -126,7 +126,7 @@
     @apply mb-6;
   }
 
-  article a:not(.linkpreview),
+  article a:not(.underline-none),
   aside a,
   .notice a,
   .cta-link {
@@ -157,6 +157,10 @@
 
 #instantclick-bar {
   background: white;
+}
+
+.banner {
+  @apply bg-background text-white p-6 sm:p-10;
 }
 
 .nav-item {
@@ -190,6 +194,10 @@
   @apply inline-block;
 }
 
+.article {
+  @apply bg-white dark:bg-background rounded-2xl md:text-lg m-8 md:m-10 lg:m-14 p-6 md:p-8 shadow-xl dark:shadow-none shadow-slate-200;
+}
+
 code.highlighter-rouge {
   @apply bg-slate-200 dark:bg-slate-700 py-0.5 px-1.5 rounded-md;
   font-family: "Fira Code", sans-serif;
@@ -214,9 +222,13 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 }
 
 .postbox {
-  @apply hover:border-black;
+  @apply hover:border-black bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 dark:hover:border-slate-200 dark:border-slate-600 transition;
 }
 
-.disabled {
-  @apply opacity-40 cursor-auto hover:!scale-100 hover:!shadow-none;
+.linkpreview {
+  @apply mb-6 rounded-2xl border-2 lg:border-4 hover:border-black dark:hover:border-slate-200 dark:border-slate-600;
+}
+
+.linkbtn {
+  @apply inline-block hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white hover:scale-110 transition;
 }

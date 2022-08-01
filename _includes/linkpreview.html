@@ -25,11 +25,9 @@
   {% assign description = meta['og:description'] %}
 {% endif %}
 
-<div
-  class="mb-6 rounded-2xl border-2 lg:border-4 hover:border-slate-600 dark:hover:border-slate-200 dark:border-slate-600"
->
+<div class="linkpreview">
   <a
-    class="underline-none linkpreview"
+    class="underline-none"
     href="{{ include.url }}"
     rel="{% if include.rel != blank %}{{ include.rel }}{% else %}nofollow noopener noreferrer{% endif %}"
     target="{% if include.target != blank %}{{ include.target }}{% else %}_blank{% endif %}"
