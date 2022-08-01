@@ -65,7 +65,8 @@ module Jekyll
 
         # skip links that have "linkpreview" class
         if !a.get_attribute("class").nil?
-          next if a.get_attribute("class").split(" ").include? "linkpreview"
+          classes = a.get_attribute("class").split(" ")
+          next if classes.include?("linkpreview") || classes.include?("linkbtn")
         end
 
         attributes.each do |attr, value|
