@@ -63,12 +63,6 @@ module Jekyll
           a.set_attribute("href", prev_url)
         end
 
-        # skip links that have "linkpreview" class
-        if !a.get_attribute("class").nil?
-          classes = a.get_attribute("class").split(" ")
-          next if classes.include?("linkpreview") || classes.include?("linkbtn")
-        end
-
         attributes.each do |attr, value|
           if attr.downcase == "rel"
             # If there"s a rel already don"t change it
@@ -76,6 +70,11 @@ module Jekyll
             # Skip whitelisted hosts for the "rel" attribute
             next if rel_exclude && contains_any(a.get_attribute("href"), rel_exclude)
           end
+
+          if attr.downcase == "target"
+            next unless !a.get_attribute("target") || a.get_attribute("target").empty?
+          end
+
           a.set_attribute(attr, value)
         end
       end
