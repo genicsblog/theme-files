@@ -95,7 +95,7 @@
   <body>
     {% include nav.html %}
 
-    <header class="bg-background text-white p-6 sm:p-10" id="banner">
+    <header class="banner">
       <div class="flex flex-col items-center">
         <img
           src="{{ optimizeAvatar }}{{ avatar }}"
@@ -228,7 +228,7 @@
           {% if paginator.previous_page %}
           <a
             href="{{ site.baseurl }}{{ paginator.previous_page_path }}"
-            class="mr-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+            class="mr-2 px-2 py-0.5 linkbtn text-lg underline-none"
           >
             Previous
           </a>
@@ -239,7 +239,7 @@
           {% if paginator.next_page %}
           <a
             href="{{ site.baseurl }}{{ paginator.next_page_path }}"
-            class="ml-2 px-2 py-0.5 hover:shadow-xl hover:shadow-slate-200 dark:hover:shadow-none rounded-md bg-background dark:bg-slate-100 dark:text-black text-white text-lg hover:scale-110 transition underline-none"
+            class="ml-2 px-2 py-0.5 linkbtn text-lg underline-none"
           >
             Next
           </a>

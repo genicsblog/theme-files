@@ -65,7 +65,7 @@ const sticky = navbar.offsetTop;
 
 const setStickyness = () => {
   const navbar = document.getElementById("navbar");
-  const banner = document.getElementById("banner");
+  const banner = document.getElementsByClassName("banner")[0];
 
   if (window.pageYOffset >= sticky) {
     navbar.classList.add("fixed");

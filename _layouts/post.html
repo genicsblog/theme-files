@@ -12,9 +12,7 @@ layout: default
   <div
     class="md:text-lg m-6 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
   >
-    <div
-      class="bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none"
-    >
+    <div class="elevated">
       <!-- prettier-ignore -->
       {% if page.notice != blank or page.original != blank or page.series != blank %}
       <div
@@ -165,9 +163,7 @@ layout: default
   <aside
     class="m-6 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]"
   >
-    <figure
-      class="bg-white dark:bg-background rounded-2xl p-6 md:p-8 shadow-xl dark:shadow-none shadow-slate-200"
-    >
+    <figure class="p-6 md:p-8 elevated">
       <img
         class="w-24 h-24 rounded-full mx-auto"
         src="{{ optimizeAvatar }}{{ author.avatar }}"
@@ -196,7 +192,7 @@ layout: default
 
     {% if page.sitemap == false %}
     <figure
-      class="bg-white dark:bg-background rounded-2xl p-6 md:p-8 shadow-xl shadow-slate-200 dark:shadow-none lg:sticky lg:top-24 mt-8"
+      class="p-6 md:p-8 lg:sticky lg:top-24 mt-8 elevated"
     >
       <h4>This is a draft preview!</h4>
 
@@ -206,7 +202,7 @@ layout: default
 
       <div class="flex justify-center">
         <a
-          class="px-3 py-1 mt-4 rounded-md bg-black dark:bg-white text-white dark:text-black hover:shadow-lg hover:scale-110 transition underline-none text-center"
+          class="px-3 py-1 mt-4 linkbtn underline-none"
           href="https://docs.genicsblog.com/author"
         >
           Become an Author &gt;
@@ -227,7 +223,7 @@ layout: default
 
     {% for element in site.data.sponsors %}
     <figure
-      class="bg-white dark:bg-background rounded-2xl px-6 pb-6 md:px-8 shadow-xl shadow-slate-200 dark:shadow-none{% if forloop.last == true %} lg:sticky lg:top-24{% endif %} mt-8"
+      class="px-6 pb-6 md:px-8 mt-8 elevated{% if forloop.last == true %} lg:sticky lg:top-24{% endif %}"
     >
       <img
         src="{{ element.logo.dark }}"
@@ -250,7 +246,7 @@ layout: default
 
       <div class="flex justify-center">
         <a
-          class="px-3 py-1 mt-4 rounded-md bg-black dark:bg-white text-white dark:text-black hover:shadow-lg hover:scale-110 transition underline-none text-center"
+          class="px-3 py-1 mt-4 linkbtn underline-none"
           href="{{ element.site }}"
           rel="nofollow"
           target="_blank"
