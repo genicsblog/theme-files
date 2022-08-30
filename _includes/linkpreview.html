@@ -1,7 +1,9 @@
 <!-- prettier-ignore -->
 {% assign meta = include.url | metadata %}
 
-{% if meta['og:image'] != blank %}
+{% if include.image != blank %}
+  {% assign image = include.image %}
+{% elsif meta['og:image'] != blank %}
   {% assign img_first_char = meta['og:image'] | slice: 0 %}
 
   {% if img_first_char == '/' %}
