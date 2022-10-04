@@ -12,6 +12,17 @@ temp = open("temp.txt", "r")
 
 bypass_accounts = ["florianwalther-private"]
 
+def get_changed(newData, existingData):
+    changed = set()
+    for key in newData:
+        if key not in existingData:
+            changed.add(str(key))
+        else:
+            for subKey in newData[key]:
+                if newData[key][subKey] != existingData[key][subKey]:
+                    changed.add(str(key))
+    return changed
+
 if temp.readlines()[0].strip() == file:
     post = frontmatter.load("_data/authors.yml")
 
@@ -33,21 +44,7 @@ if temp.readlines()[0].strip() == file:
             changed = set()
 
             if newData != existingData:
-                for key in newData:
-                    if key not in existingData:
-                        changed.add(str(key))
-                    else:
-                        for subKey in newData[key]:
-                            if newData[key][subKey] != existingData[key][subKey]:
-                                changed.add(str(key))
-
-                for key in existingData:
-                    if key not in newData:
-                        changed.add(str(key))
-                    else:
-                        for subKey in existingData[key]:
-                            if existingData[key][subKey] != newData[key][subKey]:
-                                changed.add(str(key))
+                changed = get_changed(newData, existingData).union(get_changed(existingData, newData))
 
             for author in changed:
                 if author in existingData:
