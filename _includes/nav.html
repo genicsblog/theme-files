@@ -141,35 +141,10 @@
           >
 
           <div class="ml-4 lg:hidden cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 stroke-white hover:stroke-slate-300"
-              id="menu-open"
-              viewBox="0 0 24 24"
-              onclick="toggleNav()"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 8h16M4 16h16"
-              />
-            </svg>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="menu-close h-8 w-8 hidden stroke-white hover:stroke-slate-300"
-              id="menu-close"
-              viewBox="0 0 24 24"
-              onclick="toggleNav()"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <div id="nav-menu-btn" class="h-8 w-8 p-1 flex flex-col justify-center gap-1" onclick="toggleNav()">
+              <span class="nav-menu-btn-line line1"></span>
+              <span class="nav-menu-btn-line line2"></span>
+            </div>
           </div>
         </div>
       </div>

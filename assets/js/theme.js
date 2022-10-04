@@ -77,20 +77,17 @@ const setStickyness = () => {
 };
 
 const toggleNav = () => {
-  const menuOpen = document.getElementById("menu-open");
-  const menuClose = document.getElementById("menu-close");
+  const menuButton = document.getElementById("nav-menu-btn");
   const mobileNav = document.getElementById("mobile-nav");
 
-  if (menuClose.classList.contains("hidden")) {
-    // nav is opened
-    menuOpen.classList.add("hidden");
-    menuClose.classList.remove("hidden");
-    mobileNav.classList.remove("hidden");
-  } else {
+  if (menuButton.classList.contains("menu-open")) {
     // nav is closed
-    menuOpen.classList.remove("hidden");
-    menuClose.classList.add("hidden");
+    menuButton.classList.remove("menu-open");
     mobileNav.classList.add("hidden");
+  } else {
+    // nav is opened
+    menuButton.classList.add("menu-open");
+    mobileNav.classList.remove("hidden");
   }
 };
 

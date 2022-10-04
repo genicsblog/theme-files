@@ -182,6 +182,22 @@
   @apply font-medium text-slate-300 mx-auto;
 }
 
+.nav-menu-btn-line {
+  @apply h-1 w-6 block rounded-lg bg-white transition-transform ease-in-out duration-500;
+}
+
+#nav-menu-btn:hover > .nav-menu-btn-line {
+  @apply bg-slate-300;
+}
+
+#nav-menu-btn.menu-open > .line1 {
+  @apply translate-y-1 rotate-45;
+}
+
+#nav-menu-btn.menu-open > .line2 {
+  @apply -translate-y-1 -rotate-45;
+}
+
 .search-item {
   @apply m-2 p-2 cursor-pointer flex border-4 border-transparent hover:rounded-md hover:border-slate-200;
 }
