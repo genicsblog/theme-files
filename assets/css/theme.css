@@ -182,20 +182,30 @@
   @apply font-medium text-slate-300 mx-auto;
 }
 
-.nav-menu-btn-line {
-  @apply h-1 w-6 block rounded-lg bg-white transition-transform ease-in-out duration-500;
+.nav-menu-btn-lines::after, .nav-menu-btn-lines::before {
+  @apply rounded-lg bg-white block h-1 w-8 !left-0 absolute;
+  transition: top 0.2s ease 0.2s, transform 0.2s ease 0s;
+  content: ""; 
 }
 
-#nav-menu-btn:hover > .nav-menu-btn-line {
-  @apply bg-slate-300;
+.nav-menu-btn-lines::before {
+  @apply top-2/3 -translate-y-1/2;
 }
 
-#nav-menu-btn.menu-open > .line1 {
-  @apply translate-y-1 rotate-45;
+.nav-menu-btn-lines::after {
+  @apply top-1/3 -translate-y-1/2;
 }
 
-#nav-menu-btn.menu-open > .line2 {
-  @apply -translate-y-1 -rotate-45;
+#nav-menu-btn.open > .nav-menu-btn-lines::after, #nav-menu-btn.open > .nav-menu-btn-lines::before {
+  transition: top 0.2s ease 0s, transform 0.2s ease 0.15s;
+}
+
+#nav-menu-btn.open > .nav-menu-btn-lines::before {
+  @apply top-1/2 -rotate-45;
+}
+
+#nav-menu-btn.open > .nav-menu-btn-lines::after {
+  @apply top-1/2 rotate-45;
 }
 
 .search-item {

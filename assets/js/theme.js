@@ -80,13 +80,13 @@ const toggleNav = () => {
   const menuButton = document.getElementById("nav-menu-btn");
   const mobileNav = document.getElementById("mobile-nav");
 
-  if (menuButton.classList.contains("menu-open")) {
+  if (menuButton.classList.contains("open")) {
     // nav is closed
-    menuButton.classList.remove("menu-open");
+    menuButton.classList.remove("open");
     mobileNav.classList.add("hidden");
   } else {
     // nav is opened
-    menuButton.classList.add("menu-open");
+    menuButton.classList.add("open");
     mobileNav.classList.remove("hidden");
   }
 };
