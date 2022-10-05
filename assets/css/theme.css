@@ -188,6 +188,10 @@
   content: ""; 
 }
 
+#nav-menu-btn:hover > .nav-menu-btn-lines::after, #nav-menu-btn:hover > .nav-menu-btn-lines::before {
+  @apply bg-slate-300;
+}
+
 .nav-menu-btn-lines::before {
   @apply top-2/3 -translate-y-1/2;
 }
