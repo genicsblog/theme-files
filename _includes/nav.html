@@ -1,7 +1,7 @@
 <nav>
   <!-- prettier-ignore -->
   {% assign announcement = site.data.announcement %}
-  {% if announcement.visible and page.url != announcement.link.url %}
+  {% if announcement.visible and include.url != announcement.link.url %}
   <p
     class="bg-primary p-3 text-center text-white font-medium flex flex-col sm:block"
   >
@@ -53,24 +53,24 @@
         <div class="flex items-center h-16">
           <div class="hidden lg:block">
             <a
-              class="nav-item {% if page.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
+              class="nav-item {% if include.url contains '/topics' %}text-slate-400{% else %}text-white{% endif %}"
               href="{{ site.baseurl }}/topics"
               >Topics</a
             >
 
             <a
-              class="nav-item {% if page.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
+              class="nav-item {% if include.url contains '/about' %}text-slate-400{% else %}text-white{% endif %}"
               href="{{ site.baseurl }}/about"
               >About Us</a
             >
 
             <a
-              class="nav-item {% if page.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
+              class="nav-item {% if include.url contains '/contact' %}text-slate-400{% else %}text-white{% endif %}"
               href="{{ site.baseurl }}/contact"
               >Contact</a
             >
 
-            <!--<a class="nav-item {% if page.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
+            <!--<a class="nav-item {% if include.url contains '/advertise' %}text-slate-400{% else %}text-white{% endif %}"
                             href="{{ site.baseurl }}/advertise">Advertise</a>-->
 
             <a
@@ -152,26 +152,26 @@
     <div class="top-0 bg-background hidden p-6 lg:hidden" id="mobile-nav">
       <div class="grid grid-cols-2 gap-y-2 gap-x-4">
         <a
-          class="group mobile-nav-item {% if page.url contains '/categories' %}bg-gray-700{% endif %}"
+          class="group mobile-nav-item {% if include.url contains '/topics' %}bg-gray-700{% endif %}"
           href="{{ site.baseurl }}/topics"
         >
           <span class="group-hover:text-white">Topics</span>
         </a>
 
-        <!--<a class="group mobile-nav-item {% if page.url contains '/advertise' %}bg-gray-700{% endif %}"
+        <!--<a class="group mobile-nav-item {% if include.url contains '/advertise' %}bg-gray-700{% endif %}"
                     href="{{ site.baseurl }}/advertise">
                     <span class="group-hover:text-white">Advertise</span>
                 </a>-->
 
         <a
-          class="group mobile-nav-item {% if page.url contains '/about' %}bg-gray-700{% endif %}"
+          class="group mobile-nav-item {% if include.url contains '/about' %}bg-gray-700{% endif %}"
           href="{{ site.baseurl }}/about"
         >
           <span class="group-hover:text-white">About Us</span>
         </a>
 
         <a
-          class="group mobile-nav-item {% if page.url contains '/contact' %}bg-gray-700{% endif %}"
+          class="group mobile-nav-item {% if include.url contains '/contact' %}bg-gray-700{% endif %}"
           href="{{ site.baseurl }}/contact"
         >
           <span class="group-hover:text-white">Contact</span>

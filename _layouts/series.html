@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    {% include_cached nav.html %}
+    {% include_cached nav.html url=page.url %}
 
     <header class="banner">
       <div class="flex flex-col lg:flex-row p-2">
@@ -60,7 +60,8 @@
 
       <div class="mb-8">{% include_cached cta.html %}</div>
 
-      {% include infeed-ad.html %}
+      <!-- prettier-ignore -->
+      {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
     </main>
 
     <!-- prettier-ignore -->
