@@ -77,7 +77,7 @@ const setStickyness = () => {
 };
 
 const toggleNav = () => {
-  const menuButton = document.getElementById("nav-menu-btn");
+  const menuButton = document.getElementById("menu-btn");
   const mobileNav = document.getElementById("mobile-nav");
 
   if (menuButton.classList.contains("open")) {
