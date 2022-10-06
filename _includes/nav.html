@@ -28,9 +28,9 @@
   </p>
   {% endif %}
   <header class="w-full top-0 z-10" id="navbar">
-    <div class="bg-background max-h-20 py-1 px-2 sm:px-8 lg:px-8 mx-auto">
+    <div class="bg-background max-h-20 py-1 px-3 sm:px-8 lg:px-8 mx-auto">
       <div class="flex justify-between h-16">
-        <div class="flex px-2 lg:px-0">
+        <div class="flex lg:px-0">
           <a
             class="group flex-shrink-0 flex items-center logo-anchor"
             href="{{ site.baseurl }}/"
@@ -39,7 +39,7 @@
             <div
               class="flex items-center space-x-2 whitespace-nowrap flex-nowrap"
             >
-              <div class="h-8 w-8 mx-2">{% include logo.html %}</div>
+              <div class="h-8 w-8 md:mx-2">{% include logo.html %}</div>
 
               <span
                 class="font-bold hidden sm:block text-xl tracking-tight text-white group-hover:text-slate-300"
@@ -135,12 +135,12 @@
           </button>
 
           <a
-            class="ml-2 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
+            class="ml-2 md:ml-4 px-2.5 py-1.5 font-bold rounded-md text-black bg-white hover:bg-slate-300 hover:scale-110 transition underline-none"
             href="{{ site.baseurl }}/contribute"
             >Contribute</a
           >
 
-          <div class="ml-4 mr-2 md:mr-0 lg:hidden cursor-pointer">
+          <div class="ml-4 lg:hidden cursor-pointer">
             <div id="menu-btn" class="h-8 w-8 relative" onclick="toggleNav()">
               <div class="menu-btn-lines"></div>
             </div>
