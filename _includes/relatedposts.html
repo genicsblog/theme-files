@@ -30,7 +30,16 @@
 
     <!-- prettier-ignore -->
     {% if sameTagCount >= minCommonTags %}
-      {% include postbox.html %}
+      {% include_cached postbox.html 
+        environment=jekyll.environment
+        author=post.author
+        category=post.category
+        url=post.url
+        image=post.image
+        title=post.title
+        excerpt=post.excerpt
+        date=post.date
+      %}
 
       <!-- prettier-ignore -->
       {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}

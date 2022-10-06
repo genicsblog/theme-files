@@ -59,7 +59,16 @@
         >
           <!-- prettier-ignore -->
           {% for post in paginator.posts %}
-            {% include postbox.html %}
+            {% include_cached postbox.html 
+              environment=jekyll.environment
+              author=post.author
+              category=post.category
+              url=post.url
+              image=post.image
+              title=post.title
+              excerpt=post.excerpt
+              date=post.date
+            %}
           {% endfor %}
         </div>
 

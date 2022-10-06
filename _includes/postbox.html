@@ -1,24 +1,24 @@
 <!-- prettier-ignore -->
-{% if jekyll.environment == 'production' %}
+{% if include.environment == 'production' %}
 {% assign optimize = site.img_src_prefix.header %}
 {% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
-{% assign author = site.data.authors[post.author] %}
-{% assign category = post.category %}
+{% assign author = site.data.authors[include.author] %}
+{% assign category = include.category %}
 <a
   class="mt-4 mb-6 px-6 pt-2 pb-6 postbox hover:border-{{ category }} dark:hover:!border-{{ category }} underline-none"
-  href="{{ site.baseurl }}{{ post.url }}"
+  href="{{ site.baseurl }}{{ include.url }}"
 >
   <img
-    src="{{ optimize }}{{ post.image }}"
-    alt="{{ post.title }}"
-    title="{{ post.title }}"
+    src="{{ optimize }}{{ include.image }}"
+    alt="{{ include.title }}"
+    title="{{ include.title }}"
     class="aspect-video w-full mt-4"
   />
 
   <div class="mt-6 mb-16">
-    <h2 class="line-clamp-2">{{ post.title }}</h2>
-    <p class="line-clamp-3">{{ post.excerpt }}</p>
+    <h2 class="line-clamp-2">{{ include.title }}</h2>
+    <p class="line-clamp-3">{{ include.excerpt }}</p>
   </div>
 
   <div class="absolute mt-20 right-6 bottom-6 left-6">
@@ -36,7 +36,7 @@
         <span class="ml-2">{{ author.name | split:' ' | first}}</span>
       </div>
 
-      <span>{{ post.date | date:"%b %e, %Y" }}</span>
+      <span>{{ include.date | date:"%b %e, %Y" }}</span>
     </div>
   </div>
 </a>
