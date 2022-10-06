@@ -182,6 +182,37 @@
   @apply font-medium text-slate-300 mx-auto;
 }
 
+.menu-btn-lines::after, .menu-btn-lines::before {
+  @apply rounded-lg bg-white block w-8 absolute;
+  height: 0.17em;
+  transition: top 0.2s ease 0.2s, transform 0.2s ease 0s;
+  content: ""; 
+}
+
+#menu-btn:hover > .menu-btn-lines::after, #menu-btn:hover > .menu-btn-lines::before {
+  @apply bg-slate-300;
+}
+
+.menu-btn-lines::before {
+  @apply top-2/3 -translate-y-1/2;
+}
+
+.menu-btn-lines::after {
+  @apply top-1/3 -translate-y-1/2;
+}
+
+#menu-btn.open > .menu-btn-lines::after, #menu-btn.open > .menu-btn-lines::before {
+  transition: top 0.2s ease 0s, transform 0.2s ease 0.15s;
+}
+
+#menu-btn.open > .menu-btn-lines::before {
+  @apply top-1/2 -rotate-45;
+}
+
+#menu-btn.open > .menu-btn-lines::after {
+  @apply top-1/2 rotate-45;
+}
+
 .search-item {
   @apply m-2 p-2 cursor-pointer flex border-4 border-transparent hover:rounded-md hover:border-slate-200;
 }
