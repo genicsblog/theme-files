@@ -191,9 +191,7 @@ layout: default
     </figure>
 
     {% if page.sitemap == false %}
-    <figure
-      class="p-6 md:p-8 lg:sticky lg:top-24 mt-8 elevated"
-    >
+    <figure class="p-6 md:p-8 lg:sticky lg:top-24 mt-8 elevated">
       <h4>This is a draft preview!</h4>
 
       Anyone with the link can read this draft, but not search engines :)
@@ -217,7 +215,7 @@ layout: default
       <p>This is an adslot that will be visible in production website.</p>
       <!-- prettier-ignore -->
       {% else %}
-      {% include display-ad.html %}
+      {% include_cached display-ad.html environment=jekyll.environment sitemap=page.sitemap %}
       {% endif %}
     </figure>
 
@@ -262,8 +260,8 @@ layout: default
 </section>
 
 <!-- prettier-ignore -->
-{% include cta.html %}
-{% include infeed-ad.html %}
+{% include_cached cta.html %}
+{% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
 
 {% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}
 <h1 class="mx-8 mt-12 md:mx-10 lg:mx-14 -mb-4 lg:-mb-8">Comments</h1>
@@ -292,4 +290,5 @@ layout: default
 
 <div class="m-8 md:m-10 lg:m-14">{% include relatedposts.html %}</div>
 
-{% include infeed-ad.html %}
+<!-- prettier-ignore -->
+{% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}

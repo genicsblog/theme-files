@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    {% include nav.html %}
+    {% include_cached nav.html url=page.url %}
 
     <header class="banner">
       <div class="flex flex-col items-center">
@@ -59,7 +59,16 @@
         >
           <!-- prettier-ignore -->
           {% for post in paginator.posts %}
-            {% include postbox.html %}
+            {% include_cached postbox.html 
+              environment=jekyll.environment
+              author=post.author
+              category=post.category
+              url=post.url
+              image=post.image
+              title=post.title
+              excerpt=post.excerpt
+              date=post.date
+            %}
           {% endfor %}
         </div>
 
@@ -88,9 +97,10 @@
         {% endif %}
       </section>
 
-      <div class="mb-8">{% include cta.html %}</div>
+      <div class="mb-8">{% include_cached cta.html %}</div>
 
-      {% include infeed-ad.html %}
+      <!-- prettier-ignore -->
+      {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
     </main>
 
     <!-- prettier-ignore -->

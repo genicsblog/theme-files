@@ -3,7 +3,7 @@
 {% assign featuredPosts = site.data.featured.posts %}
 {% assign featuredPostsSize = featuredPosts | size %}
 {% assign featuredCategoriesSize = featuredCategories | size %}
-{% if page.url == '/index.html' %}
+{% if include.url == '/index.html' %}
 {% if featuredPostsSize != 0 %}
 <div class="flex justify-center">
   <h1>Popular this month</h1>
@@ -15,7 +15,16 @@
   <!-- prettier-ignore -->
   {% for featuredPost in featuredPosts %}
   {% assign post = site.posts | where_exp:"post", "post.url == featuredPost" | first %}
-  {% include postbox.html %}
+    {% include_cached postbox.html 
+      environment=jekyll.environment
+      author=post.author
+      category=post.category
+      url=post.url
+      image=post.image
+      title=post.title
+      excerpt=post.excerpt
+      date=post.date
+    %}
   {% endfor %}
 </div>
 
@@ -42,7 +51,16 @@
   <!-- prettier-ignore -->
   {% assign posts = site.posts | where: "category", category %}
   {% for post in posts | limit: 3 %}
-  {% include postbox.html %}
+    {% include_cached postbox.html 
+      environment=jekyll.environment
+      author=post.author
+      category=post.category
+      url=post.url
+      image=post.image
+      title=post.title
+      excerpt=post.excerpt
+      date=post.date
+    %}
   {% endfor %}
 </div>
 

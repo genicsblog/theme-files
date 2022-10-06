@@ -13,6 +13,7 @@ group :jekyll_plugins do
   gem "jekyll-redirect-from"
   gem "jekyll-auto-authors"
   gem "jekyll-url-metadata"
+  gem "jekyll-include-cache"
 end
 
 # Performance-booster for watching directories on Windows

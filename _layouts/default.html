@@ -7,7 +7,7 @@
 
   <body>
     <!-- prettier-ignore -->
-    {% include nav.html %}
+    {% include_cached nav.html url=page.url %}
     {% include header.html %}
 
     <main>{{ content | extlinks }}</main>
