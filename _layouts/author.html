@@ -93,7 +93,7 @@
   </head>
 
   <body>
-    {% include nav.html %}
+    {% include_cached nav.html %}
 
     <header class="banner">
       <div class="flex flex-col items-center">
@@ -248,7 +248,7 @@
         {% endif %}
       </section>
 
-      <div class="mb-8">{% include cta.html %}</div>
+      <div class="mb-8">{% include_cached cta.html %}</div>
 
       {% include infeed-ad.html %}
     </main>

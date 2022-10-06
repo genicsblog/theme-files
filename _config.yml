@@ -50,6 +50,7 @@ plugins:
   - jekyll-redirect-from
   - jekyll-auto-authors
   - jekyll-url-metadata
+  - jekyll-include-cache
 
 pagination:
   enabled: true
