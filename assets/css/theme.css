@@ -183,7 +183,8 @@
 }
 
 .nav-menu-btn-lines::after, .nav-menu-btn-lines::before {
-  @apply rounded-lg bg-white block h-1 w-8 !left-0 absolute;
+  @apply rounded-lg bg-white block w-8 absolute;
+  height: 0.17em;
   transition: top 0.2s ease 0.2s, transform 0.2s ease 0s;
   content: ""; 
 }
