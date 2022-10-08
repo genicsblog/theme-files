@@ -1,0 +1,30 @@
+name: Test validation scripts
+
+on:
+  - push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install python dependencies
+      run: |
+        pip install PyYAML python-frontmatter requests
+
+    - name: Run authors validation script tests
+      run: |
+        for file in _scripts/spec/authors/*.py; do
+          wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/authors.yml -P _data -q;
+          python $file;
+          rm -rf _data;
+        done
+        rm temp.txt;
