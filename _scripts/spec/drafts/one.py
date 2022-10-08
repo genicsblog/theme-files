@@ -1,16 +1,16 @@
-# Authors data validation script - TEST 1
+# Drafts validation script - TEST 1
 # There test ensures that there should be a failure when files
-# other than _data/authors.yml are changed.
+# other than _drafts/test.md are changed.
 
 import subprocess
 
 folder = "_scripts"
-script = "validate-authors.py"
+script = "validate-drafts.py"
 fail_count = 0
 
-# Case 1: Multiple files are edited along with _data/authors.yml
+# Case 1: Multiple files are edited along with _drafts/test.md
 command = f"""
-  echo 'Gemfile _data/authors.yml' >> temp.txt;
+  echo 'Gemfile _drafts/test.md' >> temp.txt;
   python3.9 {folder}/{script} gouravkhunger;
 """
 res = subprocess.run(command, capture_output = True, shell = True)
@@ -25,9 +25,9 @@ else:
 # Reset temp.txt in between runs
 subprocess.run("rm temp.txt", shell = True)
 
-# Case 2: Only _data/authors.yml is edited.
+# Case 2: Only _drafts/test.md is edited.
 command = f"""
-  echo '_data/authors.yml' >> temp.txt;
+  echo '_drafts/test.md' >> temp.txt;
   python3.9 {folder}/{script} gouravkhunger;
 """
 res = subprocess.run(command, capture_output = True, shell = True)

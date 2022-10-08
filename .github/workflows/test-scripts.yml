@@ -27,4 +27,17 @@ jobs:
           python $file;
           rm -rf _data;
         done
-        rm temp.txt;
+
+        rm -rf temp.txt;
+
+    - name: Run drafts validation script tests
+      run: |
+        wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/authors.yml -P _data -q;
+
+        for file in _scripts/spec/drafts/*.py; do
+          wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_drafts/test.md -P _drafts -q;
+          python $file;
+          rm -rf _drafts;
+        done
+
+        rm -rf _data temp.txt;
