@@ -5,13 +5,13 @@
 {% endif %}
 
 <header class="banner">
-  {% if page.layout != 'post' %}
+  {% if include.layout != 'post' %}
   <div class="flex flex-col items-center">
-    {% if page.title %}
+    {% if include.title %}
     <span
       class="font-black text-4xl sm:text-5xl text-white group-hover:text-slate-300"
     >
-      {{ page.title }}
+      {{ include.title }}
     </span>
     {% else %}
     <span
@@ -22,8 +22,8 @@
     {% endif %}
 
     <!-- prettier-ignore -->
-    {% if page.excerpt != blank %}
-    <p class="mt-2">{{ page.excerpt }}</p>
+    {% if include.excerpt != blank %}
+    <p class="mt-2">{{ include.excerpt }}</p>
     {% else %}
 
     <p class="mt-2">
@@ -41,7 +41,7 @@
     <!-- prettier-ignore -->
     {% endif %}
     {% assign searchBoxWhitelist = "/index.html,/404,/topics" | split:","%}
-    {% if searchBoxWhitelist contains page.url %}
+    {% if searchBoxWhitelist contains include.url %}
 
     <button
       class="flex items-center w-full sm:w-1/2 xl:w-1/3 mt-12 text-left space-x-3 px-4 h-12 bg-white hover:bg-slate-200 shadow-sm rounded-lg text-gray-500"
@@ -75,13 +75,13 @@
 
   <!-- prettier-ignore -->
   {% else %}
-  {% assign author = site.data.authors[page.author]%}
+  {% assign author = site.data.authors[include.author]%}
 
   <div class="flex flex-col lg:flex-row p-2">
     <div class="flex justify-center items-center lg:w-1/2 md:mb-0">
-      {% if page.image %}
+      {% if include.image %}
       <img
-        src="{{ optimize }}{{ page.image }}"
+        src="{{ optimize }}{{ include.image }}"
         class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
       />
       {% endif %}
@@ -90,24 +90,24 @@
     <div
       class="flex flex-col justify-center lg:items-start w-full lg:w-1/2 lg:ml-12"
     >
-      {% if page.title %}
-      <h1 class="text-4xl font-black tracking-tight">{{ page.title }}</h1>
+      {% if include.title %}
+      <h1 class="text-4xl font-black tracking-tight">{{ include.title }}</h1>
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% if page.excerpt %}
-      <span class="mt-0.5 text-justify">{{ page.excerpt }}</span>
+      {% if include.excerpt %}
+      <span class="mt-0.5 text-justify">{{ include.excerpt }}</span>
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% if page.author %}
+      {% if include.author %}
       <div class="flex items-center mt-8">
         <img class="rounded-full w-14 h-14" src="{{ optimizeAvatar }}{{ author.avatar }}" />
 
         <div class="ml-4 leading-3">
           <a
             class="font-extrabold text-xl"
-            href="{{ site.baseurl }}/author/{{ page.author | downcase }}/"
+            href="{{ site.baseurl }}/author/{{ include.author | downcase }}/"
           >
             {{ author.name }}
           </a>
@@ -115,18 +115,18 @@
           <br />
 
           <span class="text-sm">
-            Posted on {{ page.date | date:"%B %e, %Y" }}
+            Posted on {{ include.date | date:"%B %e, %Y" }}
           </span>
         </div>
       </div>
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% if page.category %}
+      {% if include.category %}
       <div class="mt-8">
         <span>Category: </span>
 
-        {% for category in page.categories %}
+        {% for category in include.categories %}
         <a
           class="text-sm ml-2 archive-name !bg-{{ category }} underline-none"
           href="{{ site.baseurl }}/category/{{ category }}"
@@ -137,13 +137,13 @@
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% assign tagSize = page.tags | size %}
+      {% assign tagSize = include.tags | size %}
       {% if tagSize != 0 %}
       <div class="mt-4 sm:mt-3">
         <span>Tags: </span>
 
         <!-- prettier-ignore -->
-        {% for tag in page.tags %}
+        {% for tag in include.tags %}
         {% assign tagName = tag | slugify %}
         <a
           class="text-sm ml-2 my-0.5 archive-name !bg-{{ tagName }} underline-none"
