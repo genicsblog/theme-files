@@ -1,7 +1,7 @@
 set -e;
 
 clean_up () {
-  rm -rf _data _drafts temp.txt;
+  rm -rf _data _drafts temp.txt temp.yml;
 };
 
 trap clean_up EXIT;
@@ -16,7 +16,7 @@ echo;
 for file in _scripts/spec/authors/*.py; do
   wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/authors.yml -P _data -q;
   python3.9 $file;
-  rm -rf _data;
+  rm -rf _data temp.txt;
   echo;
 done
 
@@ -33,7 +33,7 @@ wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/auth
 for file in _scripts/spec/drafts/*.py; do
   wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_drafts/test.md -P _drafts -q;
   python3.9 $file;
-  rm -rf _drafts;
+  rm -rf _drafts temp.txt;
 done
 
 clean_up;
