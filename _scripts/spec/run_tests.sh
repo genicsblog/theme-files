@@ -1,5 +1,14 @@
-# Run tests for author data validation script
+set -e;
 
+clean_up () {
+  rm -rf _data _drafts temp.txt;
+};
+
+trap clean_up EXIT;
+
+clean_up;
+
+# Run tests for author data validation script
 echo "Author data validation script tests";
 echo "-----------------------------------";
 echo;
@@ -15,7 +24,6 @@ rm -rf temp.txt;
 echo;
 
 # Run tests for drafts validation script
-
 echo "Drafts validation script tests";
 echo "------------------------------";
 echo;
@@ -28,4 +36,4 @@ for file in _scripts/spec/drafts/*.py; do
   rm -rf _drafts;
 done
 
-rm -rf _data temp.txt;
+clean_up;
