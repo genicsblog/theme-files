@@ -36,7 +36,7 @@ command = f"""
 res = subprocess.run(command, capture_output = True, shell = True)
 
 # The above case should pass if the command does not return 0
-if(res.returncode == 0):
+if(res.returncode != 0):
   print("Case 2: PASSED")
 else:
   print("Case 2: FAILED")
