@@ -22,7 +22,7 @@ res = subprocess.run(command, capture_output = True, shell = True)
 if(res.returncode == 0):
   print("Case 1: PASSED")
 else:
-  print("Case 1: FAILURE")
+  print("Case 1: FAILED")
   fail_count += 1
 
 # Reset temp.txt in between runs
@@ -36,10 +36,10 @@ command = f"""
 res = subprocess.run(command, capture_output = True, shell = True)
 
 # The above case should pass if the command does not return 0
-if(res.returncode != 0):
+if(res.returncode == 0):
   print("Case 2: PASSED")
 else:
-  print("Case 2: FAILURE")
+  print("Case 2: FAILED")
   fail_count += 1
 
 if fail_count != 0:
