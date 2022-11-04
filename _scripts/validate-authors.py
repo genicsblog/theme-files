@@ -2,7 +2,6 @@ import os
 import sys
 import yaml
 import requests
-import frontmatter
 from pathlib import Path
 
 committer = sys.argv[1]
@@ -24,8 +23,6 @@ def get_changed(newData, existingData):
     return changed
 
 if temp.readlines()[0].strip() == file:
-    post = frontmatter.load("_data/authors.yml")
-
     with open(file, "r") as authorData:
         newData = yaml.safe_load(authorData)
 
