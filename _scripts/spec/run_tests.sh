@@ -1,22 +1,24 @@
 # Run tests for author data validation script
 
 echo "Author data validation script tests";
-echo "-----------------------------------\n";
+echo "-----------------------------------";
+echo;
 
 for file in _scripts/spec/authors/*.py; do
   wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/authors.yml -P _data -q;
   python3.9 $file;
   rm -rf _data;
-  echo "\n";
+  echo;
 done
 
 rm -rf temp.txt;
-echo "\n";
+echo;
 
 # Run tests for drafts validation script
 
 echo "Drafts validation script tests";
-echo "------------------------------\n";
+echo "------------------------------";
+echo;
 
 wget https://raw.githubusercontent.com/genicsblog/genicsblog.com/main/_data/authors.yml -P _data -q;
 
