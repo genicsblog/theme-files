@@ -1,6 +1,9 @@
 # Authors data validation script - TEST 1
-# There test ensures that there should be a failure when files
+# These test ensures that there should be a failure when files
 # other than _data/authors.yml are changed.
+
+print("Test 1")
+print("------")
 
 import subprocess
 
@@ -15,12 +18,12 @@ command = f"""
 """
 res = subprocess.run(command, capture_output = True, shell = True)
 
-# The above case should not return 0
-if(res.returncode == 0):
-  print("Test 1, case 1: FAILURE")
-  fail_count += 1
+# The above case should pass if the command does not return 0
+if(res.returncode != 0):
+  print("Case 1: PASSED")
 else:
-  print("Test 1, case 1: PASSED")
+  print("Case 1: FAILURE")
+  fail_count += 1
 
 # Reset temp.txt in between runs
 subprocess.run("rm temp.txt", shell = True)
@@ -32,14 +35,12 @@ command = f"""
 """
 res = subprocess.run(command, capture_output = True, shell = True)
 
-# The above case should pass should return 0
-if(res.returncode != 0):
-  print("Test 1, case 2: FAILURE")
-  fail_count += 1
+# The above case should pass if the command returns 0
+if(res.returncode == 0):
+  print("Case 2: PASSED")
 else:
-  print("Test 1, case 2: PASSED")
+  print("Case 2: FAILURE")
+  fail_count += 1
 
 if fail_count != 0:
   exit(1)
-
-print("=======================")
