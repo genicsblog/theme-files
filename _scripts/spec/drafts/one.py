@@ -11,6 +11,15 @@ folder = "_scripts"
 script = "validate-drafts.py"
 fail_count = 0
 
+def validate(case, code, shouldBeZero):
+  global fail_count
+
+  if((code == 0 and shouldBeZero) or (code != 0 and not shouldBeZero)):
+    print(f"Case {case}: PASSED")
+  else:
+    print(f"Case {case}: FAILED")
+    fail_count += 1
+
 # Case 1: Only _drafts/test.md is edited.
 command = f"""
   echo '_drafts/test.md' >> temp.txt;
@@ -19,11 +28,7 @@ command = f"""
 res = subprocess.run(command, capture_output = True, shell = True)
 
 # The above case should pass if the command returns 0
-if(res.returncode == 0):
-  print("Case 1: PASSED")
-else:
-  print("Case 1: FAILED")
-  fail_count += 1
+validate(case = 1, code = res.returncode, shouldBeZero = True)
 
 # Reset temp.txt in between runs
 subprocess.run("rm temp.txt", shell = True)
@@ -36,13 +41,9 @@ command = f"""
 res = subprocess.run(command, capture_output = True, shell = True)
 
 # The above case should pass if the command does not return 0
-if(res.returncode != 0):
-  print("Case 2: PASSED")
-else:
-  print("Case 2: FAILED")
-  fail_count += 1
+validate(case = 2, code = res.returncode, shouldBeZero = False)
 
 if fail_count != 0:
   exit(1)
 
-print("\n")
+print()
