@@ -1,5 +1,5 @@
 # Authors data validation script - TEST 1
-# These test ensures that there should be a failure when files
+# This test ensures that there should be a failure when files
 # other than _data/authors.yml are changed.
 
 print("Test 1")
@@ -7,9 +7,10 @@ print("------")
 
 import subprocess
 
+fail_count = 0
 folder = "_scripts"
 script = "validate-authors.py"
-fail_count = 0
+data_file = "_data/authors.yml"
 
 def validate(case, code, shouldBeZero):
   global fail_count
@@ -22,7 +23,7 @@ def validate(case, code, shouldBeZero):
 
 # Case 1: Only _data/authors.yml is edited.
 command = f"""
-  echo '_data/authors.yml' >> temp.txt;
+  echo '{data_file}' >> temp.txt;
   python3.9 {folder}/{script} gouravkhunger;
 """
 res = subprocess.run(command, capture_output = True, shell = True)
@@ -35,7 +36,7 @@ subprocess.run("rm temp.txt", shell = True)
 
 # Case 2: Multiple files are edited along with _data/authors.yml
 command = f"""
-  echo 'Gemfile _data/authors.yml' >> temp.txt;
+  echo 'Gemfile _config.yml {data_file}' >> temp.txt;
   python3.9 {folder}/{script} gouravkhunger;
 """
 res = subprocess.run(command, capture_output = True, shell = True)

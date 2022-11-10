@@ -1,5 +1,5 @@
 # Authors data validation script - TEST 2
-# These tests ensures that only the github account associated with an author
+# This test ensures that only the github account associated with an author
 # in the data file should be allowed to change its content.
 
 print("Test 2")
@@ -9,10 +9,10 @@ import copy
 import yaml
 import subprocess
 
-data_file = "_data/authors.yml"
+fail_count = 0
 folder = "_scripts"
 script = "validate-authors.py"
-fail_count = 0
+data_file = "_data/authors.yml"
 
 def validate(case, code, shouldBeZero):
   global fail_count

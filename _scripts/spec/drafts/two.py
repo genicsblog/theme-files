@@ -7,9 +7,10 @@ print("------")
 
 import subprocess
 
+fail_count = 0
 folder = "_scripts"
 script = "validate-drafts.py"
-fail_count = 0
+draft_file = "_drafts/test.md"
 
 def validate(case, code, shouldBeZero):
   global fail_count
@@ -22,7 +23,7 @@ def validate(case, code, shouldBeZero):
 
 # Case 1: draft test.md is changed by committer gouravkhunger (VALID)
 command = f"""
-  echo '_drafts/test.md' >> temp.txt;
+  echo '{draft_file}' >> temp.txt;
   python3.9 {folder}/{script} gouravkhunger;
 """
 res = subprocess.run(command, capture_output = True, shell = True)
@@ -35,7 +36,7 @@ subprocess.run("rm temp.txt", shell = True)
 
 # Case 2: draft test.md is changed by committer kushagra (INVALID)
 command = f"""
-  echo '_drafts/test.md' >> temp.txt;
+  echo '{draft_file}' >> temp.txt;
   python3.9 {folder}/{script} kushagra;
 """
 res = subprocess.run(command, capture_output = True, shell = True)
