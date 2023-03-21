@@ -5,7 +5,14 @@
     {% assign optimizeAvatar = site.img_src_prefix.avatar %}
   {% endif %}
   {% assign author = page.pagination.author_data %}
-  {% assign description = author.bio %}
+
+  {% if author.birthdate %}
+    {% assign bio = author | format_bio %}
+  {% else %}
+    {% assign bio = author.bio %}
+  {% endif %}
+
+  {% assign description = bio %}
   {% assign avatar = author.avatar %}
   {% assign links = author.links %}
 
@@ -110,7 +117,7 @@
 
         <h4>{{ author.role }}</h4>
 
-        <p class="mt-2">{{ author.bio }}</p>
+        <p class="mt-2">{{ bio }}</p>
 
         <div class="grid grid-flow-col justify-center gap-6 items-center mt-6">
           {% if links.stackoverflow != blank %}

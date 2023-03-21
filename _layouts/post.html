@@ -186,7 +186,12 @@ layout: default
           </div>
         </figcaption>
 
-        <p class="leading-5 font-medium text-justify">{{ author.bio }}</p>
+        {% if author.birthdate %}
+          {% assign bio = author | format_bio %}
+        {% else %}
+          {% assign bio = author.bio %}
+        {% endif %}
+        <p class="leading-5 font-medium text-justify">{{ bio }}</p>
       </div>
     </figure>
 
