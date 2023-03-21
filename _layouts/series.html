@@ -42,6 +42,9 @@
     {% assign series = page.path | split:"/" | last | split:"." | first %}
 
     <main>
+      <!-- prettier-ignore -->
+      {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+
       <section class="p-6 sm:p-10">
         <!-- prettier-ignore -->
         {% assign posts = site.posts | where_exp:"item", "item.series == series" | reverse %}

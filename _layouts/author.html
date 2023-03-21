@@ -206,6 +206,9 @@
     </header>
 
     <main>
+      <!-- prettier-ignore -->
+      {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+
       <section class="p-6 sm:p-10">
         <!-- prettier-ignore -->
         {% assign arrSize = paginator.posts | size %}

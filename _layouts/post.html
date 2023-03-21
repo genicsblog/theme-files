@@ -8,6 +8,9 @@ layout: default
   {% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
 
+<!-- prettier-ignore -->
+{% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+
 <section class="lg:flex">
   <div
     class="md:text-lg m-6 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
@@ -260,8 +263,8 @@ layout: default
 </section>
 
 <!-- prettier-ignore -->
-{% include_cached cta.html %}
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+{% include_cached cta.html %}
 
 {% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}
 <h1 class="mx-8 mt-12 md:mx-10 lg:mx-14 -mb-4 lg:-mb-8">Comments</h1>
@@ -289,6 +292,3 @@ layout: default
 {% endif %}
 
 <div class="m-8 md:m-10 lg:m-14">{% include relatedposts.html %}</div>
-
-<!-- prettier-ignore -->
-{% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
