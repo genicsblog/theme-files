@@ -6,10 +6,6 @@ Theme files for genicsblog.com
 
 [![Powered by Vercel](https://genicsblog.com/assets/images/sponsors/vercel.svg)](https://vercel.com?utm_source=genicsblog&utm_campaign=oss)
 
-## [License](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md)
-
-The project is licensed under the [MIT](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md) license terms and expects you to preserve the attribution to the developer and contributors in the website footer on each page.
-
 ## Local setup
 
 Please install [Ruby](https://www.ruby-lang.org/en/downloads/) (preferrably 3.x) and [Node.js](https://nodejs.org/en/download/) (preferrably 16.x) before you proceed.
@@ -31,3 +27,7 @@ chmod +x dev.sh
 Now you should be able to run the `./dev.sh` command.
 
 Feel free to [open an issue](https://github.com/genicsblog/theme-files/issues/new) if you need any help!
+
+## [License](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md)
+
+The project is licensed under the [MIT](https://github.com/genicsblog/theme-files/blob/main/LICENSE.md) license terms and expects you to preserve the attribution to the developer and contributors in the website footer on each page.
