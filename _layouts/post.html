@@ -56,7 +56,7 @@ layout: default
       {% endif %}
 
       <article class="p-6 md:p-8">
-        {% if page.audioId != blank %}
+        {% if page.audioId != blank and jekyll.environment == "production" %}
         <div
           class="mb-6"
           id="audio-player"
