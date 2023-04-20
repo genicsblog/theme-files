@@ -19,4 +19,5 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", :platforms => [:mingw, :x64_mingw, :mswin]
 
+gem "dotenv"
 gem "webrick"
