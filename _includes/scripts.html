@@ -30,31 +30,14 @@
     gtag("set", "page_path", path);
     {% endif %}
 
-    // pause already playing Audios
-    if(window.BwPlayer && typeof window.BwPlayer.pause === 'function') {
-      window.BwPlayer.pause();
-    }
-
     const audioPlayer = document.getElementById("audio-player");
     if(audioPlayer) {
-      // hack to support SPAs with BeyondWords
-      const audioScript = document.createElement("script");
-      audioScript.type = "module";
-      audioScript.text = `import BeyondWords from 'https://proxy.beyondwords.io/npm/@beyondwords/audio-player@latest/dist/module/index.js'
-
-      BeyondWords.sdk.player({
-        renderNode: 'audio-player',
+      const player = new BeyondWords.Player({
         projectId: 11987,
-        podcastId: ${audioPlayer.dataset.audioId},
-      }).then(appInst => {
-        window.BwPlayer = appInst;
-        const player = document.getElementsByClassName("sk-app-container")[0];
-        player.classList.add("rounded-xl");
-        const attribution = document.getElementsByClassName("sk-app-link")[0];
-        attribution.classList.add("underline-none");
-      });`;
-
-      document.body.appendChild(audioScript);
+        target: audioPlayer,
+        playerStyle: "large",
+        contentId: audioPlayer.dataset.audioId,
+      });
     }
 
     const comments = document.getElementById("comments");
@@ -86,7 +69,6 @@
   });
 
   InstantClick.on('receive', () => {
-
     // This function can be used to perform any local variable cleanups just before the page changes.
     // Currently, it is used by tools (frontmatter, thumbnail) to remove globally scoped variables.
     if (typeof window.cleanup === 'function') {
