@@ -70,6 +70,8 @@
   });
 
   InstantClick.on('receive', () => {
+    BeyondWords.Player.destroyAll();
+
     // This function can be used to perform any local variable cleanups just before the page changes.
     // Currently, it is used by tools (frontmatter, thumbnail) to remove globally scoped variables.
     if (typeof window.cleanup === 'function') {
