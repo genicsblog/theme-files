@@ -36,7 +36,7 @@ module Jekyll
         request["X-Api-Key"] = env["api_key"]
 
         response = http.request(request)
-        response.read_body
+        return response.read_body
       end
     end
 
@@ -44,12 +44,12 @@ module Jekyll
       doc = Nokogiri::HTML.fragment(html)
       return html unless doc
 
-      if content_id.class == Integer and content_id == 4052597
+      if content_id.class == Integer
         json = JSON.parse(get_segments(content_id))
         segments = json['segments']
 
         counter = 1
-        
+
         for element in doc.css('*') do
           if (
             !is_first_child_img(element) and
