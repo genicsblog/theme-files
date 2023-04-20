@@ -41,10 +41,10 @@ module Jekyll
     end
 
     def mark_segments(html, content_id)
-      if content_id.class == Integer and content_id == 4052597
-        doc = Nokogiri::HTML.fragment(html)
-        return html unless doc
+      doc = Nokogiri::HTML.fragment(html)
+      return html unless doc
 
+      if content_id.class == Integer and content_id == 4052597
         json = JSON.parse(get_segments(content_id))
         segments = json['segments']
 
@@ -64,9 +64,9 @@ module Jekyll
             end
           end
         end
-        
-        doc.to_s
       end
+
+      doc.to_s
     end
 
     def is_first_child_img(element)
