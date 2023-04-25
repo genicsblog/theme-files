@@ -13,7 +13,7 @@ layout: default
 
 <section class="lg:flex">
   <div
-    class="md:text-lg m-6 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
+    class="md:text-lg m-6 md:mx-10 lg:mx-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
   >
     <div class="elevated">
       <!-- prettier-ignore -->
@@ -164,7 +164,7 @@ layout: default
   </div>
 
   <aside
-    class="m-6 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]"
+    class="m-6 md:m-8 lg:mr-10 lg:-ml-4 lg:max-w-[25%] xl:max-w-[20%]"
   >
     <figure class="p-6 md:p-8 elevated">
       <img
@@ -269,6 +269,7 @@ layout: default
 
 <!-- prettier-ignore -->
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+<br />
 {% include_cached cta.html %}
 
 {% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}
