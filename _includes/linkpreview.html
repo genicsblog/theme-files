@@ -47,7 +47,7 @@
       <div
         class="mt-4 flex flex-col justify-center w-full{% if image != blank %} md:w-1/2 md:ml-4 md:mt-0{% endif %}"
       >
-        <h3 class="tracking-tight line-clamp-2 lg:text-3xl">
+        <h3 class="tracking-tight line-clamp-2 lg:text-3xl" data-marker="none">
           <!-- prettier-ignore -->
           {% if include.title != blank %}
             {{ include.title }}
@@ -57,10 +57,10 @@
         </h3>
 
         {% if description != blank %}
-        <p class="text-sm lg:text-base line-clamp-3">{{ description }}</p>
+        <p class="text-sm lg:text-base line-clamp-3" data-marker="none">{{ description }}</p>
         {% endif %}
 
-        <span class="text-gray-500 dark:text-gray-400 text-sm">
+        <span class="text-gray-500 dark:text-gray-400 text-sm" data-marker="none">
           {{ include.url | hostname }} &gt;
         </span>
       </div>

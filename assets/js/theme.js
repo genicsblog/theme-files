@@ -1,6 +1,8 @@
 const THEME = "theme";
 const DARK = "dark";
 const LIGHT = "light";
+const DARK_HIGHLIGHT = "#444";
+const LIGHT_HIGHLIGHT = "#eee";
 const GISCUS_LIGHT = "https://giscus.app/themes/light.css";
 const GISCUS_DARK = "https://giscus.app/themes/dark.css";
 
@@ -41,6 +43,12 @@ const setGiscusTheme = () => {
   }
 };
 
+const setAudioPlayerTheme = () => {
+  if(BeyondWords.Player.instances()[0]){
+    BeyondWords.Player.instances()[0].highlightColor = isDark() ? DARK_HIGHLIGHT : LIGHT_HIGHLIGHT; 
+  }
+}
+
 const setTheme = () => {
   const themeToggleIcon = document.getElementById("theme-toggle-icon");
 
@@ -53,6 +61,7 @@ const setTheme = () => {
   }
 
   setGiscusTheme();
+  setAudioPlayerTheme();
 };
 
 document.addEventListener("keydown", function (e) {

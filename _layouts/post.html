@@ -56,7 +56,7 @@ layout: default
       {% endif %}
 
       <article class="p-6 md:p-8">
-        {% if page.audioId != blank and jekyll.environment == "production" %}
+        {% if page.audioId != blank %}
         <div
           class="mb-6"
           id="audio-player"
@@ -65,7 +65,7 @@ layout: default
         {% endif %}
 
         <!-- prettier-ignore -->
-        {{ content | extlinks | optimize_images }}
+        {{ content | extlinks | optimize_images | mark_segments: page.audioId }}
       </article>
 
       <hr />
