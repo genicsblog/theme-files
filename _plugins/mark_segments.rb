@@ -44,14 +44,14 @@ module Jekyll
 
     def set_segment(element, segments)
       if (
-        !is_first_child_img(element) and
+        !first_child_validation(element, "img") and
         element.get_attribute("data-marker") != "none" and
         element.get_attribute("data-beyondwords-marker").nil? and
         ["p", "li", "h1", "h2", "h3", "h4", "h5", "h6"].include?(element.name)
       )
         begin
           # hack for li element with multiple children
-          if element.name != "li" or (element.name == "li" and !is_first_child_p(element))
+          if element.name != "li" or (element.name == "li" and !first_child_validation(element, "p"))
             $counter += 1
             element.set_attribute("data-beyondwords-marker", segments[$counter]["marker"])
           end
@@ -84,23 +84,11 @@ module Jekyll
       doc.to_s
     end
 
-    def is_first_child_img(element)
+    def first_child_validation(element, to_check)
       if (
         !element.element_children.nil? and
         element.element_children[0].class == Nokogiri::XML::Element and
-        element.element_children[0].name == "img"
-      )
-        return true
-      end
-
-      return false
-    end
-
-    def is_first_child_p(element)
-      if (
-        !element.element_children.nil? and
-        element.element_children[0].class == Nokogiri::XML::Element and
-        element.element_children[0].name == "p"
+        element.element_children[0].name == to_check
       )
         return true
       end
