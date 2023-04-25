@@ -66,6 +66,8 @@ module Jekyll
     end
 
     def mark_segments(html, content_id)
+      return html if ENV['JEKYLL_ENV'] != 'production'
+
       doc = Nokogiri::HTML.fragment(html)
       return html unless doc
 
