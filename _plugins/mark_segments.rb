@@ -9,6 +9,8 @@ require "net/http"
 module Jekyll
   module MarkSegments
 
+    $counter = 0
+
     def env
       Dotenv.load
 
@@ -40,32 +42,43 @@ module Jekyll
       end
     end
 
+    def set_segment(element, segments)
+      if (
+        !is_first_child_img(element) and
+        element.get_attribute("data-marker") != "none" and
+        element.get_attribute("data-beyondwords-marker").nil? and
+        ["p", "li", "h1", "h2", "h3", "h4", "h5", "h6"].include?(element.name)
+      )
+        begin
+          # hack for li element with multiple children
+          if element.name != "li" or (element.name == "li" and !is_first_child_p(element))
+            $counter += 1
+            element.set_attribute("data-beyondwords-marker", segments[$counter]["marker"])
+          end
+        rescue
+          $counter -= 1
+        end
+
+        for child in element.element_children
+          set_segment(child, segments)
+        end
+      end
+    end
+
     def mark_segments(html, content_id)
       doc = Nokogiri::HTML.fragment(html)
       return html unless doc
 
       if content_id.class == Integer
         json = JSON.parse(get_segments(content_id))
-        segments = json['segments']
+        segments = json["segments"]
 
-        counter = 1
-
-        for element in doc.css('*') do
-          if (
-            !is_first_child_img(element) and
-            element.get_attribute("data-marker") != "none" and
-            ['p', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].include?(element.name)
-          )
-            begin
-              element.set_attribute('data-beyondwords-marker', segments[counter]['marker'])
-              counter += 1
-            rescue
-              break
-            end
-          end
+        for element in doc.css("*") do
+          set_segment(element, segments)
         end
       end
 
+      $counter = 0
       doc.to_s
     end
 
@@ -74,6 +87,18 @@ module Jekyll
         !element.element_children.nil? and
         element.element_children[0].class == Nokogiri::XML::Element and
         element.element_children[0].name == "img"
+      )
+        return true
+      end
+
+      return false
+    end
+
+    def is_first_child_p(element)
+      if (
+        !element.element_children.nil? and
+        element.element_children[0].class == Nokogiri::XML::Element and
+        element.element_children[0].name == "p"
       )
         return true
       end
