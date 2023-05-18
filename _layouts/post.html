@@ -164,7 +164,7 @@ layout: default
   </div>
 
   <aside
-    class="m-6 lg:mr-10 lg:-ml-4 lg:max-w-[25%] xl:max-w-[20%]"
+    class="m-6 lg:mr-10 lg:-ml-4 flex flex-col lg:max-w-[25%] xl:max-w-[20%]"
   >
     <figure class="p-6 md:p-8 elevated">
       <img
@@ -216,53 +216,53 @@ layout: default
       </div>
     </figure>
     {% else %}
-    <figure
-      class="bg-white dark:bg-background rounded-2xl p-6 shadow-xl shadow-slate-200 dark:shadow-none mt-8 aspect-square w-full"
-    >
-      {% if jekyll.environment != 'production' %}
-      <p>This is an adslot that will be visible in production website.</p>
+    <div class="adverts-container">
+      <figure class="advert elevated">
+        {% if jekyll.environment != 'production' %}
+        <p>This is an adslot that will be visible in production website.</p>
+        <!-- prettier-ignore -->
+        {% else %}
+        {% include_cached display-ad.html environment=jekyll.environment sitemap=page.sitemap %}
+        {% endif %}
+      </figure>
+
+      {% for element in site.data.sponsors %}
+      <figure
+        class="sponsor elevated{% if forloop.last == true %} lg:sticky lg:top-24{% endif %}"
+      >
+        <img
+          src="{{ element.logo.dark }}"
+          class="logo hidden dark:block"
+        />
+
+        <img
+          src="{{ element.logo.light }}"
+          class="logo dark:hidden"
+        />
+
+        <h4 class="mt-4">
+          {{ element.name }} {% if element.sponsored %}<span
+            class="text-xs text-white px-3 py-1 align-middle rounded-xl bg-primary"
+            >Sponsored</span
+          >{% endif %}
+        </h4>
+
+        <p>{{ element.description }}</p>
+
+        <div class="flex justify-center">
+          <a
+            class="px-3 py-1 mt-4 linkbtn underline-none"
+            href="{{ element.site }}"
+            rel="nofollow"
+            target="_blank"
+          >
+            Check it out &gt;
+          </a>
+        </div>
+      </figure>
       <!-- prettier-ignore -->
-      {% else %}
-      {% include_cached display-ad.html environment=jekyll.environment sitemap=page.sitemap %}
-      {% endif %}
-    </figure>
-
-    {% for element in site.data.sponsors %}
-    <figure
-      class="px-6 pb-6 md:px-8 mt-8 elevated{% if forloop.last == true %} lg:sticky lg:top-24{% endif %}"
-    >
-      <img
-        src="{{ element.logo.dark }}"
-        class="w-full aspect-video hidden dark:block"
-      />
-
-      <img
-        src="{{ element.logo.light }}"
-        class="w-full aspect-video dark:hidden"
-      />
-
-      <h4>
-        {{ element.name }} {% if element.sponsored %}<span
-          class="text-xs text-white px-3 py-1 align-middle rounded-xl bg-primary"
-          >Sponsored</span
-        >{% endif %}
-      </h4>
-
-      <p>{{ element.description }}</p>
-
-      <div class="flex justify-center">
-        <a
-          class="px-3 py-1 mt-4 linkbtn underline-none"
-          href="{{ element.site }}"
-          rel="nofollow"
-          target="_blank"
-        >
-          Check it out &gt;
-        </a>
-      </div>
-    </figure>
-    <!-- prettier-ignore -->
-    {% endfor %}
+      {% endfor %}
+    </div>
     {% endif %}
   </aside>
 </section>

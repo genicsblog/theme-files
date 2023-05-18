@@ -263,3 +263,15 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 .linkbtn {
   @apply inline-block text-center hover:shadow-lg rounded-md bg-black dark:bg-white dark:text-black text-white hover:scale-110 transition;
 }
+
+.adverts-container {
+  @apply h-full flex flex-wrap flex-col sm:flex-row lg:flex-col sm:gap-8 lg:gap-0;
+
+  .advert, .sponsor {
+    @apply p-6 mt-8 self-start w-full sm:basis-[25%] lg:basis-0 sm:flex-grow lg:flex-grow-0;
+  }
+
+  .sponsor .logo {
+    @apply max-h-40 max-w-xs mx-auto w-full aspect-video;
+  }
+}
