@@ -60,7 +60,12 @@ layout: default
       {% endif %}
 
       <!-- prettier-ignore -->
-      {{ content | extlinks | optimize_images | mark_segments: page.audioId }}
+      {% assign article = content | extlinks | optimize_images %}
+      {% if page.disableAudioPFP == true %}
+        {{ article }}
+      {% else %}
+        {{ article | mark_segments: page.audioId }}
+      {% endif %}
     </article>
 
     <hr />
