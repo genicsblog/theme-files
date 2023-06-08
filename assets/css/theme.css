@@ -53,7 +53,7 @@
   }
 
   article img {
-    @apply mx-auto;
+    @apply mx-auto sm:w-auto sm:max-h-[28rem];
   }
 
   article {
@@ -184,7 +184,7 @@
 
 .menu-btn-lines::after, .menu-btn-lines::before {
   @apply rounded-lg bg-white block w-8 absolute;
-  height: 0.17em;
+  height: 0.125em;
   transition: top 0.2s ease 0.2s, transform 0.2s ease 0s;
   content: ""; 
 }
@@ -215,6 +215,10 @@
 
 .search-item {
   @apply m-2 p-2 cursor-pointer flex border-4 border-transparent hover:rounded-md hover:border-slate-200;
+}
+
+.social-link {
+  @apply hover:scale-125 transition flex items-center;
 }
 
 .social-image {
@@ -252,8 +256,32 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
   font-family: "Fira Code", monospace;
 }
 
+.postbox, .postbox-horizontal {
+  @apply mx-auto hover:border-black bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 dark:hover:border-slate-200 dark:border-slate-600 transition;
+}
+
 .postbox {
-  @apply hover:border-black bg-white dark:bg-background rounded-2xl shadow-xl shadow-slate-200 dark:shadow-none border-4 dark:hover:border-slate-200 dark:border-slate-600 transition;
+  @apply max-w-xl;
+}
+
+.postbox-horizontal {
+  @apply xl:max-w-[90%];
+}
+
+.content-area {
+  @apply m-6 md:mr-5 md:text-lg lg:w-full lg:max-w-[65%] xl:max-w-[70%];
+}
+
+.sidebar-area {
+  @apply m-6 md:ml-5 flex flex-col lg:max-w-[25%] xl:max-w-[20%];
+}
+
+.cta {
+  @apply flex justify-center mx-6 md:mx-auto md:max-w-[80%];
+}
+
+.notice {
+  @apply w-full px-4 py-2 rounded-tl-2xl rounded-tr-2xl bg-slate-200 dark:bg-slate-800 space-y-4;
 }
 
 .linkpreview {
@@ -269,6 +297,10 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 
   .advert, .sponsor {
     @apply p-6 mt-8 self-start w-full sm:basis-[25%] lg:basis-0 sm:flex-grow lg:flex-grow-0;
+  }
+
+  .advert {
+    @apply h-full aspect-square;
   }
 
   .sponsor .logo {
