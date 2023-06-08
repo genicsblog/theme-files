@@ -159,11 +159,16 @@ layout: default
 
   <aside class="sidebar-area">
     <figure class="p-6 md:p-8 elevated">
-      <img
-        class="w-24 h-24 rounded-full mx-auto"
-        src="{{ optimizeAvatar }}{{ author.avatar }}"
-        alt="{{ author.name }}"
-      />
+      <a
+        class="underline-none" 
+        href="{{ site.baseurl }}/author/{{ page.author | downcase }}/"
+      >
+        <img
+          class="w-24 h-24 rounded-full mx-auto"
+          src="{{ optimizeAvatar }}{{ author.avatar }}"
+          alt="{{ author.name }}"
+        />
+      </a>
 
       <div class="pt-4 space-y-4">
         <figcaption class="font-medium text-center">

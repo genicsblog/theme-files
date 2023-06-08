@@ -102,7 +102,12 @@
       <!-- prettier-ignore -->
       {% if page.author %}
       <div class="flex items-center mt-8">
-        <img class="rounded-full w-14 h-14" src="{{ optimizeAvatar }}{{ author.avatar }}" />
+        <a
+          class="underline-none" 
+          href="{{ site.baseurl }}/author/{{ page.author | downcase }}/"
+        >
+          <img class="rounded-full w-14 h-14" src="{{ optimizeAvatar }}{{ author.avatar }}" />
+        </a>
 
         <div class="ml-4 leading-3">
           <a
