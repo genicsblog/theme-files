@@ -6,7 +6,7 @@
 {% assign author = site.data.authors[post.author] %}
 {% assign category = post.category %}
 <a
-  class="postbox mx-4 md:mx-16 lg:mx-22 my-6 px-6 pb-4 hover:border-{{ category }} dark:hover:!border-{{ category }} underline-none"
+  class="postbox-horizontal lg:mx-22 my-6 px-6 pb-4 hover:border-{{ category }} dark:hover:!border-{{ category }} underline-none"
   href="{{ site.baseurl }}{{ post.url }}"
 >
   <div class="flex flex-col lg:flex-row p-2">
@@ -14,7 +14,7 @@
       {% if post.image %}
       <img
         src="{{ optimize }}{{ post.image }}"
-        class="w-full md:w-3/4 lg:w-full rounded-xl shadow-xl aspect-video m-8"
+        class="m-8 w-full max-w-xl rounded-xl shadow-xl aspect-video"
       />
       {% endif %}
     </div>

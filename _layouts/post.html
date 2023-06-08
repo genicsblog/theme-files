@@ -11,161 +11,153 @@ layout: default
 <!-- prettier-ignore -->
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
 
-<section class="lg:flex">
-  <div
-    class="md:text-lg m-6 md:mx-10 lg:mx-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
-  >
-    <div class="elevated">
+<section class="lg:flex lg:justify-center">
+  <div class="content-area elevated">
+    <!-- prettier-ignore -->
+    {% if page.notice != blank or page.original != blank or page.series != blank %}
+    <div class="notice">
       <!-- prettier-ignore -->
-      {% if page.notice != blank or page.original != blank or page.series != blank %}
-      <div
-        class="notice w-full px-4 py-2 rounded-tl-2xl rounded-tr-2xl bg-slate-200 dark:bg-slate-800 space-y-4"
-      >
-        <!-- prettier-ignore -->
-        {% if page.original != blank %}
-        {% assign host = page.original | hostname %}
-        <span class="text-base italic leading-8">
-          Originally published at
-          <a
-            href="{{ page.original }}"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            >{{ host }}</a
-          >.
-        </span>
-        {% endif %}
-
-        <!-- prettier-ignore -->
-        {% if page.series %}
-        <span class="text-base leading-8">
-          This post is a part of the series
-          <a href="{{ site.baseurl }}/series/{{ page.series }}" target="_blank">
-            {{ page.series | split:"-" | join:" " | capitalize_all }}
-          </a>
-        </span>
-        {% endif %}
-
-        <!-- prettier-ignore -->
-        {% if page.notice != blank %}
-        {% if page.series != blank %}<br />{% endif %}
-        <span class="text-base leading-8">
-          {{ page.notice | markdownify }}
-        </span>
-        {% endif %}
-      </div>
+      {% if page.original != blank %}
+      {% assign host = page.original | hostname %}
+      <span class="text-base italic leading-8">
+        Originally published at
+        <a
+          href="{{ page.original }}"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          >{{ host }}</a
+        >.
+      </span>
       {% endif %}
 
-      <article class="p-6 md:p-8">
-        {% if page.audioId != blank and jekyll.environment == "production" %}
-        <div
-          class="mb-6"
-          id="audio-player"
-          data-audio-id="{{ page.audioId }}"
-        ></div>
-        {% endif %}
+      <!-- prettier-ignore -->
+      {% if page.series %}
+      <span class="text-base leading-8">
+        This post is a part of the series
+        <a href="{{ site.baseurl }}/series/{{ page.series }}" target="_blank">
+          {{ page.series | split:"-" | join:" " | capitalize_all }}
+        </a>
+      </span>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {% if page.notice != blank %}
+      {% if page.series != blank %}<br />{% endif %}
+      <span class="text-base leading-8">
+        {{ page.notice | markdownify }}
+      </span>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <article class="p-6 md:p-8">
+      {% if page.audioId != blank and jekyll.environment == "production" %}
+      <div
+        class="mb-6"
+        id="audio-player"
+        data-audio-id="{{ page.audioId }}"
+      ></div>
+      {% endif %}
+
+      <!-- prettier-ignore -->
+      {{ content | extlinks | optimize_images | mark_segments: page.audioId }}
+    </article>
+
+    <hr />
+
+    <div
+      class="px-6 pb-6 md:px-8 md:pb-8 flex flex-col items-center rounded-bl-2xl rounded-br-2xl"
+    >
+      <p class="text-center mb-4">
+        Join discussions at
+        <a
+          href="https://discord.genicsblog.com"
+          target="_blank"
+          class="cta-link"
+        >
+          our discord server &gt;
+        </a>
+
+        <br />
+
+        Did you learn something new? Add a comment below and spread the word!
+      </p>
+
+      <div class="grid grid-flow-col gap-6">
+        <a
+          class="social-link underline-none"
+          rel="nofollow noopener noreferrer"
+          href="https://facebook.com/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+          onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;"
+          target="_blank"
+        >
+          <img
+            src="{{ site.baseurl }}/assets/images/social/facebook.svg"
+            class="social-image w-8 h-8"
+          />
+        </a>
+
+        <a
+          class="social-link underline-none"
+          rel="nofollow noopener noreferrer"
+          href="https://api.whatsapp.com/send?text=Checkout this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ site.baseurl }}{{ page.url }}"
+          onclick="window.open(this.href, 'whatsapp-share', 'width=550,height=435');return false;"
+          target="_blank"
+        >
+          <img
+            src="{{ site.baseurl }}/assets/images/social/whatsapp.svg"
+            class="social-image w-10 h-10"
+          />
+        </a>
+
+        <a
+          class="social-link underline-none"
+          rel="nofollow noopener noreferrer"
+          href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+          onclick="window.open(this.href, 'linkedin-share', 'width=550,height=435');return false;"
+          target="_blank"
+        >
+          <img
+            src="{{ site.baseurl }}/assets/images/social/linkedin.svg"
+            class="social-image w-7 h-7"
+          />
+        </a>
 
         <!-- prettier-ignore -->
-        {{ content | extlinks | optimize_images | mark_segments: page.audioId }}
-      </article>
+        {% assign mention = author.links.twitter %}
+        {% if mention != blank %}
+        {% assign text = "by @" | append: mention | append: " " %}
+        {% else %}
+        {% assign text = "" %}
+        {% endif %}
+        <a
+          class="social-link underline-none"
+          rel="nofollow noopener noreferrer"
+          href="https://twitter.com/intent/tweet?text=Check out this amazing article {{ text }}at @genicsblog: {{ page.title }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;"
+        >
+          <img
+            src="{{ site.baseurl }}/assets/images/social/twitter.svg"
+            class="social-image w-8 h-8"
+          />
+        </a>
 
-      <hr />
-
-      <div
-        class="px-6 pb-6 md:px-8 md:pb-8 flex flex-col items-center rounded-bl-2xl rounded-br-2xl"
-      >
-        <p class="text-center mb-4">
-          Join discussions at
-          <a
-            href="https://discord.genicsblog.com"
-            target="_blank"
-            class="cta-link"
-          >
-            our discord server &gt;
-          </a>
-
-          <br />
-
-          Did you learn something new? Add a comment below and spread the word!
-        </p>
-
-        <div class="grid grid-flow-col gap-6">
-          <a
-            class="underline-none hover:scale-125 transition flex items-center"
-            rel="nofollow noopener noreferrer"
-            href="https://facebook.com/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-            onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;"
-            target="_blank"
-          >
-            <img
-              src="{{ site.baseurl }}/assets/images/social/facebook.svg"
-              class="social-image w-8 h-8"
-            />
-          </a>
-
-          <a
-            class="underline-none hover:scale-125 transition flex items-center"
-            rel="nofollow noopener noreferrer"
-            href="https://api.whatsapp.com/send?text=Checkout this amazing article at Genics Blog '{{ page.title }}': {{ site.url }}{{ site.baseurl }}{{ page.url }}"
-            onclick="window.open(this.href, 'whatsapp-share', 'width=550,height=435');return false;"
-            target="_blank"
-          >
-            <img
-              src="{{ site.baseurl }}/assets/images/social/whatsapp.svg"
-              class="social-image w-10 h-10"
-            />
-          </a>
-
-          <a
-            class="underline-none hover:scale-125 transition flex items-center"
-            rel="nofollow noopener noreferrer"
-            href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-            onclick="window.open(this.href, 'linkedin-share', 'width=550,height=435');return false;"
-            target="_blank"
-          >
-            <img
-              src="{{ site.baseurl }}/assets/images/social/linkedin.svg"
-              class="social-image w-7 h-7"
-            />
-          </a>
-
-          <!-- prettier-ignore -->
-          {% assign mention = author.links.twitter %}
-          {% if mention != blank %}
-          {% assign text = "by @" | append: mention | append: " " %}
-          {% else %}
-          {% assign text = "" %}
-          {% endif %}
-          <a
-            class="underline-none hover:scale-125 transition flex items-center"
-            rel="nofollow noopener noreferrer"
-            href="https://twitter.com/intent/tweet?text=Check out this amazing article {{ text }}at @genicsblog: {{ page.title }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-            onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;"
-          >
-            <img
-              src="{{ site.baseurl }}/assets/images/social/twitter.svg"
-              class="social-image w-8 h-8"
-            />
-          </a>
-
-          <a
-            class="underline-none hover:scale-125 transition flex items-center"
-            rel="nofollow noopener noreferrer"
-            href="https://www.snapchat.com/scan?attachmentUrl={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-            onclick="window.open(this.href, 'snapchat-share', 'width=550,height=435');return false;"
-          >
-            <img
-              src="{{ site.baseurl }}/assets/images/social/snapchat.svg"
-              class="social-image w-14 h-14 -m-2"
-            />
-          </a>
-        </div>
+        <a
+          class="social-link underline-none"
+          rel="nofollow noopener noreferrer"
+          href="https://www.snapchat.com/scan?attachmentUrl={{ site.url }}{{ site.baseurl }}{{ page.url }}"
+          onclick="window.open(this.href, 'snapchat-share', 'width=550,height=435');return false;"
+        >
+          <img
+            src="{{ site.baseurl }}/assets/images/social/snapchat.svg"
+            class="social-image w-14 h-14 -m-2"
+          />
+        </a>
       </div>
     </div>
   </div>
 
-  <aside
-    class="m-6 lg:mr-10 lg:-ml-4 flex flex-col lg:max-w-[25%] xl:max-w-[20%]"
-  >
+  <aside class="sidebar-area">
     <figure class="p-6 md:p-8 elevated">
       <img
         class="w-24 h-24 rounded-full mx-auto"
@@ -273,19 +265,14 @@ layout: default
 {% include_cached cta.html %}
 
 {% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}
-<h1 class="mx-8 mt-12 md:mx-10 lg:mx-14 -mb-4 lg:-mb-8">Comments</h1>
+<h1 class="mt-12 mx-6 lg:mx-10 xl:mx-14">Comments</h1>
 
-<section class="flex flex-col-reverse lg:flex-row">
-  <div
-    id="comments"
-    class="md:text-lg m-8 md:m-10 lg:m-14 lg:w-full lg:max-w-[65%] xl:max-w-[70%]"
-  ></div>
+<section class="lg:flex lg:justify-center">
+  <div id="comments" class="content-area"></div>
 
-  <aside
-    class="m-8 md:m-10 lg:my-14 lg:mr-10 lg:-ml-4 md:mr-8 lg:max-w-[25%] xl:max-w-[20%]"
-  >
+  <aside class="sidebar-area">
     <div
-      class="p-6 md:p-8 space-y-4 lg:sticky lg:top-24 rounded-2xl bg-white dark:bg-background shadow-xl dark:shadow-none shadow-slate-200"
+      class="p-6 space-y-4 lg:sticky lg:top-24 elevated"
     >
       <p class="leading-5 font-medium text-justify">
         Please adhere to our
