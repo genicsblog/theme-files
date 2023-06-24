@@ -19,12 +19,16 @@
   {% else %}
     {% assign image = meta['twitter:image'] %}
   {% endif %}
+{% else %}
+  {% assign image = nil %}
 {% endif %}
 
 {% if meta['description'] != blank %}
   {% assign description = meta['description'] %}
 {% elsif meta['og:description'] != blank %}
   {% assign description = meta['og:description'] %}
+{% else %}
+  {% assign description = nil %}
 {% endif %}
 
 <div class="linkpreview">
