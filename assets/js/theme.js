@@ -6,20 +6,8 @@ const LIGHT_HIGHLIGHT = "#eee";
 const GISCUS_LIGHT = "https://giscus.app/themes/light.css";
 const GISCUS_DARK = "https://giscus.app/themes/dark.css";
 
-// dark mode functions
-const isSomeThemeSaved = () => {
-  const theme = localStorage.getItem(THEME);
-  return theme !== null && theme !== undefined;
-};
-
-const isDark = () => {
-  return (
-    localStorage.getItem(THEME) === DARK ||
-    (!isSomeThemeSaved() &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  );
-};
+// theme functions
+const isDark = () => localStorage.getItem(THEME) === DARK
 
 const saveTheme = (theme) => {
   localStorage.setItem(THEME, theme);
