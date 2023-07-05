@@ -45,6 +45,7 @@
       <img
         src="{{ image }}"
         class="w-full md:max-w-[40%] rounded-xl aspect-video lg:m-4"
+        alt="{% if include.imgAlt %}{{ include.imgAlt }}{% else %}Preview image of {{ include.title | default: meta['title'] }} | {{ include.url | hostname }}{% endif %}"
       />
       {% endif %}
 
@@ -61,10 +62,15 @@
         </h3>
 
         {% if description != blank %}
-        <p class="text-sm lg:text-base line-clamp-3" data-marker="none">{{ description }}</p>
+        <p class="text-sm lg:text-base line-clamp-3" data-marker="none">
+          {{ description }}
+        </p>
         {% endif %}
 
-        <span class="text-gray-500 dark:text-gray-400 text-sm" data-marker="none">
+        <span
+          class="text-gray-500 dark:text-gray-400 text-sm"
+          data-marker="none"
+        >
           {{ include.url | hostname }} &gt;
         </span>
       </div>
