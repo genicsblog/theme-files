@@ -45,7 +45,7 @@
       <img
         src="{{ image }}"
         class="w-full md:max-w-[40%] rounded-xl aspect-video lg:m-4"
-        alt="{% if include.imgAlt %}{{ include.imgAlt }}{% else %}Preview image of {{ include.title | default: meta['title'] }}{% endif %}"
+        alt="{% if include.imgAlt %}{{ include.imgAlt }}{% else %}Preview image of {{ include.title | default: meta['title'] }} | {{ include.url | hostname }}{% endif %}"
       />
       {% endif %}
 
