@@ -4,34 +4,6 @@
 {% assign featuredPostsSize = featuredPosts | size %}
 {% assign featuredCategoriesSize = featuredCategories | size %}
 {% if page.url == '/index.html' %}
-{% if featuredPostsSize != 0 %}
-<div class="flex justify-center">
-  <h1>Popular this month</h1>
-</div>
-
-<div
-  class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
->
-  <!-- prettier-ignore -->
-  {% for featuredPost in featuredPosts %}
-  {% assign post = site.posts | find_exp:"post", "post.url == featuredPost" %}
-    {% include_cached postbox.html 
-      environment=jekyll.environment
-      author=post.author
-      category=post.category
-      url=post.url
-      image=post.image
-      title=post.title
-      excerpt=post.excerpt
-      date=post.date
-    %}
-  {% endfor %}
-</div>
-
-<hr />
-{% endif %}
-
-<!-- prettier-ignore -->
 {% if featuredCategoriesSize != 0 %}
 <div class="flex justify-center">
   <h1>Featured</h1>
@@ -72,10 +44,40 @@
     Read more on #{{ category }}
   </a>
 </div>
-{% endfor %}
 
 <hr />
+{% endfor %}
+{% endif %}
 
+<!-- prettier-ignore -->
+{% if featuredPostsSize != 0 %}
+<div class="flex justify-center">
+  <h1>Popular this month</h1>
+</div>
+
+<div
+  class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 md:gap-4 lg:gap-6 text-center"
+>
+  <!-- prettier-ignore -->
+  {% for featuredPost in featuredPosts %}
+  {% assign post = site.posts | find_exp:"post", "post.url == featuredPost" %}
+    {% include_cached postbox.html 
+      environment=jekyll.environment
+      author=post.author
+      category=post.category
+      url=post.url
+      image=post.image
+      title=post.title
+      excerpt=post.excerpt
+      date=post.date
+    %}
+  {% endfor %}
+</div>
+
+<hr />
+{% endif %}
+
+{% if featuredCategoriesSize != 0 or featuredPostsSize != 0 %}
 <h1>All Posts</h1>
 {% endif %}
 
