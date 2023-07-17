@@ -1,5 +1,9 @@
 <!-- prettier-ignore -->
-{% assign meta = include.url | metadata %}
+{% if jekyll.environment == 'production' %}
+  {% assign meta = include.url | metadata %}
+{% else %}
+  {% assign meta = include.url %}
+{% endif %}
 
 {% if include.image != blank %}
   {% assign image = include.image %}
