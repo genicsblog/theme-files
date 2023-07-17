@@ -232,6 +232,9 @@ layout: default
       <figure
         class="sponsor elevated{% if forloop.last == true %} lg:sticky lg:top-24{% endif %}"
       >
+        {% if element.customHtml %}
+          {{ element.customHtml }}
+        {% else %}
         <img
           src="{{ element.logo.dark }}"
           class="logo hidden dark:block"
@@ -261,6 +264,7 @@ layout: default
             Check it out &gt;
           </a>
         </div>
+        {% endif %}
       </figure>
       <!-- prettier-ignore -->
       {% endfor %}
