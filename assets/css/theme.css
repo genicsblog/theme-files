@@ -281,7 +281,7 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 }
 
 .notice {
-  @apply w-full px-4 py-2 rounded-tl-2xl rounded-tr-2xl bg-slate-200 dark:bg-slate-800 space-y-4;
+  @apply w-full px-4 text-base rounded-tl-2xl rounded-tr-2xl bg-slate-200 dark:bg-slate-800 space-y-4;
 }
 
 .linkpreview {

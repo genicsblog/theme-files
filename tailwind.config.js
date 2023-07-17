@@ -20,7 +20,7 @@ Object.keys(extendedColors).filter(
   safelist.push(`dark:hover:!border-${item}`);
 });
 
-safelist.push("mt-16");
+safelist.concat("-mb-4 pt-4 pb-7 mt-16".split(" "));
 
 module.exports = {
   darkMode: 'class',

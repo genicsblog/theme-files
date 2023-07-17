@@ -7,19 +7,30 @@ layout: default
 {% if jekyll.environment == 'production' %}
   {% assign optimizeAvatar = site.img_src_prefix.avatar %}
 {% endif %}
+{%- capture hasNotice -%}
+{%- if page.notice != blank or page.original != blank or page.series != blank -%}true{%- endif -%}
+{%- endcapture -%}
 
 <!-- prettier-ignore -->
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
 
 <section class="lg:flex lg:justify-center">
   <div class="content-area elevated">
+    {% if site.sponsor-notice %}
+    <div
+      style="background-color: {{ site.sponsor-notice.color }}"
+      class="notice{% if hasNotice == 'true' %} -mb-4 pt-4 pb-7{% else %} py-4{% endif %}"
+    >
+      {{ site.sponsor-notice.html }}
+    </div>
+    {% endif %}
     <!-- prettier-ignore -->
-    {% if page.notice != blank or page.original != blank or page.series != blank %}
-    <div class="notice">
+    {% if hasNotice == "true" %}
+    <div class="py-2 notice">
       <!-- prettier-ignore -->
       {% if page.original != blank %}
       {% assign host = page.original | hostname %}
-      <span class="text-base italic leading-8">
+      <span class="italic leading-8">
         Originally published at
         <a
           href="{{ page.original }}"
@@ -32,7 +43,7 @@ layout: default
 
       <!-- prettier-ignore -->
       {% if page.series %}
-      <span class="text-base leading-8">
+      <span class="leading-8">
         This post is a part of the series
         <a href="{{ site.baseurl }}/series/{{ page.series }}" target="_blank">
           {{ page.series | split:"-" | join:" " | capitalize_all }}
@@ -43,7 +54,7 @@ layout: default
       <!-- prettier-ignore -->
       {% if page.notice != blank %}
       {% if page.series != blank %}<br />{% endif %}
-      <span class="text-base leading-8">
+      <span class="leading-8">
         {{ page.notice | markdownify }}
       </span>
       {% endif %}

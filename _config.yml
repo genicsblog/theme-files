@@ -17,6 +17,11 @@ img_src_prefix:
   general: "https://ik.imagekit.io/genicsblog/tr:f-webp/"
   header: "https://ik.imagekit.io/genicsblog/tr:w-1920,h-1080,f-webp/"
   avatar: "https://ik.imagekit.io/genicsblog/tr:w-128,h-128,f-webp/"
+sponsor-notice:
+  color: "#f9f3ec"
+  html: >-
+    <span id="344537">Setapp provides <b>240+ carefully curated apps</b> in one subscription! Get started with a <a href="https://setapp.sjv.io/c/4528551/344537/5114"><b>free trial &gt;</b></a></span>
+    <img height="0" width="0" src="https://setapp.sjv.io/i/4528551/344537/5114" style="position:absolute;visibility:hidden;" border="0" />
 
 defaults:
   - scope:
