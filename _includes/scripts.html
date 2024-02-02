@@ -84,3 +84,25 @@
 
   InstantClick.init("mousedown");
 </script>
+{% if page.layout == "post" and jekyll.environment == "production" %}
+<script>
+window.CustomSubstackWidget = {
+    substackUrl: "genicsblog.substack.com",
+    placeholder: "example@gmail.com",
+    buttonText: "Subscribe",
+    theme: "custom",
+    colors: isDark() ? {
+      primary: "#FFFFFF",
+      input: "#000000",
+      email: "#FFFFFF",
+      text: "#000000",
+    } : {
+      primary: "#000000",
+      input: "#FFFFFF",
+      email: "#000000",
+      text: "#FFFFFF",
+    },
+  };
+</script>
+<script src="https://substackapi.com/widget.js" async></script>
+{% endif %}
