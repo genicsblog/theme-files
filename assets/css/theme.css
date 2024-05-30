@@ -277,7 +277,7 @@ code.highlighter-rouge:not(h1 code, h2 code, h3 code, h4 code, h5 code, h6 code)
 }
 
 .cta {
-  @apply flex justify-center mx-6 md:mx-auto md:max-w-[80%];
+  @apply flex justify-center mx-6 md:mx-auto md:max-w-[80%] 2xl:max-w-screen-xl;
 }
 
 .notice {

@@ -14,7 +14,7 @@ layout: default
 <!-- prettier-ignore -->
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
 
-<section class="lg:flex lg:justify-center">
+<section class="lg:flex lg:justify-center lg:max-w-screen-2xl lg:mx-auto">
   <div class="content-area elevated">
     {% if site.sponsor-notice %}
     <div
@@ -290,7 +290,7 @@ layout: default
 
 <!-- prettier-ignore -->
 {% include_cached infeed-ad.html environment=jekyll.environment sitemap=page.sitemap %}
-<br />
+<br />  
 {% include_cached cta.html %}
 
 {% if jekyll.environment == 'production' and page.comments != false and page.sitemap != false %}

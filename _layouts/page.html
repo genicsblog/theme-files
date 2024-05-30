@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="elevated md:text-lg m-8 md:m-10 lg:m-14 p-6 md:p-8">{{ content | extlinks | optimize_images }}</article>
+<article class="elevated md:text-lg m-8 md:m-10 p-6 md:p-8 lg:mx-auto lg:max-w-[80%] 2xl:max-w-screen-xl">{{ content | extlinks | optimize_images }}</article>
 
 {% if page.showlatest %}
 <div class="m-8 md:m-10 lg:m-14">{% include latestposts.html %}</div>
