@@ -68,6 +68,11 @@ layout: default
         id="audio-player"
         data-audio-id="{{ page.audioId }}"
       ></div>
+      <script>
+        if (window.BeyondWords) {
+          BeyondWords.Player.destroyAll();
+        }
+      </script>
       {% endif %}
 
       <!-- prettier-ignore -->
