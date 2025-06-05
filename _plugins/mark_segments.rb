@@ -71,7 +71,7 @@ module Jekyll
       doc = Nokogiri::HTML.fragment(html)
       return html unless doc
 
-      if content_id.class == Integer
+      if content_id.class == Integer || content_id.class == String
         json = JSON.parse(get_segments(content_id))
         segments = json["segments"]
 

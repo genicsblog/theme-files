@@ -76,7 +76,12 @@ layout: default
       {% endif %}
 
       <!-- prettier-ignore -->
-      {% assign article = content | extlinks | optimize_images %}
+      {% assign _article = content | extlinks %}
+      {% if page.optimizeImages != false %}
+      {% assign article = _article | optimize_images %}
+      {% else %}
+      {% assign article = _article %}
+      {% endif %}
       {% if page.disableAudioPFP == true %}
         {{ article }}
       {% else %}
